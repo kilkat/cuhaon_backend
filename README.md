@@ -4,6 +4,6 @@
 
 -21/07/15
   /controllers/index.ctrl 수정
-  +문서 정리
-  +wargame페이징, comment페이징 적용
-  +wargame/index.ejs의 154번 줄 for(...)문 => foreach문으로 수정.
+  >문서 정리
+  >wargame페이징, comment페이징 적용
+  >wargame/index.ejs의 154번 줄 for(...)문 => foreach문으로 수정.
