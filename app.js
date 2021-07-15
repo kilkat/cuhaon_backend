@@ -93,6 +93,6 @@
 
   // listen port:8080
   app.listen(app.get('PORT'), () => {
-    console.log(`alistening on port ${app.get('PORT')}`);
+    console.log(`listening on port ${app.get('PORT')}`);
   });
 })();
