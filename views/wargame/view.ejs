@@ -139,7 +139,7 @@
               <p>의견 <span>3</span></p>
             </div>
             <div class="section-comment__comments-items">
-              <% for (let i = 0; i < comment.length; ++i) { %>
+              <% comments.forEach(function(comment){ %>
               <!-- 댓글 하나 -->
               <div class="section-comment__comments-items__item">
                 <div class="section-comment__comments-items__item-profile">
@@ -155,7 +155,7 @@
                         section-comment__comments-items__item-profile__texts-line
                       "
                     >
-                      Lv.7 <span><%= comment[i].nickname %></span>
+                      Lv.7 <span><%= comment.nickname %></span>
                     </div>
                     <div
                       class="
@@ -163,40 +163,39 @@
                       "
                     >
                       <b>전체랭킹</b> 710위 ·
-                      <span><%= comment[i].createdAt %></span>
+                      <span><%= comment.createdAt %></span>
                     </div>
                   </div>
                 </div>
 
                 <div class="section-comment__comments-items__item-wrote">
-                  <%= comment[i].content %>
+                  <%= comment.content %>
                 </div>
               </div>
-              <% } %>
+              <% }); %>
             </div>
           </div>
 
-          <div class="section-comment__paging">
-            <!-- float : left  -->
-            <button class="section-comment__paging-button" type="button">
-              <
-            </button>
-            <button
-              class="section-comment__paging-button__activated"
-              type="button"
-            >
-              1
-            </button>
-            <button class="section-comment__paging-button" type="button">
-              2
-            </button>
-            <button class="section-comment__paging-button" type="button">
-              3
-            </button>
-            <button class="section-comment__paging-button" type="button">
-              >
-            </button>
-          </div>
+         <!--페이징 시작-->
+          
+         <div class="section-comment__paging">
+          <!-- float : left  -->
+          <%
+            let prevEnabled = paging.currentPage > 1;
+            let nextEnabled = paging.currentPage < paging.totalPage;
+          %>
+          <%if(prevEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame/<%= wargame.id%>?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>">&lt;</a></button><%}%>
+         <% for(let i=1; i<= paging.totalPage; i++){%>
+            <%if(i==1 || i==paging.totalPage || (i>=paging.currentPage-2 && i<=paging.currentPage+2)){%>
+            <button class="section-comment__paging-button<%if(i==paging.currentPage){%>__activated<%}%>" type="button"><a href="/wargame/<%= wargame.id%>?page=<%= i %>&limit=<%=paging.limit%>"><%= i %></a></button>
+            <%} else if(i==2||i==paging.totalPage-1){%>
+              <button class="section-comment__paging-button" type="button">...</button>
+            <%}%>
+          <%}%>
+          <%if(nextEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame/<%= wargame.id%>?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>">&gt;</a></button><%}%>
+      </div>
+      
+      <!--페이징 종료-->
         </section>
 
         <!-- 관리자 도구 -->
