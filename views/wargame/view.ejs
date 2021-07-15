@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
+
+    <title>cuha-on</title>
+  </head>
+
+  <body>
+    <%- include('../common/header') -%>
+
+    <main class="main">
+      <div class="__hiddenSolver" style="width: 100%; height: 2rem"></div>
+
+      <div class="section__outer" style="background-color: white">
+        <div class="section__outer__area">
+          <section class="section__outer-head">
+            <div class="section__outer-head__title">
+              <!-- float : left -->
+              <div class="section__outer-head__title-left">
+                <div class="section__outer-head__title-left__realtitle">
+                  <!-- float : left -->
+                  <div class="section__outer-head__title-left__realtitle-text">
+                    <%= wargame.title %>
+                  </div>
+                  <div
+                    class="section__outer-head__title-left__realtitle-component"
+                  >
+                    <p>OFFICIAL</p>
+                  </div>
+                </div>
+                <div class="section__outer-head__title-left__status">
+                  <!-- float : left -->
+                  <div class="section__outer-head__title-left__status-viewed">
+                    조회수 : <span><%= wargame.views %></span>
+                  </div>
+                  <div class="section__outer-head__title-left__status-expl">
+                    풀이수 : <span><%= wargame.solved %></span>
+                  </div>
+                </div>
+              </div>
+              <div class="section__outer-head__title-right">
+                <div class="section__outer-head__title-right__points">
+                  <span><%= wargame.point %></span> pts
+                </div>
+              </div>
+            </div>
+
+            <div class="section__outer-head__tag">
+              <a href="#"><%= wargame.type %></a>
+            </div>
+
+            <div class="section__outer-head__uploader">
+              <!-- float : left -->
+              <div class="section__outer-head__uploader-image"></div>
+              <div class="section__outer-head__uploader-texts">
+                <div class="section__outer-head__uploader-texts__name">
+                  <%= wargame.userId.nickname %>
+                </div>
+                <div class="section__outer-head__uploader-texts__type">
+                  최고 관리자
+                </div>
+              </div>
+            </div>
+
+            <div class="section__outer-head__date">
+              <p><%= wargame.createdAt %></p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="section__area">
+        <section class="section-problem global-bg__white">
+          <div class="section-problem__title">
+            <div class="section-problem__desc">
+              <p><%= wargame.content %></p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="section-answer global-bg__white"
+          style="padding-bottom: 2rem"
+        >
+          <form action="/wargame/viewFlag" method="POST">
+            <textarea
+              name="answer"
+              id="answer"
+              cols="30"
+              rows="4"
+              placeholder="정답을 자유롭게 기입하세요."
+            ></textarea>
+
+            <input
+              type="submit"
+              value="제출하기"
+              class="global-button__default"
+              style="width: 100%; margin-top: 2rem"
+            />
+          </form>
+        </section>
+
+        <section class="section-comment global-bg__white">
+          <h1>본 문제에 대한 의견을 제시해 주세요.</h1>
+
+          <!-- 이 부분은 로그인 했을때만 표시 -->
+          <div class="section-comment__input">
+            <form
+              action="/wargame/<%- wargame._id %>/commentCreate"
+              method="POST"
+            >
+              <input
+                type="text"
+                name="content"
+                placeholder="의견을 작성하고 Enter를 눌러주세요."
+              />
+            </form>
+          </div>
+          <!-- 이 부분은 로그인 했을때만 표시 -->
+
+          <div class="section-comment__comments">
+            <div class="section-comment__comments-total">
+              <p>의견 <span>3</span></p>
+            </div>
+            <div class="section-comment__comments-items">
+              <% for (let i = 0; i < comment.length; ++i) { %>
+              <!-- 댓글 하나 -->
+              <div class="section-comment__comments-items__item">
+                <div class="section-comment__comments-items__item-profile">
+                  <!-- float : left -->
+                  <div
+                    class="section-comment__comments-items__item-profile__image"
+                  ></div>
+                  <div
+                    class="section-comment__comments-items__item-profile__texts"
+                  >
+                    <div
+                      class="
+                        section-comment__comments-items__item-profile__texts-line
+                      "
+                    >
+                      Lv.7 <span><%= comment[i].nickname %></span>
+                    </div>
+                    <div
+                      class="
+                        section-comment__comments-items__item-profile__texts-subline
+                      "
+                    >
+                      <b>전체랭킹</b> 710위 ·
+                      <span><%= comment[i].createdAt %></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="section-comment__comments-items__item-wrote">
+                  <%= comment[i].content %>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="section-comment__paging">
+            <!-- float : left  -->
+            <button class="section-comment__paging-button" type="button">
+              <
+            </button>
+            <button
+              class="section-comment__paging-button__activated"
+              type="button"
+            >
+              1
+            </button>
+            <button class="section-comment__paging-button" type="button">
+              2
+            </button>
+            <button class="section-comment__paging-button" type="button">
+              3
+            </button>
+            <button class="section-comment__paging-button" type="button">
+              >
+            </button>
+          </div>
+        </section>
+
+        <!-- 관리자 도구 -->
+        <!-- 백엔드에서 관리자가 보는게 아니면 이하 style="display"에 none삽입 -->
+        <section class="section-admintool" style="display: ''">
+          <div class="section-admintool__area">
+            <p>관리자 도구</p>
+            <a
+              href="#"
+              class="global-button__default"
+              style="background-color: red"
+              >글 삭제</a
+            >
+            <form action="/wargame/<%= wargame._id %>/update" method="POST">
+              <input
+                type="submit"
+                value="내용수정"
+                class="global-button__default"
+                style="background-color: blue"
+              />
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <%- include('../common/footer') -%>
+  </body>
+
+  <script>
+    var isMenuOpened = false;
+
+    function funcDoMenu() {
+      if (isMenuOpened == false) {
+        isMenuOpened = !isMenuOpened;
+        document.getElementsByClassName('header__slide')[0].style.width =
+          '300px';
+      } else {
+        isMenuOpened = !isMenuOpened;
+        document.getElementsByClassName('header__slide')[0].style.width = '0px';
+      }
+    }
+  </script>
+</html>

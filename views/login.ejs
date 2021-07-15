@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
+
+        <title>cuha-on</title>
+    </head>
+
+    <body>
+        <%- include('./common/header') -%>
+
+        <main class="main">
+            <div class="main__area3" style="padding: 17rem 0">
+                <div class="main__area3-loginForm">
+                    <form action="/auth/login" method="post">
+                        <h1>로그인</h1>
+                        <br />
+                        <br />
+
+                        <input type="email" name="email" placeholder="이메일" />
+                        <br />
+                        <br />
+                        <br />
+                        <input type="password" name="password" placeholder="비밀번호" />
+                        <br />
+                        <a href="#">암호를 잊어버렸습니다.</a>
+                        <br />
+
+                        <input type="submit" value="로그인" />
+                    </form>
+                </div>
+                <!--  -->
+                <div style="text-align: center; padding-top: 4rem; font-size: 1.4rem">
+                    <p>
+                        드림핵이 처음이신가요?
+                        <a href="/auth/join" class="main__area3-isFirstVisitor">회원가입 </a>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <%- include('./common/footer') -%>
+    </body>
+</html>

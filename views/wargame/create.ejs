@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+            href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
+
+        <title>cuha-on</title>
+    </head>
+
+    <body>
+        <%- include('../common/header') -%>
+
+        <main class="main">
+            <div class="__hiddenSolver" style="width: 100%; height: 2rem"></div>
+
+            <form action="/wargame/create" method="POST">
+                <div class="section__outer" style="background-color: white">
+                    <div class="section__outer__area">
+                        <section
+                            class="section__outer-head"
+                            style="height: 15rem"
+                        >
+                            <div class="section__outer-head__title">
+                                <!-- float : left -->
+                                <div
+                                    class="section__outer-head__title-left"
+                                    style="width: 100%"
+                                >
+                                    <div
+                                        class="
+                                            section__outer-head__title-left__realtitle
+                                        "
+                                        style="width: 100%"
+                                    >
+                                        <!-- float : left -->
+                                        <div
+                                            class="
+                                                section__outer-head__title-left__realtitle-text
+                                            "
+                                            style="width: 100%"
+                                        >
+                                            <input
+                                                class="global-input__title"
+                                                name="title"
+                                                type="text"
+                                                placeholder="제목을 기입하시오."
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section__outer-head__edittag">
+                                <p><b>Categories :</b></p>
+                                <input type="checkbox" name="type" value="all"/>
+                                <label for="cb0">ALL</label>
+
+                                <input type="checkbox" name="type" value="system"/>
+                                <label for="cb1">시스템해킹</label>
+
+                                <input type="checkbox" name="type" value="reversing"/>
+                                <label for="cb2">리버싱</label>
+
+                                <input type="checkbox" name="type" value="web"/>
+                                <label for="cb3">웹해킹</label>
+
+                                <input type="checkbox" name="type" value="cipher"/>
+                                <label for="cb4">암호화</label>
+
+                                <input type="checkbox" name="type" value="forensic"/>
+                                <label for="cb5">포렌식</label>
+
+                                <input type="checkbox" name="type" value="misc"/>
+                                <label for="cb6">기타</label>
+                            </div>
+
+                            <div class="section__outer-head__edittag">
+                                <p><b>Level :</b></p>
+                                <input type="checkbox" name="level" value="level1"/>
+                                <label for="cb10">Level 1</label>
+
+                                <input type="checkbox" name="level" value="level2"/>
+                                <label for="cb11">Level 2</label>
+
+                                <input type="checkbox" name="level" value="level3"/>
+                                <label for="cb12">Level 3</label>
+
+                                <input type="checkbox" name="level" value="level4"/>
+                                <label for="cb13">Level 4</label>
+
+                                <input type="checkbox" name="level" value="level5"/>
+                                <label for="cb14">Level 5</label>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="section__area">
+                    <section class="section-problem global-bg__white">
+                        <div class="section-problem__title">
+                            <input type="text" placeholder="point" name="point">
+                        </div>
+                        <div class="section-problem__desc">
+                            <h6>
+                                <input type="text" placeholder="flag" name="flag">
+                            </h6>
+                            <div
+                                style="
+                                    margin-top: 3rem;
+                                    background-color: aqua;
+                                    width: 100%;
+                                    height: 48rem;
+                                "
+                            >
+                            <input type="text" name="content">
+                                <!-- 이 넓은 공간에 스마트에디터를 넣으면 될 것 같다. -->
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 3rem"></div>
+                        <input type="file" name="includedfile" />
+                    </section>
+
+                    <section class="section-submit">
+                        <input
+                            type="submit"
+                            value="작성완료"
+                            class="global-button__default"
+                            style="width: 100%; margin-top: 2rem"
+                        />
+                    </section>
+                </div>
+
+            </form>
+        </main>
+
+        <%- include('../common/footer') -%>
+    </body>
+
+    <script>
+        var isMenuOpened = false;
+
+        function funcDoMenu() {
+            if (isMenuOpened == false) {
+                isMenuOpened = !isMenuOpened;
+                document.getElementsByClassName(
+                    'header__slide'
+                )[0].style.width = '300px';
+            } else {
+                isMenuOpened = !isMenuOpened;
+                document.getElementsByClassName(
+                    'header__slide'
+                )[0].style.width = '0px';
+            }
+        }
+    </script>
+</html>
