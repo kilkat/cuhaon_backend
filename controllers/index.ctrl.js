@@ -45,11 +45,11 @@ const getWargameIndexPage = async (req, res) => {
     console.error(error);
   }
 };
-
+//wargame 등록 페이지
 const getWargameCreatePage = (req, res) => {
   res.render('wargame/create');
 };
-
+//wargame 게시물 내용
 const getWargameViewPage = async (req, res) => {
   const id = req.params.id;
 
@@ -89,7 +89,7 @@ const getWargameViewPage = async (req, res) => {
     console.error(error);
   }
 };
-
+//wargame 수정
 const postWargameUpdate = async (req, res) => {
   const wargameId = req.params.wargameId;
   const userId = req.params.wargameUserId;
@@ -104,7 +104,7 @@ const postWargameUpdate = async (req, res) => {
 
   res.render('wargame/update');
 };
-
+//wargame 등록
 const postWargameCreate = async (req, res) => {
   const { title, content, type, level, point, flag } = req.body;
 
@@ -124,7 +124,7 @@ const postWargameCreate = async (req, res) => {
     console.error(error);
   }
 };
-
+//댓글 작성
 const postCreateComment = async (req, res) => {
   const content = req.body.content;
   const wargameId = req.params.id;
