@@ -15,7 +15,9 @@ const getWargameIndexPage = async (req, res) => {
     limit = !isNaN(limit) ? limit : 10;
     const maxPost = 10;
     let hiddenPost = page === 1 ? 0 : (page - 1) * limit;
-    let wargamePost = await Wargame.find({})
+    let wargamePost = await Wargame.find({
+      title: new RegExp(req.query.title, 'i'),
+    })
       .sort('-createdAt') //내림차순 정렬
       .skip(hiddenPost)
       .limit(limit);
