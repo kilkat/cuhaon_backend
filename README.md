@@ -10,7 +10,7 @@ __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가�
   >작성자 : 문영민
   
 + __21/07/16__
-  /controllers/index.ctrl , /view/index.ejs 수정
+  /controllers/index.ctrl , /views/wargame/index.ejs, /views/wargame/view.ejs 수정
   >wargame 검색 기능 적용  
   >comment 수정(의견 수 표시)  
   >~~검색시 페이지가 남고, 페이지 이동시 초기화되는 버그 있음.~~(해결)  
