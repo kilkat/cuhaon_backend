@@ -1,6 +1,6 @@
 # cuhaon_backend
 ### 수정일지
-__커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가능성이 높습니다. git pull한번 해주고 커밋하면 잘됩니다.__
+__커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가능성이 높습니다. git pull한번 해주고 커밋하면 잘됩니다.__  
 마크다운 사용법: https://gist.github.com/ihoneymon/652be052a0727ad59601
 + __21/07/15__
   /controllers/index.ctrl 수정
