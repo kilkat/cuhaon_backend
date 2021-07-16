@@ -8,9 +8,11 @@ const getIndexPage = (req, res) => {
 //wargame 페이지
 const getWargameIndexPage = async (req, res) => {
   try {
+    console.log(req.query.problems);
     //페이징 구문
     let page = Math.max(1, parseInt(req.query.page));
     let limit = Math.max(1, parseInt(req.query.limit));
+    let titleCount = req.query.title;
     page = !isNaN(page) ? page : 1;
     limit = !isNaN(limit) ? limit : 10;
     const maxPost = 10;
@@ -21,7 +23,9 @@ const getWargameIndexPage = async (req, res) => {
       .sort('-createdAt') //내림차순 정렬
       .skip(hiddenPost)
       .limit(limit);
-    const totalPost = await Wargame.countDocuments({});
+    const totalPost = await Wargame.countDocuments({
+      title: new RegExp(req.query.title, 'i'),
+    });
     if (!totalPost) {
       throw Error();
     }
@@ -29,6 +33,7 @@ const getWargameIndexPage = async (req, res) => {
     //페이징 구문 끝
 
     res.render('wargame/index', {
+      titleCount,
       posts: wargamePost,
       paging: {
         currentPage: page,
@@ -67,15 +72,13 @@ const getWargameViewPage = async (req, res) => {
       .skip(hiddenComment)
       .limit(limit);
     const totalComment = await Comment.countDocuments({ wargameId: id });
-    if (!totalComment) {
-      throw Error();
-    }
     const totalPage = Math.ceil(totalComment / maxComment);
     //페이징 구문 끝
 
     res.render('wargame/view', {
       wargame,
       comments,
+      totalComment,
       paging: {
         currentPage: page,
         totalPage,

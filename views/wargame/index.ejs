@@ -57,53 +57,54 @@
           </div>
         </section>
         <section class="section-lists">
+          <form action="/wargame" method="GET">
           <!-- float : left -->
           <div class="section-lists__filter global-bg__white">
             <p class="section-lists__filter-title">문제분야</p>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="problems_all" name="problems" />
+              <input type="checkbox" id="problems_all" name="problems"  value="all"/>
               <label for="problems_all"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>전체</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="problems" name="problems_syshack" />
+              <input type="checkbox" id="problems" name="problems"  value="system"/>
               <label for="problems_syshack"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>시스템해킹</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="problems_reversing" name="problems" />
+                <input type="checkbox" id="problems_reversing" name="problems"  value="reversing"/>
               <label for="problems_reversing"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>리버싱</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="problems_webhack" name="problems" />
+              <input type="checkbox" id="problems_webhack" name="problems"  value="web">
               <label for="problems_webhack"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>웹해킹</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="problems_enc" name="problems" />
+              <input type="checkbox" id="problems_enc" name="problems"  value="cipher"/>
               <label for="problems_enc"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>암호화</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="problems_foren" name="problems" />
+              <input type="checkbox" id="problems_foren" name="problems"  value="forensic"/>
               <label for="problems_foren"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>포렌식</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="problems_etc" name="problems" />
+              <input type="checkbox" id="problems_etc" name="problems"  value="misc"/>
               <label for="problems_etc"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>기타</p></label
@@ -112,42 +113,42 @@
             <!-- ---------------------------------------------------- -->
             <p class="section-lists__filter-title">난이도</p>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="level1" name="level" />
+              <input type="checkbox" id="level1" name="level" value="level1"/>
               <label for="level1"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>Level 1</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="level2" name="level" />
+              <input type="checkbox" id="level2" name="level" value="level2"/>
               <label for="level2"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>Level 2</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="level3" name="level" />
+              <input type="checkbox" id="level3" name="level" value="level3"/>
               <label for="level3"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>Level 3</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="level4" name="level" />
+              <input type="checkbox" id="level4" name="level" value="level4"/>
               <label for="level4"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>Level 4</p></label
               >
             </div>
             <div class="section-lists__filter-checkbox">
-              <input type="checkbox" id="level5" name="level" />
+              <input type="checkbox" id="level5" name="level" value="level5"/>
               <label for="level5"
                 ><div class="section-lists__filter-checkbox__icon"></div>
                 <p>Level 5</p></label
               >
             </div>
           </div>
-
+        </form>
           <div class="section-lists__items global-bg__white">
              <!-- responsive -->
             <!-- item -->
@@ -171,21 +172,21 @@
               <% }) %>
                <!--페이징 시작-->
           
-          <div class="section-comment__paging" style="clear: both;padding-top: 25rem;">
+          <div class="section-comment__paging" style="clear: both;padding-top: 5rem;">
             <!-- float : left  -->
             <%
               let prevEnabled = paging.currentPage > 1;
               let nextEnabled = paging.currentPage < paging.totalPage;
             %>
-            <%if(prevEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>">&lt;</a></button><%}%>
+            <%if(prevEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&title=<%=titleCount%>">&lt;</a></button><%}%>
            <% for(let i=1; i<= paging.totalPage; i++){%>
               <%if(i==1 || i==paging.totalPage || (i>=paging.currentPage-2 && i<=paging.currentPage+2)){%>
-              <button class="section-comment__paging-button<%if(i==paging.currentPage){%>__activated<%}%>" type="button"><a href="/wargame?page=<%= i %>&limit=<%=paging.limit%>"><%= i %></a></button>
+              <button class="section-comment__paging-button<%if(i==paging.currentPage){%>__activated<%}%>" type="button"><a href="/wargame?page=<%= i %>&limit=<%=paging.limit%>&title=<%=titleCount%>"><%= i %></a></button>
               <%} else if(i==2||i==paging.totalPage-1){%>
                 <button class="section-comment__paging-button" type="button">...</button>
               <%}%>
             <%}%>
-            <%if(nextEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>">&gt;</a></button><%}%>
+            <%if(nextEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&title=<%=titleCount%>">&gt;</a></button><%}%>
         </div>
         
         <!--페이징 종료-->
