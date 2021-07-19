@@ -1,14 +1,16 @@
 const Wargame = require('../schemas/wargame');
 const Comment = require('../schemas/comment');
+const Common = require('./common');
 const User = require('../schemas/user');
+
 //메인페이지
 const getIndexPage = (req, res) => {
   res.render('index');
 };
+
 //wargame 페이지
 const getWargameIndexPage = async (req, res) => {
   try {
-    console.log(req.query.problems);
     //페이징 구문
     let page = Math.max(1, parseInt(req.query.page));
     let limit = Math.max(1, parseInt(req.query.limit));
@@ -45,6 +47,7 @@ const getWargameIndexPage = async (req, res) => {
     console.error(error);
   }
 };
+
 //wargame 등록 페이지
 const getWargameCreatePage = (req, res) => {
   res.render('wargame/create');
@@ -89,21 +92,47 @@ const getWargameViewPage = async (req, res) => {
     console.error(error);
   }
 };
+
 //wargame 수정
 const postWargameUpdate = async (req, res) => {
   const wargameId = req.params.wargameId;
-  const userId = req.params.wargameUserId;
-  console.log(wargameId);
-  console.log(userId);
+  const wargame = await Wargame.findOne({ _id: wargameId });
 
   try {
-    res.render('wargame/update');
+    res.render('wargame/update', { wargame });
   } catch (error) {
     console.error(error);
   }
-
-  res.render('wargame/update');
 };
+
+//수정 ctrl
+const postWargameUpdateSuccess = async (req, res) => {
+  const { title, content, type, level, point, flag, updateAt } = req.body;
+  const wargameId = req.params.wargameId;
+  const wargame = await Wargame.findOne({ _id: wargameId });
+
+  try {
+    await Wargame.updateOne(
+      { _id: wargameId },
+      {
+        $set: {
+          title,
+          content,
+          type,
+          level,
+          point,
+          flag: `${process.env.FLAG_FORMAT}_${flag}`,
+          updateAt,
+        },
+      },
+    );
+    console.log(wargame);
+    res.redirect(`/wargame/${wargameId}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 //wargame 등록
 const postWargameCreate = async (req, res) => {
   const { title, content, type, level, point, flag } = req.body;
@@ -124,6 +153,20 @@ const postWargameCreate = async (req, res) => {
     console.error(error);
   }
 };
+
+const postWargameDelete = async (req, res) => {
+  const wargameId = req.params.wargameId;
+
+  try {
+    await Wargame.remove({ _id: wargameId });
+    await Comment.remove({ wargameId });
+
+    res.redirect('/wargame');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 //댓글 작성
 const postCreateComment = async (req, res) => {
   const content = req.body.content;
@@ -150,4 +193,6 @@ module.exports = {
   postWargameUpdate,
   postWargameCreate,
   postCreateComment,
+  postWargameDelete,
+  postWargameUpdateSuccess,
 };

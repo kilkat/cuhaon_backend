@@ -203,13 +203,18 @@
         <section class="section-admintool" style="display: ''">
           <div class="section-admintool__area">
             <p>관리자 도구</p>
-            <a
-              href="#"
-              class="global-button__default"
-              style="background-color: red"
-              >글 삭제</a
-            >
-            <form action="/wargame/<%= wargame._id %>/update" method="POST">
+
+            <% if(user) { %>
+              <form action="/wargame/delete/<%= wargame._id %>" method="POST">
+                <input
+                  type="submit"
+                  value="글 삭제"
+                  class="global-button__default"
+                  style="background-color: red"
+                />
+              </form>
+
+           <form action="/wargame/update/<%= wargame._id %>" method="POST">
               <input
                 type="submit"
                 value="내용수정"
@@ -217,6 +222,7 @@
                 style="background-color: blue"
               />
             </form>
+            <% } %>
           </div>
         </section>
       </div>
