@@ -11,28 +11,23 @@ const getIndexPage = (req, res) => {
 //wargame 페이지
 const getWargameIndexPage = async (req, res) => {
   try {
-    //페이징 구문
-    let page = Math.max(1, parseInt(req.query.page));
-    let limit = Math.max(1, parseInt(req.query.limit));
     let titleCount = req.query.title;
-    page = !isNaN(page) ? page : 1;
-    limit = !isNaN(limit) ? limit : 10;
-    const maxPost = 10;
-    let hiddenPost = page === 1 ? 0 : (page - 1) * limit;
+    const totalPost = await Wargame.countDocuments({
+      title: new RegExp(req.query.title, 'i'),
+    });
+
+    let { hiddenPost, page, totalPage, limit } = Common.paging(
+      req.query.page,
+      req.query.limit,
+      totalPost,
+    );
+
     let wargamePost = await Wargame.find({
       title: new RegExp(req.query.title, 'i'),
     })
       .sort('-createdAt') //내림차순 정렬
       .skip(hiddenPost)
       .limit(limit);
-    const totalPost = await Wargame.countDocuments({
-      title: new RegExp(req.query.title, 'i'),
-    });
-    if (!totalPost) {
-      throw Error();
-    }
-    const totalPage = Math.ceil(totalPost / maxPost);
-    //페이징 구문 끝
 
     res.render('wargame/index', {
       titleCount,
@@ -44,7 +39,15 @@ const getWargameIndexPage = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error);
+    res.render('wargame/index', {
+      titleCount: [],
+      posts: [],
+      paging: {
+        currentPage: 1,
+        totalPage: 1,
+        limit: 10,
+      },
+    });
   }
 };
 
