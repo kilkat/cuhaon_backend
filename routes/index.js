@@ -12,7 +12,7 @@ router.use((req, res, next) => {
   next();
 });
 
-// routes
+// routes 순서 바꾸기 x
 router.get('/', controllers.indexPage);
 router.get('/wargame', controllers.indexWargamePage);
 router.get('/wargame/create', controllers.createWargamePage);

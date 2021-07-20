@@ -1,3 +1,4 @@
+//페이징 함수
 exports.paging = (page, _limit, totalPost) => {
   const limit = _limit;
   const max_page = 10;
@@ -26,6 +27,7 @@ exports.paging = (page, _limit, totalPost) => {
   };
 };
 
+//검색 키워드 함수
 exports.searchKeyword = (Keyword) => {
   const search = new RegExp(Keyword, 'i');
   return search;

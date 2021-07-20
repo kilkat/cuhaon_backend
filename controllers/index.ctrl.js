@@ -3,7 +3,7 @@ const Comment = require('../schemas/comment');
 const Common = require('./common');
 const User = require('../schemas/user');
 
-//메인페이지
+//메인페이지.
 const indexPage = (req, res) => {
   res.render('index');
 };

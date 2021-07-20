@@ -172,22 +172,22 @@
               <% }) %>
                <!--페이징 시작-->
           
-          <div class="section-comment__paging" style="clear: both;padding-top: 5rem;">
-            <!-- float : left  -->
-            <%
-              let prevEnabled = paging.currentPage > 1;
-              let nextEnabled = paging.currentPage < paging.totalPage;
-            %>
-            <%if(prevEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&title=<%=titleCount%>">&lt;</a></button><%}%>
-           <% for(let i=1; i<= paging.totalPage; i++){%>
-              <%if(i==1 || i==paging.totalPage || (i>=paging.currentPage-2 && i<=paging.currentPage+2)){%>
-              <button class="section-comment__paging-button<%if(i==paging.currentPage){%>__activated<%}%>" type="button"><a href="/wargame?page=<%= i %>&limit=<%=paging.limit%>&title=<%=titleCount%>"><%= i %></a></button>
-              <%} else if(i==2||i==paging.totalPage-1){%>
-                <button class="section-comment__paging-button" type="button">...</button>
-              <%}%>
-            <%}%>
-            <%if(nextEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&title=<%=titleCount%>">&gt;</a></button><%}%>
-        </div>
+              <div class="section-comment__paging" style="clear: both;padding-top: 5rem;">
+                <!-- float : left  -->
+                <%
+                  let prevEnabled = paging.currentPage > 1;
+                  let nextEnabled = paging.currentPage < paging.totalPage;
+                %>
+                <%if(prevEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&title=<%=titleCount%>">&lt;</a></button><%}%>
+                <% for(let i=1; i<= paging.totalPage; i++){%>
+                  <%if(i==1 || i==paging.totalPage || (i>=paging.currentPage-2 && i<=paging.currentPage+2)){%>
+                  <button class="section-comment__paging-button<%if(i==paging.currentPage){%>__activated<%}%>" type="button"><a href="/wargame?page=<%= i %>&limit=<%=paging.limit%>&title=<%=titleCount%>"><%= i %></a></button>
+                  <%} else if(i==2||i==paging.totalPage-1){%>
+                    <button class="section-comment__paging-button" type="button">...</button>
+                  <%}%>
+                <%}%>
+                <%if(nextEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&title=<%=titleCount%>">&gt;</a></button><%}%>
+              </div>
         
         <!--페이징 종료-->
           </div>
