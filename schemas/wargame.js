@@ -40,7 +40,7 @@ const wargameSchema = new Schema({
   flag: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   createdAt: {
     type: Date,

@@ -13,18 +13,18 @@ router.use((req, res, next) => {
 });
 
 // routes
-router.get('/', controllers.getIndexPage);
-router.get('/wargame', controllers.getWargameIndexPage);
-router.get('/wargame/create', controllers.getWargameCreatePage);
-router.get('/wargame/:id', controllers.getWargameViewPage);
-router.post('/wargame/update/:wargameId', controllers.postWargameUpdate);
-router.post('/wargame/create', controllers.postWargameCreate);
-router.post('/wargame/:id/commentCreate', controllers.postCreateComment);
-router.post('/wargame/delete/:wargameId', controllers.postWargameDelete);
+router.get('/', controllers.indexPage);
+router.get('/wargame', controllers.indexWargamePage);
+router.get('/wargame/create', controllers.createWargamePage);
+router.post('/wargame/create', controllers.createWargame);
+router.post('/wargame/update/:wargameId', controllers.updateWargame);
 router.post(
   '/wargame/update/success/:wargameId',
-  controllers.postWargameUpdateSuccess,
+  controllers.updateSubmitWargame,
 );
+router.get('/wargame/:id', controllers.viewWargamePage);
+router.post('/wargame/delete/:wargameId', controllers.deleteWargame);
+router.post('/wargame/:id/create/comment', controllers.createCommentWargame);
 router.use('/auth', authRouter);
 
 module.exports = router;
