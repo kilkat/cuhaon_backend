@@ -15,3 +15,15 @@ __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가�
   >comment 수정(의견 수 표시)  
   >~~검색시 페이지가 남고, 페이지 이동시 초기화되는 버그 있음.~~(해결)  
   >작성자 : 문영민
+
++ __21/07/19__
+  /controllers/index.ctrl , /views/wargame/index.ejs 수정
+  >함수명 수정  
+  >작성자 : 문영민
+
++ __21/07/20__
+  /controllers/index.ctrl 수정  
+  >common.js 생성, 공통적으로 쓰이는 일반 함수들이 들어갈 예정.  
+  >paging함수 common.js에 등록   
+  >searchKeyword함수 common.js에 등록  
+  >작성자 : 문영민  
