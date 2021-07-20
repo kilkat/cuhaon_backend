@@ -1,6 +1,6 @@
 const Wargame = require('../schemas/wargame');
 const Comment = require('../schemas/comment');
-const Common = require('./common');
+const action = require('./common/action');
 const User = require('../schemas/user');
 
 //메인페이지.
@@ -15,7 +15,7 @@ const indexWargamePage = async (req, res) => {
 
     //페이징 구문
     const totalPost = await Wargame.countDocuments({});
-    let { hide_post, limit, total_page, current_page } = Common.paging(
+    let { hide_post, limit, total_page, current_page } = action.paging(
       req.query.page,
       (_limit = 10),
       totalPost,
@@ -23,7 +23,7 @@ const indexWargamePage = async (req, res) => {
 
     //게시물 출력
     const wargamePost = await Wargame.find({
-      title: Common.searchKeyword(req.query.title),
+      title: action.searchKeyword(req.query.title),
     })
       .sort('createAt')
       .skip(hide_post)
@@ -64,7 +64,7 @@ const viewWargamePage = async (req, res) => {
 
     //페이징 함수
     const totalComment = await Comment.countDocuments({ wargameId: id });
-    let { hide_post, limit, total_page, current_page } = Common.paging(
+    let { hide_post, limit, total_page, current_page } = action.paging(
       req.query.page,
       (_limit = 3),
       totalComment,

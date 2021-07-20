@@ -1,9 +1,19 @@
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const User = require('../schemas/user');
+const { joinValidator } = require('./common/validator');
 
 const join = async (req, res, next) => {
-  const { email, nickname, password } = req.body;
+  const { email, nickname, password, cfm_password } = req.body;
+
+  const errors = {};
+  const values = { email, nickname, password, cfm_password };
+
+  joinValidator(errors, values);
+
+  if (!(Object.keys(errors).length === 0)) {
+    return res.render('join', { errors, values });
+  }
 
   try {
     const exUser = await User.findOne({ email });
@@ -11,6 +21,7 @@ const join = async (req, res, next) => {
       return res.redirect(`/join?error=exist`);
     }
     const hash = await bcrypt.hash(password, 12);
+
     await User.create({
       email,
       nickname,
