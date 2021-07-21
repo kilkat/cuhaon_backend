@@ -2,6 +2,7 @@ const Wargame = require('../schemas/wargame');
 const Comment = require('../schemas/comment');
 const action = require('./common/action');
 const User = require('../schemas/user');
+const { commentSaveValidator } = require('./common/validator');
 
 //메인페이지.
 const indexPage = (req, res) => {
@@ -55,6 +56,12 @@ const indexWargamePage = async (req, res) => {
 //wargame 게시물 내용 페이지
 const viewWargamePage = async (req, res) => {
   const id = req.params.id;
+
+  // //comment 빈문자열 검증
+  // const { content } = req.body;
+  // const errors = {};
+  // const values = { content };
+  // commentSaveValidator(errors, values);
 
   try {
     const wargame = await Wargame.findOne({ _id: id }).populate(

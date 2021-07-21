@@ -91,6 +91,14 @@
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
   app.use('/', indexRouter);
 
+  app.use((req, res, next) => {
+    res.status(404).send('404Error-Sorry cant find that');
+  });
+
+  app.use((err, req, res, next) => {
+    res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
+    res.status(500).send('Something broke!');
+  });
   // listen port:8080
   app.listen(app.get('PORT'), () => {
     console.log(`listening on port ${app.get('PORT')}`);

@@ -171,8 +171,7 @@
               </a>
               <% }) %>
                <!--페이징 시작-->
-          
-              <div class="section-comment__paging" style="clear: both;padding-top: 5rem;">
+              <div class="section-comment__paging" style="clear: both; padding-top: 5rem">
                 <!-- float : left  -->
                 <%
                   let prevEnabled = paging.currentPage > 1;
@@ -188,7 +187,6 @@
                 <%}%>
                 <%if(nextEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&title=<%=titleCount%>">&gt;</a></button><%}%>
               </div>
-        
         <!--페이징 종료-->
           </div>
         </section>

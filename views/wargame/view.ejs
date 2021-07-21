@@ -130,6 +130,8 @@
                 name="content"
                 placeholder="의견을 작성하고 Enter를 눌러주세요."
               />
+              <%= (typeof errors === 'undefined') ? '' : (errors &&
+              errors.content) ? `${errors.content}` : '' %>
             </form>
           </div>
           <!-- 이 부분은 로그인 했을때만 표시 -->
