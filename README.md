@@ -27,3 +27,10 @@ __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가�
   >paging함수 common.js에 등록   
   >searchKeyword함수 common.js에 등록  
   >작성자 : 문영민  
+
++ __21/07/21__
+  /controllers/index.ctrl, controllers/common/action, middlewares.js ,auth.ctrl 수정   
+  >common폴더 생성, 기존 common.js는 action.js로 변경. validator폴더 추가   
+  >validator로 join빈문자열 검증, 예외 처리.  
+  >404에러, 에러핸들러 적용   
+  >작성자 : 문영민   
