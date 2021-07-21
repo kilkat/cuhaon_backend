@@ -15,7 +15,9 @@ const indexWargamePage = async (req, res) => {
     titleCount = req.query.title;
 
     //페이징 구문
-    const totalPost = await Wargame.countDocuments({});
+    const totalPost = await Wargame.countDocuments({
+      title: action.searchKeyword(req.query.title),
+    });
     let { hide_post, limit, total_page, current_page } = action.paging(
       req.query.page,
       (_limit = 10),
@@ -26,7 +28,7 @@ const indexWargamePage = async (req, res) => {
     const wargamePost = await Wargame.find({
       title: action.searchKeyword(req.query.title),
     })
-      .sort('createAt')
+      .sort({ createAt: -1 })
       .skip(hide_post)
       .limit(limit);
 
