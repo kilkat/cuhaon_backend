@@ -2,6 +2,12 @@
 ### 수정일지
 __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가능성이 높습니다. git pull한번 해주고 커밋하면 잘됩니다.__  
 마크다운 사용법: https://gist.github.com/ihoneymon/652be052a0727ad59601  
++ __21/07/22__  
+  /controllers/index.ctrl, controllers/common/validator, create.ejs, view.ejs 수정  
+  >validator로 create, comment 에러 검증 적용.   
+  >wargame검색결과가 없다면 안내문 출력.  
+  >스마트에디터 적용.   
+  >작성자 : 문영민  
 
 + __21/07/21__  
   /controllers/index.ctrl, controllers/common/action, middlewares.js ,auth.ctrl 수정
