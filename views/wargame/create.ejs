@@ -1,171 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link
-            href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
-            rel="stylesheet"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
-            rel="stylesheet"
-        />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-        <link rel="stylesheet" href="/stylesheets/style.css" />
-        <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-        <title>cuha-on</title>
-    </head>
+    <!-- include summernote css/js -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <body>
-        <%- include('../common/header') -%>
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
 
-        <main class="main">
-            <div class="__hiddenSolver" style="width: 100%; height: 2rem"></div>
+    <title>cuha-on</title>
+  </head>
 
-            <form action="/wargame/create" method="POST">
-                <div class="section__outer" style="background-color: white">
-                    <div class="section__outer__area">
-                        <section
-                            class="section__outer-head"
-                            style="height: 15rem"
-                        >
-                            <div class="section__outer-head__title">
-                                <!-- float : left -->
-                                <div
-                                    class="section__outer-head__title-left"
-                                    style="width: 100%"
-                                >
-                                    <div
-                                        class="
-                                            section__outer-head__title-left__realtitle
-                                        "
-                                        style="width: 100%"
-                                    >
-                                        <!-- float : left -->
-                                        <div
-                                            class="
-                                                section__outer-head__title-left__realtitle-text
-                                            "
-                                            style="width: 100%"
-                                        >
-                                            <input
-                                                class="global-input__title"
-                                                name="title"
-                                                type="text"
-                                                placeholder="제목을 기입하시오."
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+  <body>
+    <%- include('../common/header') -%>
 
-                            <div class="section__outer-head__edittag">
-                                <p><b>Categories :</b></p>
-                                <input type="checkbox" name="type" value="all"/>
-                                <label for="cb0">ALL</label>
+    <main class="main">
+      <div class="__hiddenSolver" style="width: 100%; height: 2rem"></div>
 
-                                <input type="checkbox" name="type" value="system"/>
-                                <label for="cb1">시스템해킹</label>
-
-                                <input type="checkbox" name="type" value="reversing"/>
-                                <label for="cb2">리버싱</label>
-
-                                <input type="checkbox" name="type" value="web"/>
-                                <label for="cb3">웹해킹</label>
-
-                                <input type="checkbox" name="type" value="cipher"/>
-                                <label for="cb4">암호화</label>
-
-                                <input type="checkbox" name="type" value="forensic"/>
-                                <label for="cb5">포렌식</label>
-
-                                <input type="checkbox" name="type" value="misc"/>
-                                <label for="cb6">기타</label>
-                            </div>
-
-                            <div class="section__outer-head__edittag">
-                                <p><b>Level :</b></p>
-                                <input type="checkbox" name="level" value="level1"/>
-                                <label for="cb10">Level 1</label>
-
-                                <input type="checkbox" name="level" value="level2"/>
-                                <label for="cb11">Level 2</label>
-
-                                <input type="checkbox" name="level" value="level3"/>
-                                <label for="cb12">Level 3</label>
-
-                                <input type="checkbox" name="level" value="level4"/>
-                                <label for="cb13">Level 4</label>
-
-                                <input type="checkbox" name="level" value="level5"/>
-                                <label for="cb14">Level 5</label>
-                            </div>
-                        </section>
+      <form action="/wargame/create" method="POST">
+        <div
+          class="section__outer"
+          style="background-color: white; height: 28rem"
+        >
+          <div class="section__outer__area">
+            <section class="section__outer-head" style="height: 15rem">
+              <div class="section__outer-head__title">
+                <!-- float : left -->
+                <div
+                  class="section__outer-head__title-left"
+                  style="width: 100%"
+                >
+                  <div
+                    class="section__outer-head__title-left__realtitle"
+                    style="width: 100%"
+                  >
+                    <!-- float : left -->
+                    <div
+                      class="section__outer-head__title-left__realtitle-text"
+                      style="width: 100%"
+                    >
+                      <input
+                        class="global-input__title"
+                        name="title"
+                        type="text"
+                        placeholder="제목을 기입하시오."
+                        value="<%= (typeof values === 'undefined') ? '' : `${values.title}` %>"
+                      />
+                      <p
+                        id="req_4"
+                        class="section__outer-head__required"
+                        style="color: red; padding-top: 0.5rem"
+                      >
+                        <%= (typeof errors === 'undefined') ? '' : (errors &&
+                        errors.title) ? `${errors.title}` : '' %>
+                      </p>
                     </div>
+                  </div>
                 </div>
+              </div>
 
-                <div class="section__area">
-                    <section class="section-problem global-bg__white">
-                        <div class="section-problem__title">
-                            <input type="text" placeholder="point" name="point">
-                        </div>
-                        <div class="section-problem__desc">
-                            <h6>
-                                <input type="text" placeholder="flag" name="flag">
-                            </h6>
-                            <div
-                                style="
-                                    margin-top: 3rem;
-                                    background-color: aqua;
-                                    width: 100%;
-                                    height: 48rem;
-                                "
-                            >
-                            <input type="text" name="content">
-                                <!-- 이 넓은 공간에 스마트에디터를 넣으면 될 것 같다. -->
-                            </div>
-                        </div>
+              <div class="section__outer-head__edittag">
+                <p><b>Categories :</b></p>
+                <input type="checkbox" name="type" value="all" />
+                <label for="cb0">ALL</label>
 
-                        <div style="margin-top: 3rem"></div>
-                        <input type="file" name="includedfile" />
-                    </section>
+                <input type="checkbox" name="type" value="system" />
+                <label for="cb1">시스템해킹</label>
 
-                    <section class="section-submit">
-                        <input
-                            type="submit"
-                            value="작성완료"
-                            class="global-button__default"
-                            style="width: 100%; margin-top: 2rem"
-                        />
-                    </section>
+                <input type="checkbox" name="type" value="reversing" />
+                <label for="cb2">리버싱</label>
+
+                <input type="checkbox" name="type" value="web" />
+                <label for="cb3">웹해킹</label>
+
+                <input type="checkbox" name="type" value="cipher" />
+                <label for="cb4">암호화</label>
+
+                <input type="checkbox" name="type" value="forensic" />
+                <label for="cb5">포렌식</label>
+
+                <input type="checkbox" name="type" value="misc" />
+                <label for="cb6">기타</label>
+              </div>
+
+              <p
+                id="req_0"
+                class="section__outer-head__required"
+                style="color: red"
+              >
+                <%= (typeof errors === 'undefined') ? '' : (errors &&
+                errors.type) ? `${errors.type}` : '' %>
+              </p>
+
+              <div class="section__outer-head__edittag">
+                <p><b>Level :</b></p>
+                <input type="checkbox" name="level" value="level1" />
+                <label for="cb10">Level 1</label>
+
+                <input type="checkbox" name="level" value="level2" />
+                <label for="cb11">Level 2</label>
+
+                <input type="checkbox" name="level" value="level3" />
+                <label for="cb12">Level 3</label>
+
+                <input type="checkbox" name="level" value="level4" />
+                <label for="cb13">Level 4</label>
+
+                <input type="checkbox" name="level" value="level5" />
+                <label for="cb14">Level 5</label>
+              </div>
+
+              <p
+                id="req_1"
+                class="section__outer-head__required"
+                style="color: red"
+              >
+                <%= (typeof errors === 'undefined') ? '' : (errors &&
+                errors.level) ? `${errors.level}` : '' %>
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <div class="section__area">
+          <section class="section-problem global-bg__white">
+            <div class="section-problem__title">문제 정보 작성</div>
+            <div class="section-problem__desc">
+              <h6>Points & Flag:</h6>
+
+              <div style="text-align: center; margin-top: 2rem">
+                <input
+                  class="global-input__title"
+                  name="point"
+                  type="text"
+                  placeholder="제공할 포인트 입력"
+                  value="<%= (typeof values === 'undefined') ? '' : `${values.point}` %>"
+                  style="font-size: 1.4rem; width: 98%"
+                />
+                <p
+                  id="req_2"
+                  class="section__outer-head__required"
+                  style="
+                    color: red;
+                    text-align: left;
+                    font-size: 1.4rem;
+                    padding-top: 0;
+                  "
+                >
+                  <%= (typeof errors === 'undefined') ? '' : (errors &&
+                  errors.point) ? `${errors.point}` : '' %>
+                </p>
+                <input
+                  class="global-input__title"
+                  name="flag"
+                  type="text"
+                  placeholder="플래그 입력"
+                  value="<%= (typeof values === 'undefined') ? '' : `${values.flag}` %>"
+                  style="font-size: 1.4rem; width: 98%; margin-top: 1rem"
+                />
+                <p
+                  id="req_3"
+                  class="section__outer-head__required"
+                  style="
+                    color: red;
+                    text-align: left;
+                    font-size: 1.4rem;
+                    padding-top: 0;
+                  "
+                >
+                  <%= (typeof errors === 'undefined') ? '' : (errors &&
+                  errors.flag) ? `${errors.flag}` : '' %>
+                </p>
+              </div>
+
+              <h6>Description</h6>
+              <div
+                style="
+                  margin-top: 3rem;
+                  background-color: aqua;
+                  width: 100%;
+                  height: 48rem;
+                "
+              >
+                <textarea
+                  name="content"
+                  value="<%= (typeof values === 'undefined') ? '' : `${values.content}` %>"
+                  id="summernote"
+                  class="summernote"
+                ></textarea>
+                <div class="main__area3-loginForm__nofill" id="invalid-0">
+                  <p>
+                    <%= (typeof errors === 'undefined') ? '' : (errors &&
+                    errors.content) ? `${errors.content}` : '' %>
+                  </p>
                 </div>
+              </div>
+            </div>
 
-            </form>
-        </main>
+            <div style="margin-top: 3rem"></div>
+            <input type="file" name="includedfile" />
+          </section>
 
-        <%- include('../common/footer') -%>
-    </body>
+          <section class="section-submit">
+            <input
+              type="submit"
+              value="작성완료"
+              class="global-button__default"
+              style="width: 100%; margin-top: 2rem"
+            />
+          </section>
+        </div>
+      </form>
+    </main>
 
-    <script>
-        var isMenuOpened = false;
+    <footer class="footer">nothing we have here.</footer>
+  </body>
 
-        function funcDoMenu() {
-            if (isMenuOpened == false) {
-                isMenuOpened = !isMenuOpened;
-                document.getElementsByClassName(
-                    'header__slide'
-                )[0].style.width = '300px';
-            } else {
-                isMenuOpened = !isMenuOpened;
-                document.getElementsByClassName(
-                    'header__slide'
-                )[0].style.width = '0px';
-            }
-        }
-    </script>
+  <script>
+    var isMenuOpened = false;
+
+    function funcDoMenu() {
+      if (isMenuOpened == false) {
+        isMenuOpened = !isMenuOpened;
+        document.getElementsByClassName('header__slide')[0].style.width =
+          '300px';
+      } else {
+        isMenuOpened = !isMenuOpened;
+        document.getElementsByClassName('header__slide')[0].style.width = '0px';
+      }
+    }
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('#summernote').val('${summernote_data.SUMMERNOTE_CONTENT}'); //먼저 입력값 넣어서 초기화
+      $('#summernote').summernote({
+        height: 420,
+        lang: 'ko-KR',
+      });
+    });
+  </script>
 </html>

@@ -2,7 +2,9 @@ const Wargame = require('../schemas/wargame');
 const Comment = require('../schemas/comment');
 const action = require('./common/action');
 const User = require('../schemas/user');
+const validator = require('validator');
 const { commentSaveValidator } = require('./common/validator');
+const { saveWargameValidator } = require('./common/validator');
 
 //메인페이지.
 const indexPage = (req, res) => {
@@ -13,11 +15,15 @@ const indexPage = (req, res) => {
 const indexWargamePage = async (req, res) => {
   try {
     titleCount = req.query.title;
+    let emptySearch = false;
 
     //페이징 구문
     const totalPost = await Wargame.countDocuments({
       title: action.searchKeyword(req.query.title),
     });
+    if (!totalPost) {
+      emptySearch = true;
+    }
     let { hide_post, limit, total_page, current_page } = action.paging(
       req.query.page,
       (_limit = 10),
@@ -34,6 +40,7 @@ const indexWargamePage = async (req, res) => {
 
     //페이지 랜더링
     res.render('wargame/index', {
+      emptySearch,
       titleCount,
       posts: wargamePost,
       paging: {
@@ -44,6 +51,7 @@ const indexWargamePage = async (req, res) => {
     });
   } catch (error) {
     res.render('wargame/index', {
+      emptySearch: true,
       titleCount: 0,
       posts: [],
       paging: {
@@ -59,18 +67,11 @@ const indexWargamePage = async (req, res) => {
 const viewWargamePage = async (req, res) => {
   const id = req.params.id;
 
-  // //comment 빈문자열 검증
-  // const { content } = req.body;
-  // const errors = {};
-  // const values = { content };
-  // commentSaveValidator(errors, values);
-
   try {
     const wargame = await Wargame.findOne({ _id: id }).populate(
       'userId',
       'email nickname createdAt',
     );
-
     //페이징 함수
     const totalComment = await Comment.countDocuments({ wargameId: id });
     let { hide_post, limit, total_page, current_page } = action.paging(
@@ -111,6 +112,16 @@ const createWargamePage = (req, res) => {
 //wargame 등록
 const createWargame = async (req, res) => {
   const { title, content, type, level, point, flag } = req.body;
+
+  //에러 검증
+  const errors = {};
+  const values = { title, content, type, level, point, flag };
+
+  saveWargameValidator(errors, values);
+
+  if (!(Object.keys(errors).length === 0)) {
+    return res.render('wargame/create', { errors, values });
+  }
 
   try {
     await Wargame.create({
@@ -185,8 +196,19 @@ const updateSubmitWargame = async (req, res) => {
 
 //wargame 댓글 작성
 const createCommentWargame = async (req, res) => {
-  const content = req.body.content;
+  const { content } = req.body;
   const wargameId = req.params.id;
+  const backURL = `/wargame/${wargameId}`;
+  //에러 검증
+  const errors = {};
+  const values = { content };
+  commentSaveValidator(errors, values);
+
+  if (!(Object.keys(errors).length === 0)) {
+    return res.send(
+      `<script>alert("내용을 작성해 주세요"); location.href='/wargame/${wargameId}';</script>`,
+    );
+  }
 
   try {
     await Comment.create({
@@ -195,7 +217,7 @@ const createCommentWargame = async (req, res) => {
       wargameId,
     });
 
-    res.redirect(`/wargame/${wargameId}`);
+    res.redirect(backURL);
   } catch (error) {
     console.error(error);
   }

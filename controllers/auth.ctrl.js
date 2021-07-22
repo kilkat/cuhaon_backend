@@ -8,7 +8,6 @@ const join = async (req, res, next) => {
 
   const errors = {};
   const values = { email, nickname, password, cfm_password };
-
   joinValidator(errors, values);
 
   if (!(Object.keys(errors).length === 0)) {
@@ -17,9 +16,15 @@ const join = async (req, res, next) => {
 
   try {
     const exUser = await User.findOne({ email });
-    if (exUser) {
-      return res.redirect(`/join?error=exist`);
+    const exNickname = await User.findOne({ nickname });
+    if (exUser || exNickname || password !== cfm_password) {
+      if (exUser) errors['email'] = '이미 존재하는 계정입니다.';
+      if (exNickname) errors['nickname'] = '이미 존재하는 닉네임입니다.';
+      if (password !== cfm_password)
+        errors['cfm_password'] = '비밀번호가 일치하지 않습니다.';
+      return res.render('join', { errors, values });
     }
+
     const hash = await bcrypt.hash(password, 12);
 
     await User.create({

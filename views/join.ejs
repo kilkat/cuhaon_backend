@@ -38,9 +38,13 @@
               placeholder="이메일"
               value="<%= (typeof values === 'undefined') ? '' : `${values.email}` %>"
             />
-            <div class="main__area3-loginForm__nofill" id="invalid-0">
+            <p style="color: red">
+              <%= (typeof errors === 'undefined') ? '' : (errors &&
+              errors.email) ? `${errors.email}` : '' %>
+            </p>
+            <!-- <div class="main__area3-loginForm__nofill" id="invalid-0">
               <p>입력란이 비었거나 올바른 이메일 형식이 아닙니다.</p>
-            </div>
+            </div> -->
 
             <br />
             <br />
