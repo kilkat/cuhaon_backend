@@ -11,8 +11,6 @@ const indexPage = (req, res) => {
   res.render('index');
 };
 
-//gg
-
 //wargame 페이지
 const indexWargamePage = async (req, res) => {
   try {
