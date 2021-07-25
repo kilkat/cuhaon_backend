@@ -49,3 +49,4 @@ __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가�
   >index.js = wargame flag 검증 라우팅
   >create.ejs = summernote script 수정 
   >view.ejs = textarea name 수정, summernote 태그오류 수정
+  >작성자: 김광운
