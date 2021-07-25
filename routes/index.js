@@ -34,6 +34,11 @@ router.post(
   controllers.deleteWargame,
 );
 router.post(
+  '/wargame/viewFlag/:wargameId',
+  isLoggedIn,
+  controllers.checkFlagWargame,
+);
+router.post(
   '/wargame/:id/create/comment',
   isLoggedIn,
   controllers.createCommentWargame,

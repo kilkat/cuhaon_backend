@@ -87,10 +87,10 @@
 
       <div class="section__area">
         <section class="section-problem global-bg__white">
-          <div class="section-problem__title">
-            <div class="section-problem__desc">
-              <p><%= wargame.content %></p>
-            </div>
+          <div class="section-problem__title">문제 정보</div>
+          <div class="section-problem__desc">
+            <h6>Description</h6>
+            <p><%- wargame.content %></p>
           </div>
         </section>
 
@@ -98,9 +98,9 @@
           class="section-answer global-bg__white"
           style="padding-bottom: 2rem"
         >
-          <form action="/wargame/viewFlag" method="POST">
+          <form action="/wargame/viewFlag/<%- wargame._id %>" method="POST">
             <textarea
-              name="answer"
+              name="flag"
               id="answer"
               cols="30"
               rows="4"
@@ -130,7 +130,6 @@
                 name="content"
                 placeholder="의견을 작성하고 Enter를 눌러주세요."
               />
-             
             </form>
           </div>
           <!-- 이 부분은 로그인 했을때만 표시 -->
@@ -177,26 +176,50 @@
             </div>
           </div>
 
-         <!--페이징 시작-->
-          
-         <div class="section-comment__paging">
-          <!-- float : left  -->
-          <%
-            let prevEnabled = paging.currentPage > 1;
-            let nextEnabled = paging.currentPage < paging.totalPage;
-          %>
-          <%if(prevEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame/<%= wargame.id%>?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>">&lt;</a></button><%}%>
-         <% for(let i=1; i<= paging.totalPage; i++){%>
-            <%if(i==1 || i==paging.totalPage || (i>=paging.currentPage-2 && i<=paging.currentPage+2)){%>
-            <button class="section-comment__paging-button<%if(i==paging.currentPage){%>__activated<%}%>" type="button"><a href="/wargame/<%= wargame.id%>?page=<%= i %>&limit=<%=paging.limit%>"><%= i %></a></button>
+          <!--페이징 시작-->
+
+          <div class="section-comment__paging">
+            <!-- float : left  -->
+            <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
+            paging.currentPage < paging.totalPage; %>
+            <%if(prevEnabled){%><button
+              class="section-comment__paging-button"
+              type="button"
+            >
+              <a
+                href="/wargame/<%= wargame.id%>?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>"
+                >&lt;</a
+              ></button
+            ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
+            i==paging.totalPage || (i>=paging.currentPage-2 &&
+            i<=paging.currentPage+2)){%>
+            <button
+              class="
+                section-comment__paging-button<%if(i==paging.currentPage){%>__activated<%}%>
+              "
+              type="button"
+            >
+              <a
+                href="/wargame/<%= wargame.id%>?page=<%= i %>&limit=<%=paging.limit%>"
+                ><%= i %></a
+              >
+            </button>
             <%} else if(i==2||i==paging.totalPage-1){%>
-              <button class="section-comment__paging-button" type="button">...</button>
-            <%}%>
-          <%}%>
-          <%if(nextEnabled){%><button class="section-comment__paging-button" type="button"><a href="/wargame/<%= wargame.id%>?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>">&gt;</a></button><%}%>
-      </div>
-      
-      <!--페이징 종료-->
+            <button class="section-comment__paging-button" type="button">
+              ...
+            </button>
+            <%}%> <%}%> <%if(nextEnabled){%><button
+              class="section-comment__paging-button"
+              type="button"
+            >
+              <a
+                href="/wargame/<%= wargame.id%>?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>"
+                >&gt;</a
+              ></button
+            ><%}%>
+          </div>
+
+          <!--페이징 종료-->
         </section>
 
         <!-- 관리자 도구 -->
@@ -206,16 +229,16 @@
             <p>관리자 도구</p>
 
             <% if(user) { %>
-              <form action="/wargame/delete/<%= wargame._id %>" method="POST">
-                <input
-                  type="submit"
-                  value="글 삭제"
-                  class="global-button__default"
-                  style="background-color: red"
-                />
-              </form>
+            <form action="/wargame/delete/<%= wargame._id %>" method="POST">
+              <input
+                type="submit"
+                value="글 삭제"
+                class="global-button__default"
+                style="background-color: red"
+              />
+            </form>
 
-           <form action="/wargame/update/<%= wargame._id %>" method="POST">
+            <form action="/wargame/update/<%= wargame._id %>" method="POST">
               <input
                 type="submit"
                 value="내용수정"

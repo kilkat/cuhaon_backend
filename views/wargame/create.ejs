@@ -86,25 +86,25 @@
 
               <div class="section__outer-head__edittag">
                 <p><b>Categories :</b></p>
-                <input type="checkbox" name="type" value="all" />
+                <input type="radio" name="type" value="all" />
                 <label for="cb0">ALL</label>
 
-                <input type="checkbox" name="type" value="system" />
+                <input type="radio" name="type" value="system" />
                 <label for="cb1">시스템해킹</label>
 
-                <input type="checkbox" name="type" value="reversing" />
+                <input type="radio" name="type" value="reversing" />
                 <label for="cb2">리버싱</label>
 
-                <input type="checkbox" name="type" value="web" />
+                <input type="radio" name="type" value="web" />
                 <label for="cb3">웹해킹</label>
 
-                <input type="checkbox" name="type" value="cipher" />
+                <input type="radio" name="type" value="cipher" />
                 <label for="cb4">암호화</label>
 
-                <input type="checkbox" name="type" value="forensic" />
+                <input type="radio" name="type" value="forensic" />
                 <label for="cb5">포렌식</label>
 
-                <input type="checkbox" name="type" value="misc" />
+                <input type="radio" name="type" value="misc" />
                 <label for="cb6">기타</label>
               </div>
 
@@ -119,19 +119,19 @@
 
               <div class="section__outer-head__edittag">
                 <p><b>Level :</b></p>
-                <input type="checkbox" name="level" value="level1" />
+                <input type="radio" name="level" value="level1" />
                 <label for="cb10">Level 1</label>
 
-                <input type="checkbox" name="level" value="level2" />
+                <input type="radio" name="level" value="level2" />
                 <label for="cb11">Level 2</label>
 
-                <input type="checkbox" name="level" value="level3" />
+                <input type="radio" name="level" value="level3" />
                 <label for="cb12">Level 3</label>
 
-                <input type="checkbox" name="level" value="level4" />
+                <input type="radio" name="level" value="level4" />
                 <label for="cb13">Level 4</label>
 
-                <input type="checkbox" name="level" value="level5" />
+                <input type="radio" name="level" value="level5" />
                 <label for="cb14">Level 5</label>
               </div>
 
@@ -209,7 +209,6 @@
               >
                 <textarea
                   name="content"
-                  value="<%= (typeof values === 'undefined') ? '' : `${values.content}` %>"
                   id="summernote"
                   class="summernote"
                 ></textarea>
@@ -257,7 +256,9 @@
   </script>
   <script>
     $(document).ready(function () {
-      $('#summernote').val('${summernote_data.SUMMERNOTE_CONTENT}'); //먼저 입력값 넣어서 초기화
+      $('#summernote').val(
+        "<%- (typeof values === 'undefined') ? '' : `${values.content}` %>",
+      );
       $('#summernote').summernote({
         height: 420,
         lang: 'ko-KR',

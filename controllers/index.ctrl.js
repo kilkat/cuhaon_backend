@@ -194,6 +194,30 @@ const updateSubmitWargame = async (req, res) => {
   }
 };
 
+//wargame flag 검증
+const checkFlagWargame = async (req, res) => {
+  const wargameId = req.params.wargameId;
+  const Flag = req.body.flag;
+  const submitFlag = process.env.FLAG_FORMAT + '_' + Flag;
+
+  console.log(submitFlag);
+  try {
+    const flag = await Wargame.findOne({ _id: wargameId });
+
+    if (submitFlag == flag.flag) {
+      res.send(
+        `<script>alert('정답입니다.'); window.location='/wargame/${wargameId}';</script>`,
+      );
+    } else {
+      res.send(
+        `<script>alert('정답이 아닙니다.'); window.location='/wargame/${wargameId}';</script>`,
+      );
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 //wargame 댓글 작성
 const createCommentWargame = async (req, res) => {
   const { content } = req.body;
@@ -232,5 +256,6 @@ module.exports = {
   deleteWargame,
   updateWargame,
   updateSubmitWargame,
+  checkFlagWargame,
   createCommentWargame,
 };
