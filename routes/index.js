@@ -34,7 +34,7 @@ router.post(
   controllers.deleteWargame,
 );
 router.post(
-  '/wargame/viewFlag/:wargameId',
+  '/wargame/viewFlag/:wargameId/:nickname',
   isLoggedIn,
   controllers.checkFlagWargame,
 );

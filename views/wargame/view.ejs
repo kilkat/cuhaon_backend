@@ -98,7 +98,10 @@
           class="section-answer global-bg__white"
           style="padding-bottom: 2rem"
         >
-          <form action="/wargame/viewFlag/<%- wargame._id %>" method="POST">
+          <form
+            action="/wargame/viewFlag/<%- wargame._id %>/<%- user.nickname %>"
+            method="POST"
+          >
             <textarea
               name="flag"
               id="answer"
@@ -167,7 +170,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="section-comment__comments-items__item-wrote">
                   <%= comment.content %>
                 </div>
@@ -237,7 +239,6 @@
                 style="background-color: red"
               />
             </form>
-
             <form action="/wargame/update/<%= wargame._id %>" method="POST">
               <input
                 type="submit"
@@ -257,7 +258,6 @@
 
   <script>
     var isMenuOpened = false;
-
     function funcDoMenu() {
       if (isMenuOpened == false) {
         isMenuOpened = !isMenuOpened;
