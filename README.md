@@ -2,6 +2,12 @@
 ### 수정일지
 __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가능성이 높습니다. git pull한번 해주고 커밋하면 잘됩니다.__  
 마크다운 사용법: https://gist.github.com/ihoneymon/652be052a0727ad59601  
++ __21/08/02__  
+  /controllers/index.ctrl , /schemas/user.js  
+  >정답일경우 user.js point 추가  
+  >user.db에 point값 추가  
+  >작성자: 김광운  
+
 + __21/07/27__  
   /controllers/index.ctrl , /routes/index.js , /schemas/whoSolved.js 생성 , /views/wargame/view.ejs 수정  
   >index.ctrl = wargame flag 복수정답 방지 적용  
