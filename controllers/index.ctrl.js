@@ -216,6 +216,14 @@ const checkFlagWargame = async (req, res) => {
           wargameId: wargameId,
           whoSolved: nickname,
         });
+        await User.updateOne(
+          { nickname },
+          {
+            $set: {
+              point: User.point + wargameInfo.point,
+            },
+          },
+        );
         res.send(
           `<script>alert('정답입니다.'); window.location='/wargame/${wargameId}';</script>`,
         );
