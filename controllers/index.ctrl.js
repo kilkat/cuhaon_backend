@@ -86,8 +86,11 @@ const viewWargamePage = async (req, res) => {
       .sort({ createAt: -1 })
       .skip(hide_post)
       .limit(limit)
-      .populate('userId', 'email nickname')
+      .populate('userId', 'email nickname point')
       .sort({ createdAt: 'desc' });
+
+    console.log(comment);
+    //순위 계산
 
     //페이지 랜더링
     res.render('wargame/view', {
@@ -206,21 +209,24 @@ const checkFlagWargame = async (req, res) => {
     wargameId: wargameId,
     whoSolved: nickname,
   });
+  const userInfo = await User.findOne({ nickname });
+  console.log(typeof userInfo.point);
+  console.log(typeof wargameInfo.point);
+  console.log(nickname);
 
   try {
-    console.log(solvedInfo);
-
     if (solvedInfo === null) {
       if (submitFlag == wargameInfo.flag) {
         await whoSolved.create({
           wargameId: wargameId,
           whoSolved: nickname,
         });
+
         await User.updateOne(
           { nickname },
           {
             $set: {
-              point: User.point + wargameInfo.point,
+              point: userInfo.point + wargameInfo.point,
             },
           },
         );
