@@ -5,7 +5,7 @@ __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가�
 
 + __21/08/06__  
   /controllers/index.ctrl  
-  >views count 기능 추가
+  >views count 기능 추가  
   >solved count 기능 추가  
   >작성자: 김광운  
 
