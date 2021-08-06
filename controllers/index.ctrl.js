@@ -73,6 +73,13 @@ const viewWargamePage = async (req, res) => {
       'userId',
       'email nickname createdAt',
     );
+
+    //views count
+    await Wargame.updateOne(
+      { _id: id },
+      { $set: { views: wargame.views + 1 } },
+    );
+
     //페이징 함수
     const totalComment = await Comment.countDocuments({ wargameId: id });
     let { hide_post, limit, total_page, current_page } = action.paging(
@@ -210,9 +217,6 @@ const checkFlagWargame = async (req, res) => {
     whoSolved: nickname,
   });
   const userInfo = await User.findOne({ nickname });
-  console.log(typeof userInfo.point);
-  console.log(typeof wargameInfo.point);
-  console.log(nickname);
 
   try {
     if (solvedInfo === null) {
@@ -221,6 +225,11 @@ const checkFlagWargame = async (req, res) => {
           wargameId: wargameId,
           whoSolved: nickname,
         });
+
+        await Wargame.updateOne(
+          { _id: wargameId },
+          { $set: { solved: wargameInfo.solved + 1 } },
+        );
 
         await User.updateOne(
           { nickname },
