@@ -2,6 +2,18 @@
 ### 수정일지
 __커밋이 안되면 readme 파일이 로컬저장소에 없어서 그럴 가능성이 높습니다. git pull한번 해주고 커밋하면 잘됩니다.__  
 마크다운 사용법: https://gist.github.com/ihoneymon/652be052a0727ad59601  
+
++ __21/08/06__  
+  /controllers/index.ctrl  
+  >views count 기능 추가  
+  >solved count 기능 추가  
+  >작성자: 김광운  
+
++ __21/08/02__  
+  /controllers/index.ctrl  
+  >오타 오류 수정  
+  >작성자: 김광운  
+
 + __21/08/02__  
   /controllers/index.ctrl , /schemas/user.js  
   >정답일경우 user.js point 추가  
