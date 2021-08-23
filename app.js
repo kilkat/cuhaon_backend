@@ -30,7 +30,7 @@
   passportConfig();
   connect();
   app.set('view engine', 'ejs');
-  app.set('views', path.join(__dirname, 'views')); // C:\cuha\views\ + render
+  app.set('views', path.join(__dirname, 'views'));
   app.set('PROJECT_NAME', process.env.PROJECT_NAME || 'kucis2021');
   app.set('PORT', process.env.PORT || 4000);
   app.use(compression());

@@ -98,9 +98,8 @@
           class="section-answer global-bg__white"
           style="padding-bottom: 2rem"
         >
-        <%if(user){%>
           <form
-            action="/wargame/viewFlag/<%- wargame._id %>"
+            action="/wargame/viewFlag/<%- wargame._id %>/<%- user.nickname %>"
             method="POST"
           >
             <textarea
@@ -119,7 +118,7 @@
             />
           </form>
         </section>
-        <%}%>
+
         <section class="section-comment global-bg__white">
           <h1>본 문제에 대한 의견을 제시해 주세요.</h1>
 
@@ -227,11 +226,11 @@
 
         <!-- 관리자 도구 -->
         <!-- 백엔드에서 관리자가 보는게 아니면 이하 style="display"에 none삽입 -->
-        <% if (user && user.roleType === 'admin') {%>
         <section class="section-admintool" style="display: ''">
           <div class="section-admintool__area">
             <p>관리자 도구</p>
 
+            <% if(user) { %>
             <form action="/wargame/delete/<%= wargame._id %>" method="POST">
               <input
                 type="submit"
@@ -248,10 +247,9 @@
                 style="background-color: blue"
               />
             </form>
-
+            <% } %>
           </div>
         </section>
-        <% } %>
       </div>
     </main>
 

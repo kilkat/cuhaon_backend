@@ -6,7 +6,7 @@ const validator = require('validator');
 const whoSolved = require('../schemas/whoSolved');
 const { commentSaveValidator } = require('./common/validator');
 const { saveWargameValidator } = require('./common/validator');
-const { logger } = require('../config/winston');
+
 //메인페이지.
 const indexPage = (req, res) => {
   res.render('index');
@@ -15,8 +15,7 @@ const indexPage = (req, res) => {
 //wargame 페이지
 const indexWargamePage = async (req, res) => {
   try {
-    const _user = req.user ? req.user : false;
-    let titleCount = req.query.title;
+    titleCount = req.query.title;
     let emptySearch = false;
 
     //페이징 구문
@@ -36,13 +35,12 @@ const indexWargamePage = async (req, res) => {
     const wargamePost = await Wargame.find({
       title: action.searchKeyword(req.query.title),
     })
-      .sort({ createdAt: -1 })
+      .sort({ createAt: -1 })
       .skip(hide_post)
       .limit(limit);
 
     //페이지 랜더링
     res.render('wargame/index', {
-      _user,
       emptySearch,
       titleCount,
       posts: wargamePost,
@@ -54,7 +52,6 @@ const indexWargamePage = async (req, res) => {
     });
   } catch (error) {
     res.render('wargame/index', {
-      _user,
       emptySearch: true,
       titleCount: 0,
       posts: [],
@@ -72,7 +69,6 @@ const viewWargamePage = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const _user = req.user ? req.user : false;
     const wargame = await Wargame.findOne({ _id: id }).populate(
       'userId',
       'email nickname createdAt',
@@ -94,6 +90,7 @@ const viewWargamePage = async (req, res) => {
 
     //댓글 출력
     const comment = await Comment.find({ wargameId: id })
+      .sort({ createAt: -1 })
       .skip(hide_post)
       .limit(limit)
       .populate('userId', 'email nickname point')
@@ -104,7 +101,6 @@ const viewWargamePage = async (req, res) => {
 
     //페이지 랜더링
     res.render('wargame/view', {
-      _user,
       totalComment,
       wargame,
       comments: comment,
@@ -145,7 +141,7 @@ const createWargame = async (req, res) => {
       type,
       level,
       point,
-      flag: `${process.env.FLAG_FORMAT}${flag}`, //${process.env.FLAG_FORMAT}${flag}
+      flag: `${process.env.FLAG_FORMAT}_${flag}`, //${process.env.FLAG_FORMAT}_${flag}
       userId: req.user,
     });
 
@@ -173,10 +169,9 @@ const deleteWargame = async (req, res) => {
 const updateWargame = async (req, res) => {
   const wargameId = req.params.wargameId;
   const wargame = await Wargame.findOne({ _id: wargameId });
-  const flag = wargame.flag.replace(process.env.FLAG_FORMAT, '');
 
   try {
-    res.render('wargame/update', { wargame, flag });
+    res.render('wargame/update', { wargame });
   } catch (error) {
     console.error(error);
   }
@@ -198,7 +193,7 @@ const updateSubmitWargame = async (req, res) => {
           type,
           level,
           point,
-          flag: `${process.env.FLAG_FORMAT}${flag}`,
+          flag: `${process.env.FLAG_FORMAT}_${flag}`,
           updateAt,
         },
       },
@@ -215,7 +210,7 @@ const checkFlagWargame = async (req, res) => {
   const wargameId = req.params.wargameId;
   const nickname = req.params.nickname;
   const Flag = req.body.flag;
-  const submitFlag = `${process.env.FLAG_FORMAT}${Flag}`;
+  const submitFlag = process.env.FLAG_FORMAT + '_' + Flag;
   const wargameInfo = await Wargame.findOne({ _id: wargameId });
   const solvedInfo = await whoSolved.findOne({
     wargameId: wargameId,
@@ -274,7 +269,7 @@ const createCommentWargame = async (req, res) => {
   const errors = {};
   const values = { content };
   commentSaveValidator(errors, values);
-  //댓글에 빈 문자열 입력시 경고문 출력
+
   if (!(Object.keys(errors).length === 0)) {
     return res.send(
       `<script>alert("내용을 작성해 주세요"); location.href='/wargame/${wargameId}';</script>`,

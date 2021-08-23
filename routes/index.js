@@ -6,7 +6,6 @@ const controllers = require('../controllers/index.ctrl');
 const { isLoggedIn, isNotLoggedIn } = require('../controllers/middlewares');
 
 const authRouter = require('./auth');
-const adminRouter = require('./admin');
 
 router.use((req, res, next) => {
   res.locals.user = req.user;
@@ -35,7 +34,7 @@ router.post(
   controllers.deleteWargame,
 );
 router.post(
-  '/wargame/viewFlag/:wargameId/:nickname', // 수정
+  '/wargame/viewFlag/:wargameId/:nickname',
   isLoggedIn,
   controllers.checkFlagWargame,
 );
@@ -45,6 +44,5 @@ router.post(
   controllers.createCommentWargame,
 );
 router.use('/auth', authRouter);
-router.use('/admin', adminRouter);
 
 module.exports = router;

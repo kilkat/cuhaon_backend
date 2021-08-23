@@ -1,37 +1,22 @@
 const validator = require('validator');
-const path = require('path');
-const fs = require('fs');
-const { logger } = require('../../config/winston');
-
-let messages = {};
-
-fs.readFile(
-  path.join(__dirname, 'messages.json'),
-  'utf8',
-  (error, errorsFile) => {
-    if (error) return logger.error(error);
-
-    messages = JSON.parse(errorsFile);
-  },
-);
 
 const joinValidator = (errors, values) => {
   const { email, nickname, password, cfm_password } = values;
 
   if (!validator.isEmail(email)) {
-    errors['email'] = messages.email;
+    errors['email'] = '유효하지 않은 email입니다.';
   }
 
   if (validator.isEmpty(nickname)) {
-    errors['nickname'] = messages.nickname;
+    errors['nickname'] = '빈 문자열을 제출할 수 없습니다.';
   }
 
   if (validator.isEmpty(password)) {
-    errors['password'] = messages.password;
+    errors['password'] = '빈 문자열을 제출할 수 없습니다.';
   }
 
   if (validator.isEmpty(cfm_password)) {
-    errors['cfm_password'] = messages.cfm;
+    errors['cfm_password'] = '빈 문자열을 제출할 수 없습니다.';
   }
 };
 
@@ -95,33 +80,8 @@ const commentSaveValidator = (errors, values) => {
   }
 };
 
-const adminMembersValidator = (errors, values) => {
-  const { email, nickname, roleType, password, cfm_password } = values;
-
-  if (!validator.isEmail(email)) {
-    errors['email'] = messages.email;
-  }
-
-  if (validator.isEmpty(nickname)) {
-    errors['nickname'] = messages.nickname;
-  }
-
-  if (validator.isEmpty(roleType)) {
-    errors['roleType'] = messages.roleType;
-  }
-
-  if (validator.isEmpty(password)) {
-    errors['password'] = messages.password;
-  }
-
-  if (validator.isEmpty(cfm_password)) {
-    errors['cfm_password'] = messages.cfm;
-  }
-};
-
 module.exports = {
   joinValidator,
   saveWargameValidator,
   commentSaveValidator,
-  adminMembersValidator,
 };

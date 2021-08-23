@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const User = require('../schemas/user');
 const { joinValidator } = require('./common/validator');
 
-//회원가입
 const join = async (req, res, next) => {
   const { email, nickname, password, cfm_password } = req.body;
 
@@ -18,7 +17,6 @@ const join = async (req, res, next) => {
   try {
     const exUser = await User.findOne({ email });
     const exNickname = await User.findOne({ nickname });
-
     if (exUser || exNickname || password !== cfm_password) {
       if (exUser) errors['email'] = '이미 존재하는 계정입니다.';
       if (exNickname) errors['nickname'] = '이미 존재하는 닉네임입니다.';
@@ -40,7 +38,6 @@ const join = async (req, res, next) => {
   }
 };
 
-//로그인
 const login = (req, res, next) => {
   passport.authenticate('local', (authError, user, info) => {
     if (authError) {
@@ -58,19 +55,16 @@ const login = (req, res, next) => {
   })(req, res, next);
 };
 
-//로그아웃
 const logout = (req, res) => {
   req.logout();
   req.session.destroy();
   res.redirect('/');
 };
 
-//회원가입 페이지
 const getJoin = (req, res, next) => {
   res.render('join');
 };
 
-//로그인 페이지
 const getLogin = (req, res, next) => {
   res.render('login');
 };
