@@ -1,0 +1,99 @@
+2021-08-08 00:24:59 info: {
+  point: 0,
+  rollType: 'normal',
+  deletedAt: null,
+  _id: 610e3c0ff4fccc4438cac877,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: 'test',
+  createdAt: 2021-08-07T07:53:51.975Z,
+  updatedAt: 2021-08-07T07:53:51.975Z,
+  __v: 0
+}
+2021-08-08 00:25:08 info: {
+  point: 0,
+  rollType: 'normal',
+  deletedAt: null,
+  _id: 610e3c0ff4fccc4438cac877,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: 'test',
+  createdAt: 2021-08-07T07:53:51.975Z,
+  updatedAt: 2021-08-07T07:53:51.975Z,
+  __v: 0
+}
+2021-08-08 00:26:00 info: {
+  point: 0,
+  rollType: 'normal',
+  deletedAt: null,
+  _id: 610ea5fdb24aca1b34958f82,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: '$2b$12$wWsrtEU8LURQIuxsJxQpzecpe7.IOOs2fiKbFgu4cPs.wAb.jxgtW',
+  createdAt: 2021-08-07T15:25:49.494Z,
+  updatedAt: 2021-08-07T15:25:49.494Z,
+  __v: 0
+}
+2021-08-08 00:36:26 info: {
+  point: 0,
+  rollType: 'normal',
+  deletedAt: null,
+  _id: 610ea5fdb24aca1b34958f82,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: '$2b$12$wWsrtEU8LURQIuxsJxQpzecpe7.IOOs2fiKbFgu4cPs.wAb.jxgtW',
+  createdAt: 2021-08-07T15:25:49.494Z,
+  updatedAt: 2021-08-07T15:25:49.494Z,
+  __v: 0
+}
+2021-08-08 13:50:08 info: {
+  point: 0,
+  rollType: 'normal',
+  deletedAt: null,
+  _id: 610ea5fdb24aca1b34958f82,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: '$2b$12$wWsrtEU8LURQIuxsJxQpzecpe7.IOOs2fiKbFgu4cPs.wAb.jxgtW',
+  createdAt: 2021-08-07T15:25:49.494Z,
+  updatedAt: 2021-08-07T15:25:49.494Z,
+  __v: 0
+}
+2021-08-08 13:59:25 info: {
+  point: 0,
+  rollType: 'normal',
+  deletedAt: null,
+  _id: 610ea5fdb24aca1b34958f82,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: '$2b$12$wWsrtEU8LURQIuxsJxQpzecpe7.IOOs2fiKbFgu4cPs.wAb.jxgtW',
+  createdAt: 2021-08-07T15:25:49.494Z,
+  updatedAt: 2021-08-07T15:25:49.494Z,
+  __v: 0
+}
+2021-08-08 22:40:16 info: {
+  point: 200,
+  roleType: 'admin',
+  deletedAt: null,
+  _id: 610ea5fdb24aca1b34958f82,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: '$2b$12$wWsrtEU8LURQIuxsJxQpzecpe7.IOOs2fiKbFgu4cPs.wAb.jxgtW',
+  createdAt: 2021-08-07T15:25:49.494Z,
+  updatedAt: 2021-08-07T15:25:49.494Z,
+  __v: 0
+}
+2021-08-08 22:49:30 info: {
+  point: 0,
+  roleType: 'normal',
+  deletedAt: null,
+  _id: 610fdfd7c2deb90f4cd7de2f,
+  email: 'test@test.com',
+  nickname: 'test',
+  password: '$2b$12$80cptrHaQmnt55pGYoUtBeoSnqWNYWG2sNvO6EKcDOr/S9.LkLiyy',
+  createdAt: 2021-08-08T13:44:55.827Z,
+  updatedAt: 2021-08-08T13:44:55.827Z,
+  __v: 0
+}
+2021-08-08 22:49:58 info: undefined
+2021-08-08 22:51:28 info: test@test.com
+2021-08-08 22:51:31 info: test@test.com
