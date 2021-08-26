@@ -20,6 +20,11 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
+  roleType: {
+    type: String,
+    default: 'normal',
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

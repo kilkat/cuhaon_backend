@@ -98,18 +98,16 @@
           class="section-answer global-bg__white"
           style="padding-bottom: 2rem"
         >
-          <form
-            action="/wargame/viewFlag/<%- wargame._id %>/<%- user.nickname %>"
-            method="POST"
-          >
+
+          <form action="/wargame/checkflag/<%- wargame._id %>" method="POST">
             <textarea
               name="flag"
               id="answer"
               cols="30"
               rows="4"
-              placeholder="정답을 자유롭게 기입하세요."
+              placeholder="<%if(user){%>정답을 자유롭게 기입하세요.<%}else{%>로그인이 필요합니다.<%}%>"
             ></textarea>
-
+            <%if(user){%>
             <input
               type="submit"
               value="제출하기"
@@ -117,6 +115,7 @@
               style="width: 100%; margin-top: 2rem"
             />
           </form>
+          <%}%>
         </section>
 
         <section class="section-comment global-bg__white">
@@ -230,8 +229,11 @@
           <div class="section-admintool__area">
             <p>관리자 도구</p>
 
-            <% if(user) { %>
-            <form action="/wargame/delete/<%= wargame._id %>" method="POST">
+            <% if (user && user.roleType === 'admin') {%>
+            <form
+              action="/wargame/delete/<%= wargame._id %>"
+              method="POST"
+            >
               <input
                 type="submit"
                 value="글 삭제"

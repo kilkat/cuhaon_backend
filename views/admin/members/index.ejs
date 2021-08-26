@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../common/head') -%>
+    <title>CUHA-ON</title>
+  </head>
+
+  <body>
+    <header class="admin-header">
+      <div class="admin-header__logo"></div>
+      <div class="admin-header__component">
+        <form action="/admin/membersBoard" style="display: inline" method="GET">
+          <input
+            class="admin-header__component-search"
+            name="nickname"
+            type="text"
+            placeholder="검색"
+            autocomplete="off"
+          />
+        </form>
+        <a
+          href="/admin/logout"
+          class="admin-header__component-button"
+          style="margin-left: 2rem"
+          >로그아웃</a
+        >
+      </div>
+    </header>
+    <main
+      class="ad"
+      style="overflow: hidden; height: 95vh; width: 190rem; clear: both"
+    >
+      <div class="admin-dashboard">
+        <div class="admin-dashboard__left">
+          <a
+            href="/admin/members"
+            class="
+              admin-dashboard__left-menu admin-dashboard__left-menu__selected
+            "
+            >Members</a
+          >
+          <a href="/admin/wargame" class="admin-dashboard__left-menu"
+            >Wargame</a
+          >
+        </div>
+        <div class="admin-dashboard__right">
+          <div class="admin-dashboard__right-components">
+            <h1 class="admin-dashboard__right-components__title">Members</h1>
+            <a
+              href="/admin/members/create"
+              class="admin-dashboard__right-button"
+              >새 맴버 추가</a
+            >
+            <div class="admin-dashboard__right-list" style="margin-top: 2rem">
+              <div class="admin-dashboard__right-list__classes">
+                <p
+                  class="admin-dashboard__right-list__classes-item"
+                  style="width: 4rem"
+                ></p>
+
+                <p
+                  class="admin-dashboard__right-list__classes-item"
+                  style="width: 20rem"
+                >
+                  닉네임
+                </p>
+                <p
+                  class="admin-dashboard__right-list__classes-item"
+                  style="width: 40rem"
+                >
+                  이메일
+                </p>
+                <p
+                  class="admin-dashboard__right-list__classes-item"
+                  style="width: 20rem"
+                >
+                  활성 상태
+                </p>
+                <p
+                  class="admin-dashboard__right-list__classes-item"
+                  style="width: 50rem"
+                >
+                  도구
+                </p>
+              </div>
+              <%if(emptySearch){%>
+              <p>유저가 없습니다.</p>
+              <%}%> <% user.forEach(function(users){%>
+              <!-- item -->
+              <div class="admin-dashboard__right-list__item">
+                <div class="admin-dashboard__right-list__item__target">
+                  <div
+                    class="
+                      admin-dashboard__right-list__item__target-item__profile
+                    "
+                    style="background-image: url(../images/no_profile.jpg)"
+                  ></div>
+
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 20rem"
+                  >
+                    <%= users.nickname%>
+                  </p>
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 40rem"
+                  >
+                    <%= users.email%>
+                  </p>
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 20rem"
+                  >
+                    <span style="background-color: green">활성</span>
+                  </p>
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 50rem"
+                  >
+                    <a
+                      href="/admin/members/update/<%- users._id %>"
+                      class="
+                        admin-dashboard__right-list__item__target-item__button
+                      "
+                      >수정</a
+                    >
+                    <a
+                      href="/admin/members/delete/<%- users._id %>"
+                      class="
+                        admin-dashboard__right-list__item__target-item__button
+                      "
+                      >삭제</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <%});%>
+            </div>
+
+            <!-- ---------------------- paging ---------------------- -->
+            <div class="admin-dashboard__right-paging">
+              <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
+              paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
+                href="/admin/membersBoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&=nickname<%=userCount%>"
+                class="admin-dashboard__right-paging__item"
+                ><</a
+              ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
+              i==paging.totalPage || (i>=paging.currentPage-2 &&
+              i<=paging.currentPage+2)){%>
+              <a
+                href="/admin/membersBoard?page=<%= i %>&limit=<%=paging.limit%>&nickname=<%=userCount%>"
+                class="
+                  admin-dashboard__right-paging__item
+                  admin-dashboard__right-paging__item-selected
+                "
+                ><%= i %></a
+              >
+              <%} else if(i==2||i==paging.totalPage-1){%>
+              <a
+                class="
+                  admin-dashboard__right-paging__item
+                  admin-dashboard__right-paging__item-selected
+                "
+                >...</a
+              >
+              <%}%> <%}%> <%if(nextEnabled){%><a
+                href="/admin/membersBoard?page=<%= paging.currentPage+1 %>&limit=<%=paging.limit%>&=nickname<%=userCount%>"
+                class="admin-dashboard__right-paging__item"
+                >></a
+              ><%}%>
+            </div>
+          </div>
+          <div class="admin-logo">
+            <img src="../images/logo_nocolor.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+
+  <script>
+    var isMenuOpened = false;
+  </script>
+</html>

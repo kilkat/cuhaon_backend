@@ -6,6 +6,7 @@ const controllers = require('../controllers/index.ctrl');
 const { isLoggedIn, isNotLoggedIn } = require('../controllers/middlewares');
 
 const authRouter = require('./auth');
+const adminRouter = require('./admin');
 
 router.use((req, res, next) => {
   res.locals.user = req.user;
@@ -18,31 +19,32 @@ router.get('/wargame', controllers.indexWargamePage);
 router.get('/wargame/create', isLoggedIn, controllers.createWargamePage);
 router.post('/wargame/create', isLoggedIn, controllers.createWargame);
 router.post(
-  '/wargame/update/:wargameId',
+  '/wargame/update/:wargame_id',
   isLoggedIn,
   controllers.updateWargame,
 );
 router.post(
-  '/wargame/update/success/:wargameId',
+  '/wargame/update/success/:wargame_id',
   isLoggedIn,
   controllers.updateSubmitWargame,
 );
-router.get('/wargame/:id', controllers.viewWargamePage);
+router.get('/wargame/:wargame_id', controllers.viewWargamePage);
 router.post(
-  '/wargame/delete/:wargameId',
+  '/wargame/delete/:wargame_id',
   isLoggedIn,
   controllers.deleteWargame,
 );
 router.post(
-  '/wargame/viewFlag/:wargameId/:nickname',
+  '/wargame/checkflag/:wargame_id',
   isLoggedIn,
   controllers.checkFlagWargame,
 );
 router.post(
-  '/wargame/:id/create/comment',
+  '/wargame/:wargame_id/create/comment',
   isLoggedIn,
   controllers.createCommentWargame,
 );
 router.use('/auth', authRouter);
+router.use('/admin', adminRouter);
 
 module.exports = router;
