@@ -10,6 +10,8 @@
 
    <h3>:point_right: Contact :point_left:</h3>
    <a href="https://discord.gg/Tgps9mBn"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=Discord&logoColor=white"/></a>
+  <br>
+  
   ![Untitled Diagram (6)](https://user-images.githubusercontent.com/75434755/130928084-c0cb146e-d72e-4e23-881e-2412e0190dbc.png)
 </div>
 
