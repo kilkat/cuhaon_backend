@@ -183,6 +183,7 @@ const membersUpdatePage = async (req, res) => {
 const membersUpdate = async (req, res) => {
   const { email, nickname, point, roleType, password, cfm_password } = req.body;
   const userId = req.params._id;
+  const userInfo = User.findOne({ _id: userId });
   const exUser = await User.findOne({ _id: userId });
   const hash = await bcrypt.hash(password, 12);
 
@@ -191,12 +192,12 @@ const membersUpdate = async (req, res) => {
   adminMembersValidator(errors, values);
 
   if (password != cfm_password) {
-    errors['cfm_password'] = messages.different;
-    return res.render(`admin/members/update/${userId}`, { errors, values });
+    errors['cfm_password'] = '비밀번호가 일치하지 않습니다.';
+    return res.render(`admin/members/update/${userId}`, { errors, userInfo });
   }
 
   if (!(Object.keys(errors).length === 0)) {
-    return res.render(`admin/members/update/${userId}`, { errors, values });
+    return res.render(`admin/members/update/${userId}`, { errors, userInfo });
   }
 
   try {
@@ -214,15 +215,23 @@ const membersUpdate = async (req, res) => {
       );
       return res.redirect('/admin/members');
     } else {
-      await User.deleteOne({ _id: userId });
-      const userInfo = await User.findOne({ _id: userId });
+      const emailcheck = await User.findOne({ email });
+      const nicknamecheck = await User.findOne({ nickname });
 
-      if (userInfo === null) {
-        await User.create({ email, nickname, roleType, password: hash });
+      if (!(emailcheck === null || nicknamecheck === null)) {
+        return res.redirect('/admin/members');
+      } else {
+        await User.updateOne(
+          { _id: userId },
+          { $set: { email, nickname, roleType, password: hash } },
+        );
       }
     }
+
     return res.redirect('/admin/members');
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const membersDelete = async (req, res) => {
