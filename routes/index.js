@@ -7,6 +7,7 @@ const { isLoggedIn, isNotLoggedIn } = require('../controllers/middlewares');
 
 const authRouter = require('./auth');
 const adminRouter = require('./admin');
+const forumRouter = require('./forum');
 
 router.use((req, res, next) => {
   res.locals.user = req.user;
@@ -46,5 +47,6 @@ router.post(
 );
 router.use('/auth', authRouter);
 router.use('/admin', adminRouter);
+router.use('/forum', forumRouter);
 
 module.exports = router;

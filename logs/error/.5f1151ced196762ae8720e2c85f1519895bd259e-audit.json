@@ -69,6 +69,21 @@
             "date": 1629955764342,
             "name": "logs\\error\\2021-08-26.error.log",
             "hash": "9684f0b73a424f09638f194f23a2333a"
+        },
+        {
+            "date": 1630505994625,
+            "name": "logs\\error\\2021-09-01.error.log",
+            "hash": "7ff3a99b297f9768bc9e2df4c02e3f58"
+        },
+        {
+            "date": 1630592127260,
+            "name": "logs\\error\\2021-09-02.error.log",
+            "hash": "477f3abd22755d446732e1803b52dbfa"
+        },
+        {
+            "date": 1630595096804,
+            "name": "logs\\error\\2021-09-03.error.log",
+            "hash": "92fc671f18a590038ea532dd4ae44629"
         }
     ]
 }

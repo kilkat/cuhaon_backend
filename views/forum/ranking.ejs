@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="/../stylesheets/style.css" />
+        <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+        <title>CUHA-ON Forum</title>
+    </head>
+    <body>
+        <header class="forum-header">
+            <!-- logo -->
+            <div class="area" style="width: 14rem; height: 4rem; text-align: left">
+                <a href="/forum/forum.html" class="logo">
+                    <div class="logo-img"></div>
+                </a>
+            </div>
+
+            <!-- search box -->
+            <div class="area" id="area-search" style="width: calc(100% - 20rem); height: 4rem; text-align: left">
+                <form action="/forum/search.html" name="serch">
+                    <input type="text" class="search-box" id="search_box" name="search_box" placeholder="검색할 내용을 입력하세요." />
+                    <input type="submit" class="search-btn" value="검색" />
+                </form>
+            </div>
+
+            <!-- signin/out -->
+            <div class="area" style="width: 6rem; text-align: right">
+                <a href="/../login.html" class="user-login"> </a>
+            </div>
+        </header>
+
+        <main class="forum-main">
+            <div class="navi">
+                <a class="navi-item font-header" href="/forum/ranking.html">랭킹</a>
+                <a class="navi-item font-header" href="/forum/board.html">자유 게시판</a>
+                <a class="navi-item font-header" href="/forum/board.html">질문 게시판</a>
+                <a class="navi-item font-header" href="/../index.html">홈</a>
+            </div>
+
+            <section class="main-recent">
+                <h1 class="title font-header">TOP3 <span>명예의 전당</span></h1>
+
+                <div class="rank_box">
+                    <!-- item -->
+                    <div style="display: inline-block">
+                        <div class="rank_box-small" id="2nd" style="background-image: url(../images/no_profile.jpg)">
+                            <p style="background-color: silver">2</p>
+                        </div>
+                        <br />
+                        <p class="rank_box-point" style="">190<span>pt</span></p>
+                        <br />
+                        <p class="rank_box-name" style="">단기프로젝대표</p>
+                    </div>
+                    <!-- item -->
+                    <div style="display: inline-block">
+                        <div class="rank_box-big" id="1st" style="background-image: url(../images/no_profile.jpg)">
+                            <p style="font-size: 2rem; background-color: gold">1</p>
+                        </div>
+                        <br />
+                        <p class="rank_box-point" style="">300<span>pt</span></p>
+                        <br />
+                        <p class="rank_box-name" style="">CUH4-0N</p>
+                    </div>
+                    <!-- item -->
+                    <div style="display: inline-block">
+                        <div class="rank_box-small" id="3rd" style="background-image: url(../images/no_profile.jpg)">
+                            <p style="background-color: brown">3</p>
+                        </div>
+                        <br />
+                        <p class="rank_box-point" style="">42<span>pt</span></p>
+                        <br />
+                        <p class="rank_box-name" style="">musubi</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-board">
+                <h3 class="subtitle">전체 랭킹</h3>
+
+                <div class="rankings">
+                    <!-- item -->
+                    <div class="item">
+                        <div class="left">
+                            <p class="left-rank">4위</p>
+                        </div>
+                        <div class="right">
+                            <div class="right-profile" style="background-image: url(../images/no_profile.jpg)"></div>
+
+                            <div class="right-info">
+                                <p class="right-info__username">사용자이름</p>
+                                <br />
+                                <p class="right-info__other"><span class="point">100 pt</span> | <span>마지막 활동 : 2021/09/02</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- item -->
+                    <div class="item">
+                        <div class="left">
+                            <p class="left-rank">5위</p>
+                        </div>
+                        <div class="right">
+                            <div class="right-profile" style="background-image: url(../images/no_profile.jpg)"></div>
+
+                            <div class="right-info">
+                                <p class="right-info__username">사용자이름</p>
+                                <br />
+                                <p class="right-info__other"><span class="point">100 pt</span> | <span>마지막 활동 : 2021/09/02</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- item -->
+                    <div class="item">
+                        <div class="left">
+                            <p class="left-rank">6위</p>
+                        </div>
+                        <div class="right">
+                            <div class="right-profile" style="background-image: url(../images/no_profile.jpg)"></div>
+
+                            <div class="right-info">
+                                <p class="right-info__username">사용자이름</p>
+                                <br />
+                                <p class="right-info__other"><span class="point">100 pt</span> | <span>마지막 활동 : 2021/09/02</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- item -->
+                    <div class="item">
+                        <div class="left">
+                            <p class="left-rank">7위</p>
+                        </div>
+                        <div class="right">
+                            <div class="right-profile" style="background-image: url(../images/no_profile.jpg)"></div>
+
+                            <div class="right-info">
+                                <p class="right-info__username">사용자이름</p>
+                                <br />
+                                <p class="right-info__other"><span class="point">100 pt</span> | <span>마지막 활동 : 2021/09/02</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- item -->
+                    <div class="item">
+                        <div class="left">
+                            <p class="left-rank">8위</p>
+                        </div>
+                        <div class="right">
+                            <div class="right-profile" style="background-image: url(../images/no_profile.jpg)"></div>
+
+                            <div class="right-info">
+                                <p class="right-info__username">사용자이름</p>
+                                <br />
+                                <p class="right-info__other"><span class="point">100 pt</span> | <span>마지막 활동 : 2021/09/02</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- item -->
+                    <div class="item">
+                        <div class="left">
+                            <p class="left-rank">9위</p>
+                        </div>
+                        <div class="right">
+                            <div class="right-profile" style="background-image: url(../images/no_profile.jpg)"></div>
+
+                            <div class="right-info">
+                                <p class="right-info__username">사용자이름</p>
+                                <br />
+                                <p class="right-info__other"><span class="point">100 pt</span> | <span>마지막 활동 : 2021/09/02</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- item -->
+                    <div class="item">
+                        <div class="left">
+                            <p class="left-rank">10위</p>
+                        </div>
+                        <div class="right">
+                            <div class="right-profile" style="background-image: url(../images/no_profile.jpg)"></div>
+
+                            <div class="right-info">
+                                <p class="right-info__username">사용자이름</p>
+                                <br />
+                                <p class="right-info__other"><span class="point">100 pt</span> | <span>마지막 활동 : 2021/09/02</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <a href="/forum/board.html" class="forum-section-more">더 보기</a> -->
+            </section>
+
+            <div class="main-pages">
+                <input type="button" class="main-pages__page" value="<" />
+
+                <input type="button" class="main-pages__page" value="1" />
+                <input type="button" class="main-pages__page" value="2" />
+                <input type="button" class="main-pages__page" value="3" />
+                <input type="button" class="main-pages__page" value="4" />
+                <input type="button" class="main-pages__page" value="5" />
+
+                <input type="button" class="main-pages__page" value=">" />
+            </div>
+        </main>
+
+        <footer></footer>
+    </body>
+</html>
