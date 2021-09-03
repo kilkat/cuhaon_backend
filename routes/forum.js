@@ -9,5 +9,7 @@ const {
 const controllers = require('../controllers/forum.ctrl');
 
 router.get('/index', controllers.forumIndexPage);
+router.get('/ranking', controllers.forumRankingPage);
+router.get('/board', controllers.forumBoard);
 
 module.exports = router;

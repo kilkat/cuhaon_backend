@@ -1,193 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <%- include('../common/forumHead') -%>
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet" />
+    <title>CUHA-ON Forum</title>
+  </head>
+  <body>
+    <%- include('../common/forumHeader') -%>
 
-        <link rel="stylesheet" href="/../stylesheets/style.css" />
-        <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+    <main class="forum-main">
+      <div class="navi"><%- include('../common/forumNavi') -%></div>
 
-        <title>CUHA-ON Forum</title>
-    </head>
-    <body>
-        <header class="forum-header">
-            <!-- logo -->
-            <div class="area" style="width: 14rem; height: 4rem; text-align: left">
-                <a href="/forum/forum.html" class="logo">
-                    <div class="logo-img"></div>
-                </a>
-            </div>
+      <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
 
-            <!-- search box -->
-            <div class="area" id="area-search" style="width: calc(100% - 20rem); height: 4rem; text-align: left">
-                <form action="/forum/search.html" name="serch">
-                    <input type="text" class="search-box" id="search_box" name="search_box" placeholder="검색할 내용을 입력하세요." />
-                    <input type="submit" class="search-btn" value="검색" />
-                </form>
-            </div>
+      <section class="main-recent">
+        <h1 class="title font-header">게시판 이름 <span>한줄 설명</span></h1>
+      </section>
 
-            <!-- signin/out -->
-            <div class="area" style="width: 6rem; text-align: right">
-                <a href="/../login.html" class="user-login"> </a>
-            </div>
-        </header>
+      <section class="main-board" style="padding-bottom: 2rem">
+        <h3 class="subtitle">공지사항</h3>
 
-        <main class="forum-main">
-            <div class="navi">
-                <a class="navi-item font-header" href="#">랭킹</a>
-                <a class="navi-item font-header" href="#">자유 게시판</a>
-                <a class="navi-item font-header" href="#">질문 게시판</a>
-                <a class="navi-item font-header" href="/../index.html">홈</a>
-            </div>
-
-            <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
-
-            <section class="main-recent">
-                <h1 class="title font-header">게시판 이름 <span>한줄 설명</span></h1>
-            </section>
-
-            <section class="main-board" style="padding-bottom: 2rem">
-                <h3 class="subtitle">공지사항</h3>
-
-                <div class="posts">
-                    <!-- item -->
-                    <a href="#" class="posts-item">
-                        <p class="posts-item__title">게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트 오버플로우도 포함.</p>
-                        <div style="position: relative; height: 1.6rem">
-                            <div class="info">
-                                <div class="info-left">
-                                    <p class="info-left__uploader-admin">관리자 이름</p>
-                                </div>
-
-                                <div class="info-right">
-                                    <p class="info-right__comments-admin">100</p>
-                                    <p class="info-right__view">3900</p>
-                                    <p class="info-right__date">09/01</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <section class="main-board">
-                <div class="posts">
-                    <!-- item -->
-                    <a href="/forum/view.html" class="posts-item">
-                        <p class="posts-item__title">게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트 오버플로우도 포함.</p>
-                        <div style="position: relative; height: 1.6rem">
-                            <div class="info">
-                                <div class="info-left">
-                                    <p class="info-left__uploader">업로더 이름</p>
-                                </div>
-
-                                <div class="info-right">
-                                    <p class="info-right__comments">100</p>
-                                    <p class="info-right__view">3900</p>
-                                    <p class="info-right__date">09/01</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- item -->
-                    <a href="/forum/view.html" class="posts-item">
-                        <p class="posts-item__title">게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트 오버플로우도 포함.</p>
-                        <div style="position: relative; height: 1.6rem">
-                            <div class="info">
-                                <div class="info-left">
-                                    <p class="info-left__uploader">업로더 이름</p>
-                                </div>
-
-                                <div class="info-right">
-                                    <p class="info-right__comments">100</p>
-                                    <p class="info-right__view">3900</p>
-                                    <p class="info-right__date">09/01</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- item -->
-                    <a href="/forum/view.html" class="posts-item">
-                        <p class="posts-item__title">게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트 오버플로우도 포함.</p>
-                        <div style="position: relative; height: 1.6rem">
-                            <div class="info">
-                                <div class="info-left">
-                                    <p class="info-left__uploader">업로더 이름</p>
-                                </div>
-
-                                <div class="info-right">
-                                    <p class="info-right__comments">100</p>
-                                    <p class="info-right__view">3900</p>
-                                    <p class="info-right__date">09/01</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- item -->
-                    <a href="/forum/view.html" class="posts-item">
-                        <p class="posts-item__title">게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트 오버플로우도 포함.</p>
-                        <div style="position: relative; height: 1.6rem">
-                            <div class="info">
-                                <div class="info-left">
-                                    <p class="info-left__uploader">업로더 이름</p>
-                                </div>
-
-                                <div class="info-right">
-                                    <p class="info-right__comments">100</p>
-                                    <p class="info-right__view">3900</p>
-                                    <p class="info-right__date">09/01</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- item -->
-                    <a href="/forum/view.html" class="posts-item">
-                        <p class="posts-item__title">게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트 오버플로우도 포함.</p>
-                        <div style="position: relative; height: 1.6rem">
-                            <div class="info">
-                                <div class="info-left">
-                                    <p class="info-left__uploader">업로더 이름</p>
-                                </div>
-
-                                <div class="info-right">
-                                    <p class="info-right__comments">100</p>
-                                    <p class="info-right__view">3900</p>
-                                    <p class="info-right__date">09/01</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+        <div class="posts">
+          <!-- item -->
+          <a href="#" class="posts-item">
+            <p class="posts-item__title">
+              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
+              오버플로우도 포함.
+            </p>
+            <div style="position: relative; height: 1.6rem">
+              <div class="info">
+                <div class="info-left">
+                  <p class="info-left__uploader-admin">관리자 이름</p>
                 </div>
 
-                <!-- <a href="#" class="forum-section-more">더 보기</a> -->
-            </section>
-
-            <div class="main-pages">
-                <input type="button" class="main-pages__page" value="<" />
-
-                <input type="button" class="main-pages__page" value="1" />
-                <input type="button" class="main-pages__page" value="2" />
-                <input type="button" class="main-pages__page" value="3" />
-                <input type="button" class="main-pages__page" value="4" />
-                <input type="button" class="main-pages__page" value="5" />
-
-                <input type="button" class="main-pages__page" value=">" />
+                <div class="info-right">
+                  <p class="info-right__comments-admin">100</p>
+                  <p class="info-right__view">3900</p>
+                  <p class="info-right__date">09/01</p>
+                </div>
+              </div>
             </div>
+          </a>
+        </div>
+      </section>
 
-            <div class="main-usertools">
-                <a class="write-post" href="/forum/write.html">글쓰기</a>
+      <section class="main-board">
+        <div class="posts">
+          <!-- item -->
+          <a href="/forum/view.html" class="posts-item">
+            <p class="posts-item__title">
+              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
+              오버플로우도 포함.
+            </p>
+            <div style="position: relative; height: 1.6rem">
+              <div class="info">
+                <div class="info-left">
+                  <p class="info-left__uploader">업로더 이름</p>
+                </div>
+
+                <div class="info-right">
+                  <p class="info-right__comments">100</p>
+                  <p class="info-right__view">3900</p>
+                  <p class="info-right__date">09/01</p>
+                </div>
+              </div>
             </div>
-        </main>
+          </a>
 
-        <footer></footer>
-    </body>
+          <!-- item -->
+          <a href="/forum/view.html" class="posts-item">
+            <p class="posts-item__title">
+              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
+              오버플로우도 포함.
+            </p>
+            <div style="position: relative; height: 1.6rem">
+              <div class="info">
+                <div class="info-left">
+                  <p class="info-left__uploader">업로더 이름</p>
+                </div>
+
+                <div class="info-right">
+                  <p class="info-right__comments">100</p>
+                  <p class="info-right__view">3900</p>
+                  <p class="info-right__date">09/01</p>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- item -->
+          <a href="/forum/view.html" class="posts-item">
+            <p class="posts-item__title">
+              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
+              오버플로우도 포함.
+            </p>
+            <div style="position: relative; height: 1.6rem">
+              <div class="info">
+                <div class="info-left">
+                  <p class="info-left__uploader">업로더 이름</p>
+                </div>
+
+                <div class="info-right">
+                  <p class="info-right__comments">100</p>
+                  <p class="info-right__view">3900</p>
+                  <p class="info-right__date">09/01</p>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- item -->
+          <a href="/forum/view.html" class="posts-item">
+            <p class="posts-item__title">
+              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
+              오버플로우도 포함.
+            </p>
+            <div style="position: relative; height: 1.6rem">
+              <div class="info">
+                <div class="info-left">
+                  <p class="info-left__uploader">업로더 이름</p>
+                </div>
+
+                <div class="info-right">
+                  <p class="info-right__comments">100</p>
+                  <p class="info-right__view">3900</p>
+                  <p class="info-right__date">09/01</p>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- item -->
+          <a href="/forum/view.html" class="posts-item">
+            <p class="posts-item__title">
+              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
+              오버플로우도 포함.
+            </p>
+            <div style="position: relative; height: 1.6rem">
+              <div class="info">
+                <div class="info-left">
+                  <p class="info-left__uploader">업로더 이름</p>
+                </div>
+
+                <div class="info-right">
+                  <p class="info-right__comments">100</p>
+                  <p class="info-right__view">3900</p>
+                  <p class="info-right__date">09/01</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- <a href="#" class="forum-section-more">더 보기</a> -->
+      </section>
+
+      <div class="main-pages">
+        <input type="button" class="main-pages__page" value="<" />
+
+        <input type="button" class="main-pages__page" value="1" />
+        <input type="button" class="main-pages__page" value="2" />
+        <input type="button" class="main-pages__page" value="3" />
+        <input type="button" class="main-pages__page" value="4" />
+        <input type="button" class="main-pages__page" value="5" />
+
+        <input type="button" class="main-pages__page" value=">" />
+      </div>
+
+      <div class="main-usertools">
+        <a class="write-post" href="/forum/write.html">글쓰기</a>
+      </div>
+    </main>
+
+    <footer></footer>
+  </body>
 </html>

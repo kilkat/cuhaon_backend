@@ -9,7 +9,17 @@ const { findOne } = require('../schemas/user');
 const user = require('../schemas/user');
 
 const forumIndexPage = async (req, res) => {
+  const rank = await User.find({});
+
   res.render('forum/index');
 };
 
-module.exports = { forumIndexPage };
+const forumRankingPage = async (req, res) => {
+  res.render('forum/ranking');
+};
+
+const forumBoard = async (req, res) => {
+  res.render('forum/board');
+};
+
+module.exports = { forumIndexPage, forumRankingPage, forumBoard };
