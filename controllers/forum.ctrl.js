@@ -9,13 +9,15 @@ const { findOne } = require('../schemas/user');
 const user = require('../schemas/user');
 
 const forumIndexPage = async (req, res) => {
-  const rank = await User.find({});
+  const rank = await User.find().sort({ point: -1 }).limit(3);
 
-  res.render('forum/index');
+  res.render('forum/index', { rank });
 };
 
 const forumRankingPage = async (req, res) => {
-  res.render('forum/ranking');
+  const rank = await User.find().sort({ point: -1 });
+
+  res.render('forum/ranking', { rank });
 };
 
 const forumBoard = async (req, res) => {

@@ -8,8 +8,8 @@ const {
 } = require('../controllers/middlewares');
 const controllers = require('../controllers/forum.ctrl');
 
-router.get('/index', controllers.forumIndexPage);
-router.get('/ranking', controllers.forumRankingPage);
-router.get('/board', controllers.forumBoard);
+router.get('/index', isLoggedIn, controllers.forumIndexPage);
+router.get('/ranking', isLoggedIn, controllers.forumRankingPage);
+router.get('/board', isLoggedIn, controllers.forumBoard);
 
 module.exports = router;

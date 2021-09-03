@@ -208,6 +208,7 @@ const membersUpdate = async (req, res) => {
           $set: {
             email,
             nickname,
+            point,
             roleType,
             password: hash,
           },
@@ -223,7 +224,7 @@ const membersUpdate = async (req, res) => {
       } else {
         await User.updateOne(
           { _id: userId },
-          { $set: { email, nickname, roleType, password: hash } },
+          { $set: { email, nickname, point, roleType, password: hash } },
         );
       }
     }
