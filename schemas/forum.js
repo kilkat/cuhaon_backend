@@ -14,33 +14,10 @@ const forumSchema = new Schema({
     type: String,
     required: true,
   },
-  type: {
-    type: String,
-    required: true,
-  },
-  level: {
-    type: String,
-    required: true,
-  },
   views: {
     type: Number,
     required: false,
     default: 0,
-  },
-  solved: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  point: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-  flag: {
-    type: String,
-    required: true,
-    unique: false,
   },
   createdAt: {
     type: Date,
