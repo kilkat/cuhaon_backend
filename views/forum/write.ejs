@@ -1,81 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <%- include('../common/forumHead') -%>
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet" />
+    <title>CUHA-ON Forum</title>
+  </head>
+  <body>
+    <%- include('../common/forumHeader') -%>
 
-        <link rel="stylesheet" href="/../stylesheets/style.css" />
-        <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+    <main class="forum-main">
+      <div class="navi"><%- include('../common/forumNavi') -%></div>
 
-        <title>CUHA-ON Forum</title>
-    </head>
-    <body>
-        <header class="forum-header">
-            <!-- logo -->
-            <div class="area" style="width: 14rem; height: 4rem; text-align: left">
-                <a href="/forum/forum.html" class="logo">
-                    <div class="logo-img"></div>
-                </a>
-            </div>
+      <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
 
-            <!-- search box -->
-            <div class="area" id="area-search" style="width: calc(100% - 20rem); height: 4rem; text-align: left">
-                <form action="/forum/search.html" name="serch">
-                    <input type="text" class="search-box" id="search_box" name="search_box" placeholder="검색할 내용을 입력하세요." />
-                    <input type="submit" class="search-btn" value="검색" />
-                </form>
-            </div>
+      <section class="main-recent">
+        <h1 class="title font-header">게시판 이름 <span>한줄 설명</span></h1>
+      </section>
 
-            <!-- signin/out -->
-            <div class="area" style="width: 6rem; text-align: right">
-                <a href="/../login.html" class="user-login"> </a>
-            </div>
-        </header>
+      <form action="#" name="post-form">
+        <!-- form -->
+        <section class="main-board" style="padding-bottom: 2rem">
+          <h3 class="subtitle">개시물 작성</h3>
 
-        <main class="forum-main">
-            <div class="navi">
-                <a class="navi-item font-header" href="#">랭킹</a>
-                <a class="navi-item font-header" href="#">자유 게시판</a>
-                <a class="navi-item font-header" href="#">질문 게시판</a>
-                <a class="navi-item font-header" href="/../index.html">홈</a>
-            </div>
+          <div class="single-form">
+            <input
+              type="text"
+              class="single-form__form"
+              name="title"
+              placeholder="제목을 입력하세요."
+            />
+            <input type="file" name="included_file" style="margin-top: 2rem" />
+          </div>
 
-            <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
+          <div class="multi-form">
+            <!-- 주석을 포함하여 이 영역을 모두 지우고 에디터로 대체 -->
+            <div
+              style="width: 100%; height: 50rem; background-color: wheat"
+            ></div>
+            <!-- 주석을 포함하여 이 영역을 모두 지우고 에디터로 대체 -->
+          </div>
+        </section>
 
-            <section class="main-recent">
-                <h1 class="title font-header">게시판 이름 <span>한줄 설명</span></h1>
-            </section>
+        <div class="main-usertools" style="text-align: center">
+          <input type="submit" class="write-confirm" value="작성 완료" />
+          <a
+            href="/forum/board.html"
+            class="write-cancel"
+            style="margin-left: 1rem"
+            >취소</a
+          >
+        </div>
+        <!-- form -->
+      </form>
+    </main>
 
-            <form action="#" name="post-form">
-                <!-- form -->
-                <section class="main-board" style="padding-bottom: 2rem">
-                    <h3 class="subtitle">개시물 작성</h3>
-
-                    <div class="single-form">
-                        <input type="text" class="single-form__form" name="title" placeholder="제목을 입력하세요." />
-                        <input type="file" name="included_file" style="margin-top: 2rem" />
-                    </div>
-
-                    <div class="multi-form">
-                        <!-- 주석을 포함하여 이 영역을 모두 지우고 에디터로 대체 -->
-                        <div style="width: 100%; height: 50rem; background-color: wheat"></div>
-                        <!-- 주석을 포함하여 이 영역을 모두 지우고 에디터로 대체 -->
-                    </div>
-                </section>
-
-                <div class="main-usertools" style="text-align: center">
-                    <input type="submit" class="write-confirm" value="작성 완료" />
-                    <a href="/forum/board.html" class="write-cancel" style="margin-left: 1rem">취소</a>
-                </div>
-                <!-- form -->
-            </form>
-        </main>
-
-        <footer></footer>
-    </body>
+    <footer></footer>
+  </body>
 </html>

@@ -1,9 +1,6 @@
-const passport = require('passport');
-const bcrypt = require('bcrypt');
 const User = require('../schemas/user');
-const Wargame = require('../schemas/wargame');
+const Forum = require('../schemas/forum');
 const action = require('./common/action');
-const { joinValidator, adminMembersValidator } = require('./common/validator');
 const { logger } = require('../config/winston');
 const { findOne } = require('../schemas/user');
 const user = require('../schemas/user');
@@ -24,4 +21,8 @@ const forumBoard = async (req, res) => {
   res.render('forum/board');
 };
 
-module.exports = { forumIndexPage, forumRankingPage, forumBoard };
+const forumWrite = async (req, res) => {
+  res.render('forum/write');
+};
+
+module.exports = { forumIndexPage, forumRankingPage, forumBoard, forumWrite };
