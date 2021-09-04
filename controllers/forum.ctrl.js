@@ -17,12 +17,35 @@ const forumRankingPage = async (req, res) => {
   res.render('forum/ranking', { rank });
 };
 
-const forumBoard = async (req, res) => {
+const forumBoardPage = async (req, res) => {
   res.render('forum/board');
 };
 
-const forumWrite = async (req, res) => {
+const forumWritePage = async (req, res) => {
   res.render('forum/write');
 };
 
-module.exports = { forumIndexPage, forumRankingPage, forumBoard, forumWrite };
+const forumWrite = async (req, res) => {
+  const userInfo = req.params.userId;
+  const { title, content } = req.body;
+
+  try {
+    await Forum.create({
+      title,
+      content,
+      userId: userInfo,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return res.redirect('/forum/board');
+};
+
+module.exports = {
+  forumIndexPage,
+  forumRankingPage,
+  forumBoardPage,
+  forumWritePage,
+  forumWrite,
+};
