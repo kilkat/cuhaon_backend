@@ -71,42 +71,11 @@
         <h1 class="title font-header">자유 게시판 <span>최신 글</span></h1>
 
         <div class="posts">
+          <% posts.forEach(function(post){ %>
           <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
+            <%= post.title %><span>10</span>
           </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
+          <% }) %>
         </div>
 
         <a href="/forum/board.html" class="forum-section-more">더 보기</a>
@@ -116,42 +85,11 @@
         <h1 class="title font-header">질문 게시판 <span>최신</span></h1>
 
         <div class="posts">
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
-          <a href="#" class="posts-item">
-            게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-            오버플로우도 포함. <span>10</span>
-          </a>
+          <% posts.forEach(function(post){ %>
+            <a href="#" class="posts-item">
+              <%= post.title %><span>10</span>
+            </a>
+            <% }) %>
         </div>
 
         <a href="/forum/board.html" class="forum-section-more">더 보기</a>

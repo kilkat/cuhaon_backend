@@ -15,7 +15,7 @@ const indexPage = (req, res) => {
 //wargame 페이지
 const indexWargamePage = async (req, res) => {
   try {
-    titleCount = req.query.title;
+    let titleCount = req.query.title;
     let emptySearch = false;
 
     //페이징 구문
@@ -35,7 +35,7 @@ const indexWargamePage = async (req, res) => {
     const wargamePost = await Wargame.find({
       title: action.searchKeyword(req.query.title),
     })
-      .sort({ createAt: -1 })
+      .sort({ createdAt: -1 })
       .skip(hide_post)
       .limit(limit);
 

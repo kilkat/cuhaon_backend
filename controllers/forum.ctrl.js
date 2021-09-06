@@ -6,19 +6,92 @@ const { findOne } = require('../schemas/user');
 const user = require('../schemas/user');
 
 const forumIndexPage = async (req, res) => {
-  const rank = await User.find().sort({ point: -1 }).limit(3);
+  try {
+    //검색
+    let search_box = req.query.search_box;
+    //랭크
+    const rank = await User.find().sort({ point: -1 }).limit(3);
 
-  res.render('forum/index', { rank });
+    //페이징 구문
+    const totalPost = await Forum.countDocuments({
+      title: action.searchKeyword(req.query.search_box),
+    });
+
+    if (!totalPost) {
+      emptySearch = true;
+    }
+    let { hide_post, limit } = action.paging(
+      req.query.page,
+      (_limit = 5),
+      totalPost,
+    );
+
+    //게시물 출력
+    const forumPost = await Forum.find({
+      title: action.searchKeyword(req.query.search_box),
+    })
+      .sort({ createdAt: -1 })
+      .skip(hide_post)
+      .limit(limit);
+
+    res.render('forum/index', {
+      search_box,
+      rank,
+      posts: forumPost,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const forumRankingPage = async (req, res) => {
-  const rank = await User.find().sort({ point: -1 });
+  try {
+    const rank = await User.find().sort({ point: -1 });
 
-  res.render('forum/ranking', { rank });
+    res.render('forum/ranking', { rank });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const forumBoardPage = async (req, res) => {
-  res.render('forum/board');
+  try {
+    //검색
+    let search_box = req.query.search_box;
+    //페이징 구문
+    const totalPost = await Forum.countDocuments({
+      title: action.searchKeyword(req.query.search_box),
+    });
+
+    if (!totalPost) {
+      emptySearch = true;
+    }
+    let { hide_post, limit, total_page, current_page } = action.paging(
+      req.query.page,
+      (_limit = 5),
+      totalPost,
+    );
+
+    //게시물 출력
+    const forumPost = await Forum.find({
+      title: action.searchKeyword(req.query.search_box),
+    })
+      .sort({ createdAt: -1 })
+      .skip(hide_post)
+      .limit(limit);
+
+    res.render('forum/board', {
+      search_box,
+      posts: forumPost,
+      paging: {
+        currentPage: current_page,
+        totalPage: total_page,
+        limit,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const forumWritePage = async (req, res) => {

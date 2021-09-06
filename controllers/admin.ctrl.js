@@ -30,7 +30,7 @@ const getAdminLogin = (req, res, next) => {
 };
 
 const membersBoard = async (req, res) => {
-  userCount = req.query.nickname;
+  let userCount = req.query.nickname;
   let emptySearch = false;
   try {
     //페이징 구문
@@ -79,7 +79,7 @@ const membersBoard = async (req, res) => {
 };
 
 const wargameBoardPage = async (req, res) => {
-  titleCount = req.query.title;
+  let titleCount = req.query.title;
   let emptySearch = false;
 
   try {
