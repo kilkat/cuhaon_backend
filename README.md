@@ -20,7 +20,7 @@
 
 ### :pencil2:수정일지  
 
-- **21/09/05**  
+- **21/09/07**  
   /views/forum/index.ejs, /views/forum/board.ejs, /controllers/forum.ctrl.js
   
   > 포럼 페이징 추가, Forum DB게시물 출력
