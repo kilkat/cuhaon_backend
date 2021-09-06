@@ -21,6 +21,12 @@
 ### :pencil2:수정일지  
 
 - **21/09/05**  
+  /views/forum/index.ejs, /views/forum/board.ejs, /controllers/forum.ctrl.js
+  
+  > 포럼 페이징 추가, Forum DB게시물 출력
+  > 작성자: 문영민  
+
+- **21/09/05**  
   >forum 연결, db추가, common forum추가, css깨지면 style -> font-size추가할것  
   > 작성자: 김광운  
 
