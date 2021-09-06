@@ -23,7 +23,7 @@
 - **21/09/07**  
   /views/forum/index.ejs, /views/forum/board.ejs, /controllers/forum.ctrl.js
   
-  > 포럼 페이징 추가, Forum DB게시물 출력
+  > 포럼 페이징 추가, Forum DB게시물 출력  
   > 작성자: 문영민  
 
 - **21/09/05**  
