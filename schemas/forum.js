@@ -20,8 +20,9 @@ const forumSchema = new Schema({
     default: 0,
   },
   category: {
-    type: Number,
+    type: ObjectId,
     required: true,
+    ref: 'Category',
   },
   createdAt: {
     type: Date,

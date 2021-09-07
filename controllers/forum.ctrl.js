@@ -4,6 +4,7 @@ const action = require('./common/action');
 const { logger } = require('../config/winston');
 const { findOne } = require('../schemas/user');
 const user = require('../schemas/user');
+const Category = require('../schemas/category');
 
 const forumIndexPage = async (req, res) => {
   try {
@@ -111,10 +112,11 @@ const forumFreeBoardWrite = async (req, res) => {
   const { title, content } = req.body;
 
   try {
+    const category = await Category.create({ category: 0 });
     await Forum.create({
       title,
       content,
-      category: 0,
+      category: category._id,
       userId: userInfo,
     });
   } catch (error) {
@@ -129,10 +131,11 @@ const forumQnABoardWrite = async (req, res) => {
   const { title, content } = req.body;
 
   try {
+    const category = await Category.create({ category: 1 });
     await Forum.create({
       title,
       content,
-      category: 1,
+      category: category._id,
       userId: userInfo,
     });
   } catch (error) {
