@@ -24,11 +24,9 @@
               <p style="background-color: silver">2</p>
             </div>
             <br />
-            <p class="rank_box-point" style="">
-              <%- rank[1].point %><span>pt</span>
-            </p>
+            <p class="rank_box-point"><%- rank[1].point %><span>pt</span></p>
             <br />
-            <p class="rank_box-name" style=""><%- rank[1].nickname %></p>
+            <p class="rank_box-name"><%- rank[1].nickname %></p>
           </div>
           <!-- item -->
           <div style="display: inline-block">
@@ -40,11 +38,9 @@
               <p style="font-size: 2rem; background-color: gold">1</p>
             </div>
             <br />
-            <p class="rank_box-point" style="">
-              <%- rank[0].point %><span>pt</span>
-            </p>
+            <p class="rank_box-point"><%- rank[0].point %><span>pt</span></p>
             <br />
-            <p class="rank_box-name" style=""><%- rank[0].nickname %></p>
+            <p class="rank_box-name"><%- rank[0].nickname %></p>
           </div>
           <!-- item -->
           <div style="display: inline-block">
@@ -56,11 +52,9 @@
               <p style="background-color: brown">3</p>
             </div>
             <br />
-            <p class="rank_box-point" style="">
-              <%- rank[2].point %><span>pt</span>
-            </p>
+            <p class="rank_box-point"><%- rank[2].point %><span>pt</span></p>
             <br />
-            <p class="rank_box-name" style=""><%- rank[2].nickname %></p>
+            <p class="rank_box-name"><%- rank[2].nickname %></p>
           </div>
         </div>
 
@@ -72,7 +66,7 @@
 
         <div class="posts">
           <% posts.forEach(function(post){ %>
-          <a href="#" class="posts-item">
+          <a href="/forum/view/<%= post._id%>" class="posts-item">
             <%= post.title %><span>10</span>
           </a>
           <% }) %>
@@ -86,10 +80,8 @@
 
         <div class="posts">
           <% posts.forEach(function(post){ %>
-            <a href="#" class="posts-item">
-              <%= post.title %><span>10</span>
-            </a>
-            <% }) %>
+          <a href="#" class="posts-item"> <%= post.title %><span>10</span> </a>
+          <% }) %>
         </div>
 
         <a href="/forum/board.html" class="forum-section-more">더 보기</a>

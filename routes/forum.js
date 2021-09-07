@@ -12,6 +12,7 @@ router.get('/index', isLoggedIn, controllers.forumIndexPage);
 router.get('/ranking', isLoggedIn, controllers.forumRankingPage);
 router.get('/board', isLoggedIn, controllers.forumBoardPage);
 router.get('/write/:userId', isLoggedIn, controllers.forumWritePage);
+router.get('/view/:forumId', isLoggedIn, controllers.forumViewPage);
 
 router.post('/write/:userId', isLoggedIn, controllers.forumWrite);
 

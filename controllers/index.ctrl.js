@@ -39,6 +39,8 @@ const indexWargamePage = async (req, res) => {
       .skip(hide_post)
       .limit(limit);
 
+    console.log(wargamePost);
+
     //페이지 랜더링
     res.render('wargame/index', {
       emptySearch,

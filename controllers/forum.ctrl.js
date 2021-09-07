@@ -34,6 +34,8 @@ const forumIndexPage = async (req, res) => {
       .skip(hide_post)
       .limit(limit);
 
+    console.log(forumPost);
+
     res.render('forum/index', {
       search_box,
       rank,
@@ -115,10 +117,18 @@ const forumWrite = async (req, res) => {
   return res.redirect('/forum/board');
 };
 
+const forumViewPage = async (req, res) => {
+  const forumId = req.params.forumId;
+  const forumInfo = await Forum.findOne({ _id: forumId });
+
+  res.render('forum/view', { forumInfo });
+};
+
 module.exports = {
   forumIndexPage,
   forumRankingPage,
   forumBoardPage,
   forumWritePage,
   forumWrite,
+  forumViewPage,
 };
