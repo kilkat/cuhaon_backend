@@ -19,6 +19,10 @@ const forumSchema = new Schema({
     required: false,
     default: 0,
   },
+  category: {
+    type: Number,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -49,9 +49,7 @@
           <% posts.forEach(function(post){ %>
           <!-- item -->
           <a href="/forum/view" class="posts-item">
-            <p class="posts-item__title">
-              <%= post.title %>
-            </p>
+            <p class="posts-item__title"><%= post.title %></p>
             <div style="position: relative; height: 1.6rem">
               <div class="info">
                 <div class="info-left">
@@ -68,31 +66,36 @@
           </a>
 
           <% }) %>
-
         </div>
 
         <!-- <a href="#" class="forum-section-more">더 보기</a> -->
       </section>
 
       <div class="main-pages">
-        <%
-        let prevEnabled = paging.currentPage > 1;
-        let nextEnabled = paging.currentPage < paging.totalPage;
-        %>
-
-      <%if(prevEnabled){%><a href="/forum/board?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%= search_box %>"><input type="button" class="main-pages__page" value="<" /></a><%}%>
-      <% for(let i=1; i<= paging.totalPage; i++){%>
-        <%if(i==1 || i==paging.totalPage || (i>=paging.currentPage-2 && i<=paging.currentPage+2)){%>
-          <a href="/forum/board?page=<%= i %>&limit=<%=paging.limit%>"><input type="button" class="main-pages__page" value="<%= i %>" /></a>
+        <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
+        paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
+          href="/forum/board?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          ><input type="button" class="main-pages__page" value="<" /></a
+        ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
+        i==paging.totalPage || (i>=paging.currentPage-2 &&
+        i<=paging.currentPage+2)){%>
+        <a href="/forum/board?page=<%= i %>&limit=<%=paging.limit%>"
+          ><input type="button" class="main-pages__page" value="<%= i %>"
+        /></a>
         <%} else if(i==2||i==paging.totalPage-1){%>
-          <button class="section-comment__paging-button" type="button">...</button>
-        <%}%>
-      <%}%>
-      <%if(nextEnabled){%><a href="/forum/board?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&search_box=<%= search_box %>"><input type="button" class="main-pages__page" value=">" /></a><%}%>
+        <button class="section-comment__paging-button" type="button">
+          ...
+        </button>
+        <%}%> <%}%> <%if(nextEnabled){%><a
+          href="/forum/board?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          ><input type="button" class="main-pages__page" value=">" /></a
+        ><%}%>
       </div>
 
       <div class="main-usertools">
-        <a class="write-post" href="/forum/write/<%- user._id %>">글쓰기</a>
+        <a class="write-post" href="/forum/freeBoard/write/<%- user._id %>"
+          >글쓰기</a
+        >
       </div>
     </main>
 

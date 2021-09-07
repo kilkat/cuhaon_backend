@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+     
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+    <title>CUHA-ON Forum</title>
+  </head>
+  <body>
+    <%- include('../common/forumHeader') -%>
+
+    <main class="forum-main">
+      <div class="navi"><%- include('../common/forumNavi') -%></div>
+
+      <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
+
+      <section class="main-recent">
+        <h1 class="title font-header">게시판 이름<span>한줄 설명</span></h1>
+      </section>
+
+      <form action="/forum/freeBoard/write/<%- user._id %>" name="post-form" method="POST">
+        <!-- form -->
+        <section class="main-board" style="padding-bottom: 2rem">
+          <h3 class="subtitle">게시물 작성</h3>
+
+          <div class="single-form">
+            <input type="text" class="single-form__form" name="title" placeholder="제목을 입력하세요." style="font-size: 1.4rem;" />
+            <input type="file" name="included_file" style="margin-top: 2rem; font-size: 1.4rem;" />
+        </div>
+
+          <div class="multi-form" style="font-size: 14px;">
+            <textarea
+                  name="content"
+                  id="summernote"
+                  class="summernote"
+                ></textarea>
+          </div>
+        </section>
+
+        <div class="main-usertools" style="text-align: center">
+          <input type="submit" class="write-confirm" value="작성 완료" />
+        
+        <!-- form -->
+    </form>
+        <a href="/forum/board" class="write-cancel" style="margin-left: 1rem"
+        >취소</a
+        >
+        </div>
+    </main>
+
+    <footer></footer>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $('#summernote').val(
+        "<%- (typeof values === 'undefined') ? '' : `${values.content}` %>",
+      );
+      $('#summernote').summernote({
+        height: 420,
+        lang: 'ko-KR',
+      });
+    });
+  </script>
+</html>

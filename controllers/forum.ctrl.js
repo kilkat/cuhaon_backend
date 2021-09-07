@@ -34,8 +34,6 @@ const forumIndexPage = async (req, res) => {
       .skip(hide_post)
       .limit(limit);
 
-    console.log(forumPost);
-
     res.render('forum/index', {
       search_box,
       rank,
@@ -56,7 +54,7 @@ const forumRankingPage = async (req, res) => {
   }
 };
 
-const forumBoardPage = async (req, res) => {
+const forumFreeBoardPage = async (req, res) => {
   try {
     //검색
     let search_box = req.query.search_box;
@@ -82,7 +80,7 @@ const forumBoardPage = async (req, res) => {
       .skip(hide_post)
       .limit(limit);
 
-    res.render('forum/board', {
+    res.render('forum/freeBoard', {
       search_box,
       posts: forumPost,
       paging: {
@@ -96,11 +94,19 @@ const forumBoardPage = async (req, res) => {
   }
 };
 
-const forumWritePage = async (req, res) => {
-  res.render('forum/write');
+const forumQnABoardPage = async (req, res) => {
+  res.render('forum/QnaBoard');
 };
 
-const forumWrite = async (req, res) => {
+const forumFreeBoardWritePage = async (req, res) => {
+  res.render('forum/FreeWrite');
+};
+
+const forumQnABoardWritePage = async (req, res) => {
+  res.render('forum/QnAWrite');
+};
+
+const forumFreeBoardWrite = async (req, res) => {
   const userInfo = req.params.userId;
   const { title, content } = req.body;
 
@@ -108,18 +114,42 @@ const forumWrite = async (req, res) => {
     await Forum.create({
       title,
       content,
+      category: 0,
       userId: userInfo,
     });
   } catch (error) {
     console.error(error);
   }
 
-  return res.redirect('/forum/board');
+  return res.redirect('/forum/freeBoard');
+};
+
+const forumQnABoardWrite = async (req, res) => {
+  const userInfo = req.params.userId;
+  const { title, content } = req.body;
+
+  try {
+    await Forum.create({
+      title,
+      content,
+      category: 1,
+      userId: userInfo,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return res.redirect('/forum/QnABoard');
 };
 
 const forumViewPage = async (req, res) => {
   const forumId = req.params.forumId;
   const forumInfo = await Forum.findOne({ _id: forumId });
+
+  await Forum.updateOne(
+    { _id: forumId },
+    { $set: { views: forumInfo.views + 1 } },
+  );
 
   res.render('forum/view', { forumInfo });
 };
@@ -127,8 +157,11 @@ const forumViewPage = async (req, res) => {
 module.exports = {
   forumIndexPage,
   forumRankingPage,
-  forumBoardPage,
-  forumWritePage,
-  forumWrite,
+  forumFreeBoardPage,
+  forumQnABoardPage,
+  forumFreeBoardWritePage,
+  forumQnABoardWritePage,
+  forumFreeBoardWrite,
+  forumQnABoardWrite,
   forumViewPage,
 };

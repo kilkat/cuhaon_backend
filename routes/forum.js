@@ -10,10 +10,29 @@ const controllers = require('../controllers/forum.ctrl');
 
 router.get('/index', isLoggedIn, controllers.forumIndexPage);
 router.get('/ranking', isLoggedIn, controllers.forumRankingPage);
-router.get('/board', isLoggedIn, controllers.forumBoardPage);
-router.get('/write/:userId', isLoggedIn, controllers.forumWritePage);
+router.get('/freeBoard', isLoggedIn, controllers.forumFreeBoardPage);
+router.get('/QnABoard', isLoggedIn, controllers.forumQnABoardPage);
+router.get(
+  '/freeBoard/write/:userId',
+  isLoggedIn,
+  controllers.forumFreeBoardWritePage,
+);
+router.get(
+  '/QnABoard/write/:userId',
+  isLoggedIn,
+  controllers.forumQnABoardWritePage,
+);
 router.get('/view/:forumId', isLoggedIn, controllers.forumViewPage);
 
-router.post('/write/:userId', isLoggedIn, controllers.forumWrite);
+router.post(
+  '/freeBoard/write/:userId',
+  isLoggedIn,
+  controllers.forumFreeBoardWrite,
+);
+router.post(
+  '/QnABoard/write/:userId',
+  isLoggedIn,
+  controllers.forumQnABoardWrite,
+);
 
 module.exports = router;
