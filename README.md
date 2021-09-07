@@ -21,7 +21,7 @@
 ### :pencil2:수정일지  
 
 - **21/09/07**  
-  >forum Board 분할, db수정  
+  >forum Board 분할, db수정, forum index 수정  
   > 작성자: 김광운  
 
 - **21/09/07**  
