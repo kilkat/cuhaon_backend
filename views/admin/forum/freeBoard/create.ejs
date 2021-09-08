@@ -57,7 +57,7 @@
     >
       <div class="admin-dashboard">
         <div class="admin-dashboard__left">
-          <%- include('../../common/adminNavi') -%>
+          <%- include('../../../common/adminNavi') -%>
         </div>
         <div class="admin-dashboard__right">
           <div class="admin-dashboard__right-components">
@@ -70,12 +70,13 @@
               style="margin-top: 2rem; padding-bottom: 0rem"
             >
               <form
-                action="/admin/wargame/update/<%- wargameInfo._id %>"
+                action="/admin/wargame/create"
+                name="updateItem"
                 method="POST"
               >
                 <div class="admin-dashboard__right-list__classes">
                   <h3 class="admin-dashboard__right-list__classes-title">
-                    Wargame 개시물 수정
+                    Wargame 게시물 작성
                   </h3>
                   <div style="height: 5rem"></div>
                   <div class="admin-dashboard__right-list__classes-itemBlock">
@@ -83,7 +84,6 @@
                     <input
                       type="text"
                       placeholder="제목을 입력하세요"
-                      value="<%- wargameInfo.title %>"
                       name="title"
                       required
                     />
@@ -93,9 +93,8 @@
                     <input
                       type="text"
                       placeholder="작성자"
-                      value="<%- wargameInfo.userId.nickname %>"
                       name="nickname"
-                      readonly
+                      required
                     />
                   </div>
                   <div class="admin-dashboard__right-list__classes-itemBlock">
@@ -155,7 +154,6 @@
                     <input
                       type="text"
                       placeholder="제공할 포인트를 입력하세요"
-                      value="<%- wargameInfo.point %>"
                       name="point"
                       required
                     />
@@ -165,14 +163,12 @@
                     <input
                       type="text"
                       placeholder="플래그를 입력하세요"
-                      value="<%- flag %>"
                       name="flag"
                       required
                     />
                   </div>
                   <div class="admin-dashboard__right-list__classes-itemBlock">
                     <p style="vertical-align: top">문제 설명 :</p>
-                    <!-- 이 영역을 통째로 지우고 스마트에디터 등 사제 에디터 삽입 -->
                     <div
                       style="width: 70%; height: 30rem; display: inline-block"
                     >
@@ -227,7 +223,7 @@
         "<%- (typeof values === 'undefined') ? '' : `${values.content}` %>",
       );
       $('#summernote').summernote({
-        height: 350,
+        height: 280,
         lang: 'ko-KR',
       });
     });

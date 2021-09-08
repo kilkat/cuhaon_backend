@@ -8,9 +8,11 @@ const {
 } = require('../controllers/middlewares');
 const controllers = require('../controllers/admin.ctrl');
 
-router.get('/login', controllers.getAdminLogin);
-router.get('/members', isAdmin, controllers.membersBoard);
+router.get('/login', controllers.AdminLoginPage);
+router.get('/members', isAdmin, controllers.membersBoardPage);
 router.get('/wargame', isAdmin, controllers.wargameBoardPage);
+router.get('/forum/freeBoard', isAdmin, controllers.forumFreeBoardPage);
+router.get('/forum/QnABoard', isAdmin, controllers.forumQnABoardPage);
 router.get('/members/create', isAdmin, controllers.membersCreatePage);
 router.get('/members/update/:_id', isAdmin, controllers.membersUpdatePage);
 router.get('/members/delete/:_id', isAdmin, controllers.membersDelete);

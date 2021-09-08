@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../../common/head') -%>
+    <%- include('../../../common/head') -%>
     <title>CUHA-ON</title>
   </head>
 
@@ -9,7 +9,7 @@
     <header class="admin-header">
       <div class="admin-header__logo"></div>
       <div class="admin-header__component">
-        <form action="/admin/wargameBoard" method="GET" style="display: inline">
+        <form action="#" method="GET" style="display: inline">
           <input
             class="admin-header__component-search"
             name="title"
@@ -32,14 +32,12 @@
     >
       <div class="admin-dashboard">
         <div class="admin-dashboard__left">
-          <%- include('../../common/adminNavi') -%>
+          <%- include('../../../common/adminNavi') -%>
         </div>
         <div class="admin-dashboard__right">
           <div class="admin-dashboard__right-components">
-            <h1 class="admin-dashboard__right-components__title">Wargame</h1>
-            <a
-              href="/admin/wargame/create"
-              class="admin-dashboard__right-button"
+            <h1 class="admin-dashboard__right-components__title">FreeBoard</h1>
+            <a href="#" class="admin-dashboard__right-button"
               >게시물 작성 (필요합니까?)</a
             >
             <div class="admin-dashboard__right-list" style="margin-top: 2rem">
@@ -90,7 +88,6 @@
                 </p>
               </div>
 
-              <% posts.forEach(function(post){ %>
               <!-- item -->
               <div class="admin-dashboard__right-list__item">
                 <div class="admin-dashboard__right-list__item__target">
@@ -98,31 +95,31 @@
                     class="admin-dashboard__right-list__item__target-item"
                     style="width: 40rem"
                   >
-                    <a href="/wargame/<%= post._id%>"> <%= post.title%> </a>
+                    꿀렁꿀렁 돌다리를 건너자
                   </p>
                   <p
                     class="admin-dashboard__right-list__item__target-item"
                     style="width: 10rem"
                   >
-                    <%= post.userId.nickname%>
+                    관리자
                   </p>
                   <p
                     class="admin-dashboard__right-list__item__target-item"
                     style="width: 20rem"
                   >
-                    <%= post.createdAt%>
+                    AM 09:00 07/26/2021
                   </p>
                   <p
                     class="admin-dashboard__right-list__item__target-item"
                     style="width: 10rem"
                   >
-                    <%= post.type%>
+                    시스템해킹
                   </p>
                   <p
                     class="admin-dashboard__right-list__item__target-item"
                     style="width: 10rem"
                   >
-                    <%= post.level%>
+                    2
                   </p>
 
                   <p
@@ -142,14 +139,14 @@
                     style="width: 20rem"
                   >
                     <a
-                      href="/admin/wargame/update/<%- post._id %>"
+                      href="#"
                       class="
                         admin-dashboard__right-list__item__target-item__button
                       "
                       >수정</a
                     >
                     <a
-                      href="/admin/wargame/delete/<%- post._id %>"
+                      href="#"
                       class="
                         admin-dashboard__right-list__item__target-item__button
                       "
@@ -158,40 +155,22 @@
                   </p>
                 </div>
               </div>
-              <%})%>
             </div>
 
             <!-- ---------------------- paging ---------------------- -->
             <div class="admin-dashboard__right-paging">
-              <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
-              paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
-                href="/admin/wargameBoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&=title<%=titleCount%>"
-                class="admin-dashboard__right-paging__item"
-                ><</a
-              ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
-              i==paging.totalPage || (i>=paging.currentPage-2 &&
-              i<=paging.currentPage+2)){%>
+              <a href="#" class="admin-dashboard__right-paging__item"><</a>
               <a
-                href="/admin/wargameBoard?page=<%= i %>&limit=<%=paging.limit%>&title=<%=titleCount%>"
+                href="#"
                 class="
                   admin-dashboard__right-paging__item
                   admin-dashboard__right-paging__item-selected
                 "
-                ><%= i %></a
+                >1</a
               >
-              <%} else if(i==2||i==paging.totalPage-1){%>
-              <a
-                class="
-                  admin-dashboard__right-paging__item
-                  admin-dashboard__right-paging__item-selected
-                "
-                >...</a
-              >
-              <%}%> <%}%> <%if(nextEnabled){%><a
-                href="/admin/wargameBoard?page=<%= paging.currentPage+1 %>&limit=<%=paging.limit%>&=nickname<%=titleCount%>"
-                class="admin-dashboard__right-paging__item"
-                >></a
-              ><%}%>
+              <a href="#" class="admin-dashboard__right-paging__item">2</a>
+              <a href="#" class="admin-dashboard__right-paging__item">3</a>
+              <a href="#" class="admin-dashboard__right-paging__item">></a>
             </div>
           </div>
           <div class="admin-logo">

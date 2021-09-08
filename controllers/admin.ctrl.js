@@ -25,11 +25,11 @@ const adminLogin = (req, res, next) => {
   })(req, res, next);
 };
 
-const getAdminLogin = (req, res, next) => {
+const AdminLoginPage = (req, res, next) => {
   res.render('admin/login');
 };
 
-const membersBoard = async (req, res) => {
+const membersBoardPage = async (req, res) => {
   let userCount = req.query.nickname;
   let emptySearch = false;
   try {
@@ -128,6 +128,14 @@ const wargameBoardPage = async (req, res) => {
       },
     });
   }
+};
+
+const forumFreeBoardPage = async (req, res) => {
+  res.render('admin/forum/freeBoard/index');
+};
+
+const forumQnABoardPage = async (req, res) => {
+  res.render('admin/forum/QnABoard/index');
 };
 
 const membersCreatePage = async (req, res) => {
@@ -333,9 +341,11 @@ const adminLogout = async (req, res) => {
 
 module.exports = {
   adminLogin,
-  getAdminLogin,
-  membersBoard,
+  AdminLoginPage,
+  membersBoardPage,
   wargameBoardPage,
+  forumFreeBoardPage,
+  forumQnABoardPage,
   membersCreatePage,
   membersCreate,
   membersUpdatePage,
