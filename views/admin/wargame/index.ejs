@@ -32,7 +32,22 @@
     >
       <div class="admin-dashboard">
         <div class="admin-dashboard__left">
-          <%- include('../../common/adminNavi') -%>
+          <a href="/admin/members" class="admin-dashboard__left-menu"
+            >Members</a
+          >
+          <a
+            href="/admin/wargame"
+            class="
+              admin-dashboard__left-menu admin-dashboard__left-menu__selected
+            "
+            >Wargame</a
+          >
+          <a href="/admin/forum/freeBoard" class="admin-dashboard__left-menu"
+            >ForumFreeBoard</a
+          >
+          <a href="/admin/forum/QnABoard" class="admin-dashboard__left-menu"
+            >ForumQnABoard</a
+          >
         </div>
         <div class="admin-dashboard__right">
           <div class="admin-dashboard__right-components">
