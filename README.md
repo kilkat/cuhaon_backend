@@ -21,7 +21,7 @@
 ### :pencil2:수정일지  
 
 - **21/09/08**  
-  >category.js db추가, forum.js db수정, forum.ctrl 수정  
+  >category.js db추가, forum.js db수정, forum.ctrl 수정, admin 프론트부분 수정  
   > 작성자: 김광운  
 
 - **21/09/07**  
