@@ -20,6 +20,10 @@
 
 ### :pencil2:수정일지  
 
+- **21/09/08**  
+  >category.js db추가, forum.js db수정, forum.ctrl 수정  
+  > 작성자: 김광운  
+
 - **21/09/07**  
   >forum Board 분할, db수정, forum index 수정  
   > 작성자: 김광운  
