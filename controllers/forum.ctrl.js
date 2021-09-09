@@ -214,6 +214,15 @@ const forumCommentCreate = async (req, res) => {
   return res.redirect(`/forum/view/${forumId}`);
 };
 
+const forumDelete = async (req, res) => {
+  const forumId = req.params.forumId;
+
+  await Forum.deleteOne({ _id: forumId });
+  await ForumComment.deleteMany({ forumId });
+
+  return res.redirect('/forum/index');
+};
+
 module.exports = {
   forumIndexPage,
   forumRankingPage,
@@ -225,4 +234,5 @@ module.exports = {
   forumQnABoardWrite,
   forumViewPage,
   forumCommentCreate,
+  forumDelete,
 };

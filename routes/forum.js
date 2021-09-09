@@ -23,6 +23,7 @@ router.get(
   controllers.forumQnABoardWritePage,
 );
 router.get('/view/:forumId', isLoggedIn, controllers.forumViewPage);
+router.get('/delete/:forumId', isLoggedIn, controllers.forumDelete);
 
 router.post(
   '/freeBoard/write/:userId',
