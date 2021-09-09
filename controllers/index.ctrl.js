@@ -297,11 +297,12 @@ const checkFlagWargame = async (req, res) => {
 //wargame 댓글 작성
 const createCommentWargame = async (req, res) => {
   const { content } = req.body;
-  const wargameId = req.params.id;
+  const wargameId = req.params.wargame_id;
   const backURL = `/wargame/${wargameId}`;
   //에러 검증
   const errors = {};
   const values = { content };
+
   commentSaveValidator(errors, values);
   //댓글에 빈 문자열 입력시 경고문 출력
   if (!(Object.keys(errors).length === 0)) {

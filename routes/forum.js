@@ -34,5 +34,10 @@ router.post(
   isLoggedIn,
   controllers.forumQnABoardWrite,
 );
+router.post(
+  '/view/comment/create/:forumId',
+  isLoggedIn,
+  controllers.forumCommentCreate,
+);
 
 module.exports = router;

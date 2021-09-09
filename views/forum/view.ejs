@@ -27,7 +27,7 @@
           </div>
 
           <div class="right">
-            <span class="right-views"><%= forumInfo.views %></span>
+            <span class="right-views">조회수: <%= forumInfo.views %></span>
             <span class="right-comments">댓글 : 10</span>
           </div>
         </h3>
@@ -138,21 +138,26 @@
         </div>
 
         <div class="comment_box">
-          <p style="font-size: 1.4rem">댓글 입력하기</p>
-          <div style="height: 2rem"></div>
-          <textarea
-            class="textArea"
-            name="my_comment"
-            id="my_comment"
-            placeholder="여기에 댓글을 입력하세요."
-          ></textarea>
-          <div class="user-buttons">
-            <input
-              type="submit"
-              class="user-buttons__submit"
-              value="댓글달기"
-            />
-          </div>
+          <form
+            action="/forum/view/comment/create/<%- forumInfo._id %>"
+            method="POST"
+          >
+            <p style="font-size: 1.4rem">댓글 입력하기</p>
+            <div style="height: 2rem"></div>
+            <textarea
+              class="textArea"
+              name="comment"
+              id="my_comment"
+              placeholder="여기에 댓글을 입력하세요."
+            ></textarea>
+            <div class="user-buttons">
+              <input
+                type="submit"
+                class="user-buttons__submit"
+                value="댓글달기"
+              />
+            </div>
+          </form>
         </div>
 
         <!-- <a href="#" class="forum-section-more">더 보기</a> -->

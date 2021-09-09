@@ -20,6 +20,12 @@
 
 ### :pencil2:수정일지  
 
+- **21/09/09**  
+  /schemas/forum.js, /controllers/forum.ctrl.js, /controller/admin.ctrl.js, /views/forum/freeBoard.ejs, /views/forum/QnABoard.ejs, /views/admin/forum/freeBoard/index.ejs, /views/admin/forum/QnABoard/index.ejs   
+  > 포럼 자유, 질문게시판 페이징 추가, 카테고리 스키마 삭제  
+  > 어드민 포럼, 자유게시글 페이징, 기타 잡 버그 수정   
+  > 작성자: 문영민
+
 - **21/09/08**  
   >category.js db추가, forum.js db수정, forum.ctrl 수정, admin 프론트부분 수정  
   > 작성자: 김광운  
