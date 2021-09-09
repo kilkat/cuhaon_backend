@@ -9,7 +9,7 @@
     <header class="admin-header">
       <div class="admin-header__logo"></div>
       <div class="admin-header__component">
-        <form action="/admin/membersBoard" style="display: inline" method="GET">
+        <form action="/admin/members" style="display: inline" method="GET">
           <input
             class="admin-header__component-search"
             name="nickname"
@@ -148,14 +148,14 @@
             <div class="admin-dashboard__right-paging">
               <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
               paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
-                href="/admin/membersBoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&=nickname<%=userCount%>"
+                href="/admin/member?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&nickname=<%=userCount%>"
                 class="admin-dashboard__right-paging__item"
                 ><</a
               ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
               i==paging.totalPage || (i>=paging.currentPage-2 &&
               i<=paging.currentPage+2)){%>
               <a
-                href="/admin/membersBoard?page=<%= i %>&limit=<%=paging.limit%>&nickname=<%=userCount%>"
+                href="/admin/members?page=<%= i %>&limit=<%=paging.limit%>&nickname=<%=userCount%>"
                 class="
                   admin-dashboard__right-paging__item
                   admin-dashboard__right-paging__item-selected
@@ -171,7 +171,7 @@
                 >...</a
               >
               <%}%> <%}%> <%if(nextEnabled){%><a
-                href="/admin/membersBoard?page=<%= paging.currentPage+1 %>&limit=<%=paging.limit%>&=nickname<%=userCount%>"
+                href="/admin/members?page=<%= paging.currentPage+1 %>&limit=<%=paging.limit%>&nickname=<%=userCount%>"
                 class="admin-dashboard__right-paging__item"
                 >></a
               ><%}%>

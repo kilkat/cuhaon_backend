@@ -4,7 +4,6 @@ const action = require('./common/action');
 const { logger } = require('../config/winston');
 const { findOne } = require('../schemas/user');
 const user = require('../schemas/user');
-const Category = require('../schemas/category');
 
 const forumIndexPage = async (req, res) => {
   try {
@@ -62,6 +61,7 @@ const forumFreeBoardPage = async (req, res) => {
     //페이징 구문
     const totalPost = await Forum.countDocuments({
       title: action.searchKeyword(req.query.search_box),
+      category: 0,
     });
 
     if (!totalPost) {
@@ -76,7 +76,9 @@ const forumFreeBoardPage = async (req, res) => {
     //게시물 출력
     const forumPost = await Forum.find({
       title: action.searchKeyword(req.query.search_box),
+      category: 0,
     })
+      .populate('userId', 'nickname')
       .sort({ createdAt: -1 })
       .skip(hide_post)
       .limit(limit);
@@ -96,7 +98,46 @@ const forumFreeBoardPage = async (req, res) => {
 };
 
 const forumQnABoardPage = async (req, res) => {
-  res.render('forum/QnaBoard');
+  try {
+    //검색
+    let search_box = req.query.search_box;
+    //페이징 구문
+    const totalPost = await Forum.countDocuments({
+      title: action.searchKeyword(req.query.search_box),
+      category: 1,
+    });
+
+    if (!totalPost) {
+      emptySearch = true;
+    }
+    let { hide_post, limit, total_page, current_page } = action.paging(
+      req.query.page,
+      (_limit = 5),
+      totalPost,
+    );
+
+    //게시물 출력
+    const forumPost = await Forum.find({
+      title: action.searchKeyword(req.query.search_box),
+      category: 1,
+    })
+      .populate('userId', 'nickname')
+      .sort({ createdAt: -1 })
+      .skip(hide_post)
+      .limit(limit);
+
+    res.render('forum/QnABoard', {
+      search_box,
+      posts: forumPost,
+      paging: {
+        currentPage: current_page,
+        totalPage: total_page,
+        limit,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const forumFreeBoardWritePage = async (req, res) => {
@@ -112,11 +153,10 @@ const forumFreeBoardWrite = async (req, res) => {
   const { title, content } = req.body;
 
   try {
-    const category = await Category.create({ category: 0 });
     await Forum.create({
       title,
       content,
-      category: category._id,
+      category: 0,
       userId: userInfo,
     });
   } catch (error) {
@@ -131,11 +171,10 @@ const forumQnABoardWrite = async (req, res) => {
   const { title, content } = req.body;
 
   try {
-    const category = await Category.create({ category: 1 });
     await Forum.create({
       title,
       content,
-      category: category._id,
+      category: 1,
       userId: userInfo,
     });
   } catch (error) {

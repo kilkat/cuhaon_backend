@@ -12,7 +12,7 @@
         <form action="#" method="GET" style="display: inline">
           <input
             class="admin-header__component-search"
-            name="title"
+            name="search_box"
             type="text"
             placeholder="검색"
             autocomplete="off"
@@ -103,89 +103,96 @@
                 </p>
               </div>
 
-              <!-- item -->
-              <div class="admin-dashboard__right-list__item">
-                <div class="admin-dashboard__right-list__item__target">
-                  <p
-                    class="admin-dashboard__right-list__item__target-item"
-                    style="width: 40rem"
-                  >
-                    꿀렁꿀렁 돌다리를 건너자
-                  </p>
-                  <p
-                    class="admin-dashboard__right-list__item__target-item"
-                    style="width: 10rem"
-                  >
-                    관리자
-                  </p>
-                  <p
-                    class="admin-dashboard__right-list__item__target-item"
-                    style="width: 20rem"
-                  >
-                    AM 09:00 07/26/2021
-                  </p>
-                  <p
-                    class="admin-dashboard__right-list__item__target-item"
-                    style="width: 10rem"
-                  >
-                    시스템해킹
-                  </p>
-                  <p
-                    class="admin-dashboard__right-list__item__target-item"
-                    style="width: 10rem"
-                  >
-                    2
-                  </p>
-
-                  <p
-                    class="admin-dashboard__right-list__item__target-item"
-                    style="width: 15rem"
-                  >
-                    <a
-                      href="#"
-                      class="
-                        admin-dashboard__right-list__item__target-item__button-disabled
-                      "
-                      >다운로드</a
+              <% posts.forEach(function(post){ %>
+                <!-- item -->
+                <div class="admin-dashboard__right-list__item">
+                  <div class="admin-dashboard__right-list__item__target">
+                    <p
+                      class="admin-dashboard__right-list__item__target-item"
+                      style="width: 40rem"
                     >
-                  </p>
-                  <p
-                    class="admin-dashboard__right-list__item__target-item"
-                    style="width: 20rem"
-                  >
-                    <a
-                      href="#"
-                      class="
-                        admin-dashboard__right-list__item__target-item__button
-                      "
-                      >수정</a
+                      <%= post.title %>
+                    </p>
+                    <p
+                      class="admin-dashboard__right-list__item__target-item"
+                      style="width: 10rem"
                     >
-                    <a
-                      href="#"
-                      class="
-                        admin-dashboard__right-list__item__target-item__button
-                      "
-                      >삭제</a
+                      <%= post.userId.nickname%>
+                    </p>
+                    <p
+                      class="admin-dashboard__right-list__item__target-item"
+                      style="width: 20rem"
                     >
-                  </p>
+                      <%= post.createdAt %>
+                    </p>
+                    
+                    <p
+                      class="admin-dashboard__right-list__item__target-item"
+                      style="width: 15rem"
+                    >
+                      <a
+                        href="#"
+                        class="
+                          admin-dashboard__right-list__item__target-item__button-disabled
+                        "
+                        >다운로드</a
+                      >
+                    </p>
+                    <p
+                      class="admin-dashboard__right-list__item__target-item"
+                      style="width: 20rem"
+                    >
+                      <a
+                        href="#"
+                        class="
+                          admin-dashboard__right-list__item__target-item__button
+                        "
+                        >수정</a
+                      >
+                      <a
+                        href="#"
+                        class="
+                          admin-dashboard__right-list__item__target-item__button
+                        "
+                        >삭제</a
+                      >
+                    </p>
+                  </div>
                 </div>
-              </div>
+                <%})%>
             </div>
 
             <!-- ---------------------- paging ---------------------- -->
             <div class="admin-dashboard__right-paging">
-              <a href="#" class="admin-dashboard__right-paging__item"><</a>
+              <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
+              paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
+                href="/admin/forum/QnABoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%=search_box%>"
+                class="admin-dashboard__right-paging__item"
+                ><</a
+              ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
+              i==paging.totalPage || (i>=paging.currentPage-2 &&
+              i<=paging.currentPage+2)){%>
               <a
-                href="#"
+                href="/admin/forum/QnABoard?page=<%= i %>&limit=<%=paging.limit%>&search_box=<%=search_box%>"
                 class="
                   admin-dashboard__right-paging__item
                   admin-dashboard__right-paging__item-selected
                 "
-                >1</a
+                ><%= i %></a
               >
-              <a href="#" class="admin-dashboard__right-paging__item">2</a>
-              <a href="#" class="admin-dashboard__right-paging__item">3</a>
-              <a href="#" class="admin-dashboard__right-paging__item">></a>
+              <%} else if(i==2||i==paging.totalPage-1){%>
+              <a
+                class="
+                  admin-dashboard__right-paging__item
+                  admin-dashboard__right-paging__item-selected
+                "
+                >...</a
+              >
+              <%}%> <%}%> <%if(nextEnabled){%><a
+                href="/admin/forum/QnABoard?page=<%= paging.currentPage+1 %>&limit=<%=paging.limit%>&search_box=<%=search_box%>"
+                class="admin-dashboard__right-paging__item"
+                >></a
+              ><%}%>
             </div>
           </div>
           <div class="admin-logo">

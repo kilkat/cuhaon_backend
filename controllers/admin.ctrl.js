@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const User = require('../schemas/user');
 const Wargame = require('../schemas/wargame');
 const action = require('./common/action');
+const Forum = require('../schemas/forum');
 const { joinValidator, adminMembersValidator } = require('./common/validator');
 const { logger } = require('../config/winston');
 const { findOne } = require('../schemas/user');
@@ -131,11 +132,89 @@ const wargameBoardPage = async (req, res) => {
 };
 
 const forumFreeBoardPage = async (req, res) => {
-  res.render('admin/forum/freeBoard/index');
+  try {
+    //검색
+    let search_box = req.query.search_box;
+    //페이징 구문
+    const totalPost = await Forum.countDocuments({
+      title: action.searchKeyword(req.query.search_box),
+      category: 0,
+    });
+
+    if (!totalPost) {
+      emptySearch = true;
+    }
+    let { hide_post, limit, total_page, current_page } = action.paging(
+      req.query.page,
+      (_limit = 5),
+      totalPost,
+    );
+
+    //게시물 출력
+    const forumPost = await Forum.find({
+      title: action.searchKeyword(req.query.search_box),
+      category: 0,
+    })
+      .populate('userId', 'nickname')
+      .sort({ createdAt: -1 })
+      .skip(hide_post)
+      .limit(limit);
+
+    res.render('admin/forum/freeBoard/index', {
+      search_box,
+      posts: forumPost,
+      paging: {
+        currentPage: current_page,
+        totalPage: total_page,
+        limit,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const forumQnABoardPage = async (req, res) => {
-  res.render('admin/forum/QnABoard/index');
+  try {
+    //검색
+    let search_box = req.query.search_box;
+    //페이징 구문
+    const totalPost = await Forum.countDocuments({
+      title: action.searchKeyword(req.query.search_box),
+      category: 1,
+    });
+
+    if (!totalPost) {
+      emptySearch = true;
+    }
+    let { hide_post, limit, total_page, current_page } = action.paging(
+      req.query.page,
+      (_limit = 5),
+      totalPost,
+    );
+
+    //게시물 출력
+    const forumPost = await Forum.find({
+      title: action.searchKeyword(req.query.search_box),
+      category: 1,
+    })
+      .populate('userId', 'nickname')
+      .sort({ createdAt: -1 })
+      .skip(hide_post)
+      .limit(limit);
+
+    res.render('admin/forum/QnABoard/index', {
+      search_box,
+      posts: forumPost,
+      paging: {
+        currentPage: current_page,
+        totalPage: total_page,
+        limit,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const membersCreatePage = async (req, res) => {

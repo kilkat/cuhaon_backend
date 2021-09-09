@@ -14,7 +14,7 @@
       <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
 
       <section class="main-recent">
-        <h1 class="title font-header">게시판 이름 <span>한줄 설명</span></h1>
+        <h1 class="title font-header">질문게시판<span>한줄 설명</span></h1>
       </section>
 
       <section class="main-board" style="padding-bottom: 2rem">
@@ -46,125 +46,49 @@
 
       <section class="main-board">
         <div class="posts">
+          <% posts.forEach(function(post){ %>
           <!-- item -->
-          <a href="/forum/view.html" class="posts-item">
-            <p class="posts-item__title">
-              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-              오버플로우도 포함.
-            </p>
+          <a href="/forum/view/<%= post._id%>" class="posts-item">
+            <p class="posts-item__title"><%= post.title %></p>
             <div style="position: relative; height: 1.6rem">
               <div class="info">
                 <div class="info-left">
-                  <p class="info-left__uploader">업로더 이름</p>
+                  <p class="info-left__uploader"><%= post.userId.nickname%></p>
                 </div>
 
                 <div class="info-right">
                   <p class="info-right__comments">100</p>
                   <p class="info-right__view">3900</p>
-                  <p class="info-right__date">09/01</p>
+                  <p class="info-right__date"><%= post.createdAt %></p>
                 </div>
               </div>
             </div>
           </a>
-
-          <!-- item -->
-          <a href="/forum/view.html" class="posts-item">
-            <p class="posts-item__title">
-              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-              오버플로우도 포함.
-            </p>
-            <div style="position: relative; height: 1.6rem">
-              <div class="info">
-                <div class="info-left">
-                  <p class="info-left__uploader">업로더 이름</p>
-                </div>
-
-                <div class="info-right">
-                  <p class="info-right__comments">100</p>
-                  <p class="info-right__view">3900</p>
-                  <p class="info-right__date">09/01</p>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <!-- item -->
-          <a href="/forum/view.html" class="posts-item">
-            <p class="posts-item__title">
-              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-              오버플로우도 포함.
-            </p>
-            <div style="position: relative; height: 1.6rem">
-              <div class="info">
-                <div class="info-left">
-                  <p class="info-left__uploader">업로더 이름</p>
-                </div>
-
-                <div class="info-right">
-                  <p class="info-right__comments">100</p>
-                  <p class="info-right__view">3900</p>
-                  <p class="info-right__date">09/01</p>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <!-- item -->
-          <a href="/forum/view.html" class="posts-item">
-            <p class="posts-item__title">
-              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-              오버플로우도 포함.
-            </p>
-            <div style="position: relative; height: 1.6rem">
-              <div class="info">
-                <div class="info-left">
-                  <p class="info-left__uploader">업로더 이름</p>
-                </div>
-
-                <div class="info-right">
-                  <p class="info-right__comments">100</p>
-                  <p class="info-right__view">3900</p>
-                  <p class="info-right__date">09/01</p>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <!-- item -->
-          <a href="/forum/view.html" class="posts-item">
-            <p class="posts-item__title">
-              게시물 제목이 한줄을 다 채울 예정. 오버플로우 테스트. 텍스트
-              오버플로우도 포함.
-            </p>
-            <div style="position: relative; height: 1.6rem">
-              <div class="info">
-                <div class="info-left">
-                  <p class="info-left__uploader">업로더 이름</p>
-                </div>
-
-                <div class="info-right">
-                  <p class="info-right__comments">100</p>
-                  <p class="info-right__view">3900</p>
-                  <p class="info-right__date">09/01</p>
-                </div>
-              </div>
-            </div>
-          </a>
+          <% }) %>
         </div>
 
         <!-- <a href="#" class="forum-section-more">더 보기</a> -->
       </section>
 
       <div class="main-pages">
-        <input type="button" class="main-pages__page" value="<" />
-
-        <input type="button" class="main-pages__page" value="1" />
-        <input type="button" class="main-pages__page" value="2" />
-        <input type="button" class="main-pages__page" value="3" />
-        <input type="button" class="main-pages__page" value="4" />
-        <input type="button" class="main-pages__page" value="5" />
-
-        <input type="button" class="main-pages__page" value=">" />
+        <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
+        paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
+          href="/forum/QnABoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          ><input type="button" class="main-pages__page" value="<" /></a
+        ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
+        i==paging.totalPage || (i>=paging.currentPage-2 &&
+        i<=paging.currentPage+2)){%>
+        <a href="/forum/QnABoard?page=<%= i %>&limit=<%=paging.limit%>"
+          ><input type="button" class="main-pages__page" value="<%= i %>"
+        /></a>
+        <%} else if(i==2||i==paging.totalPage-1){%>
+        <button class="section-comment__paging-button" type="button">
+          ...
+        </button>
+        <%}%> <%}%> <%if(nextEnabled){%><a
+          href="/forum/QnABoard?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          ><input type="button" class="main-pages__page" value=">" /></a
+        ><%}%>
       </div>
 
       <div class="main-usertools">

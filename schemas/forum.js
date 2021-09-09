@@ -8,7 +8,6 @@ const forumSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
   },
   content: {
     type: String,
@@ -20,9 +19,8 @@ const forumSchema = new Schema({
     default: 0,
   },
   category: {
-    type: ObjectId,
+    type: Number,
     required: true,
-    ref: 'Category',
   },
   createdAt: {
     type: Date,

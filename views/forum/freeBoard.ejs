@@ -14,7 +14,7 @@
       <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
 
       <section class="main-recent">
-        <h1 class="title font-header">게시판 이름 <span>한줄 설명</span></h1>
+        <h1 class="title font-header">자유 게시판 <span>한줄 설명</span></h1>
       </section>
 
       <section class="main-board" style="padding-bottom: 2rem">
@@ -48,12 +48,12 @@
         <div class="posts">
           <% posts.forEach(function(post){ %>
           <!-- item -->
-          <a href="/forum/view" class="posts-item">
+          <a href="/forum/view/<%= post._id%>" class="posts-item">
             <p class="posts-item__title"><%= post.title %></p>
             <div style="position: relative; height: 1.6rem">
               <div class="info">
                 <div class="info-left">
-                  <p class="info-left__uploader"><%= post.userId.nickname %></p>
+                  <p class="info-left__uploader"><%= post.userId.nickname%></p>
                 </div>
 
                 <div class="info-right">
@@ -64,7 +64,6 @@
               </div>
             </div>
           </a>
-
           <% }) %>
         </div>
 
@@ -74,12 +73,12 @@
       <div class="main-pages">
         <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
         paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
-          href="/forum/board?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          href="/forum/freeBoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
           ><input type="button" class="main-pages__page" value="<" /></a
         ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
         i==paging.totalPage || (i>=paging.currentPage-2 &&
         i<=paging.currentPage+2)){%>
-        <a href="/forum/board?page=<%= i %>&limit=<%=paging.limit%>"
+        <a href="/forum/freeBoard?page=<%= i %>&limit=<%=paging.limit%>"
           ><input type="button" class="main-pages__page" value="<%= i %>"
         /></a>
         <%} else if(i==2||i==paging.totalPage-1){%>
@@ -87,7 +86,7 @@
           ...
         </button>
         <%}%> <%}%> <%if(nextEnabled){%><a
-          href="/forum/board?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          href="/forum/freeBoard?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
           ><input type="button" class="main-pages__page" value=">" /></a
         ><%}%>
       </div>
