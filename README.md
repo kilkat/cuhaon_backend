@@ -21,6 +21,10 @@
 ### :pencil2:수정일지  
 
 - **21/09/09**  
+  >forumComment.js db추가, [eidt, delete, comment] 기능 라우팅 구현, edit.ejs 프론트 추가  
+  > 작성자: 김광운  
+
+- **21/09/09**  
   /schemas/forum.js, /controllers/forum.ctrl.js, /controller/admin.ctrl.js, /views/forum/freeBoard.ejs, /views/forum/QnABoard.ejs, /views/admin/forum/freeBoard/index.ejs, /views/admin/forum/QnABoard/index.ejs   
   > 포럼 자유, 질문게시판 페이징 추가, 카테고리 스키마 삭제  
   > 어드민 포럼, 자유게시글 페이징, 기타 잡 버그 수정   
