@@ -23,7 +23,8 @@ router.get(
   controllers.forumQnABoardWritePage,
 );
 router.get('/view/:forumId', isLoggedIn, controllers.forumViewPage);
-router.get('/delete/:forumId', isLoggedIn, controllers.forumDelete);
+router.get('/view/edit/:forumId', isLoggedIn, controllers.forumViewEditPage);
+router.get('/view/delete/:forumId', isLoggedIn, controllers.forumViewDelete);
 
 router.post(
   '/freeBoard/write/:userId',
@@ -40,5 +41,6 @@ router.post(
   isLoggedIn,
   controllers.forumCommentCreate,
 );
+router.post('/view/edit/:forumId', isLoggedIn, controllers.forumViewEdit);
 
 module.exports = router;

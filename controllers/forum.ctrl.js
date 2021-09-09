@@ -214,13 +214,33 @@ const forumCommentCreate = async (req, res) => {
   return res.redirect(`/forum/view/${forumId}`);
 };
 
-const forumDelete = async (req, res) => {
+const forumViewEditPage = async (req, res) => {
+  const forumId = req.params.forumId;
+  const forumInfo = await Forum.findOne({ _id: forumId });
+
+  res.render('forum/edit', { forumId, forumInfo });
+};
+
+const forumViewDelete = async (req, res) => {
   const forumId = req.params.forumId;
 
   await Forum.deleteOne({ _id: forumId });
   await ForumComment.deleteMany({ forumId });
 
   return res.redirect('/forum/index');
+};
+
+const forumViewEdit = async (req, res) => {
+  const forumId = req.params.forumId;
+  const { title, content } = req.body;
+
+  try {
+    await Forum.updateOne({ _id: forumId }, { $set: { title, content } });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return res.redirect(`/forum/view/${forumId}`);
 };
 
 module.exports = {
@@ -234,5 +254,7 @@ module.exports = {
   forumQnABoardWrite,
   forumViewPage,
   forumCommentCreate,
-  forumDelete,
+  forumViewEditPage,
+  forumViewDelete,
+  forumViewEdit,
 };
