@@ -14,21 +14,21 @@
       <!-- <p class="search-result"><span>내용</span>에 대한 검색 결과입니다.</p> -->
 
       <section class="main-recent">
-        <h1 class="title">게시판 이름 <span>한줄 설명</span></h1>
+        <h1 class="title"><% if(forumInfo.category==0){%>자유 게시판<%}else{%>질문 게시판<%}%><span>글 내용</span></h1>
       </section>
 
       <section class="main-board" style="padding-bottom: 2rem">
         <h3 class="subtitle" style="height: 1.9rem; color: #aaa">
           <div class="left">
             <span class="left-writer left-writer__general"
-              >작성자명을 여기에</span
+              ><%= forumInfo.userId.nickname%></span
             >
-            <span class="left-date"><%= forumInfo.createdAt %>></span>
+            <span class="left-date"><%= forumInfo.createdAt %></span>
           </div>
 
           <div class="right">
             <span class="right-views">조회수: <%= forumInfo.views %></span>
-            <span class="right-comments">댓글 : 10</span>
+            <span class="right-comments">댓글 : <%= totalComment%></span>
           </div>
         </h3>
 
@@ -49,6 +49,7 @@
 
       <section class="main-board" style="padding-bottom: 5rem">
         <div class="comments">
+          <% posts.forEach(function(post){ %>
           <!-- item -->
           <div class="comments-item">
             <div class="left">
@@ -57,11 +58,11 @@
                 style="background-image: url(../images/no_profile.jpg)"
               ></div>
             </div>
-
+            
             <div class="right">
               <div class="right-info">
                 <p class="right-info__writer">
-                  <span>작성자 이름</span> | <span>2021/09/02</span>
+                  <span><%= post.userId.nickname %></span> | <span><%= post.createdAt%></span>
                 </p>
                 <p class="right-info__tools">
                   <a href="#" class="comment-remove">삭제</a>
@@ -69,72 +70,11 @@
               </div>
 
               <p class="right-desc">
-                정상작동하면 정상원<br />
-                댓글 여러줄에 자동으로 밀리는<br />
-                lorem ipsum <br />
-                lorem ipsum <br />
-                lorem ipsum <br />
+                <%= post.comment%>
               </p>
             </div>
           </div>
-
-          <!-- item -->
-          <div class="comments-item">
-            <div class="left">
-              <div
-                class="left-profile"
-                style="background-image: url(../images/no_profile.jpg)"
-              ></div>
-            </div>
-
-            <div class="right">
-              <div class="right-info">
-                <p class="right-info__writer">
-                  <span>작성자 이름</span> | <span>2021/09/02</span>
-                </p>
-                <p class="right-info__tools">
-                  <a href="#" class="comment-remove">삭제</a>
-                </p>
-              </div>
-
-              <p class="right-desc">
-                정상작동하면 정상원<br />
-                댓글 여러줄에 자동으로 밀리는<br />
-                lorem ipsum <br />
-                lorem ipsum <br />
-                lorem ipsum <br />
-              </p>
-            </div>
-          </div>
-
-          <!-- item -->
-          <div class="comments-item">
-            <div class="left">
-              <div
-                class="left-profile"
-                style="background-image: url(../images/no_profile.jpg)"
-              ></div>
-            </div>
-
-            <div class="right">
-              <div class="right-info">
-                <p class="right-info__writer">
-                  <span>작성자 이름</span> | <span>2021/09/02</span>
-                </p>
-                <p class="right-info__tools">
-                  <a href="#" class="comment-remove">삭제</a>
-                </p>
-              </div>
-
-              <p class="right-desc">
-                정상작동하면 정상원<br />
-                댓글 여러줄에 자동으로 밀리는<br />
-                lorem ipsum <br />
-                lorem ipsum <br />
-                lorem ipsum <br />
-              </p>
-            </div>
-          </div>
+          <% }) %>
         </div>
 
         <div class="comment_box">
@@ -164,15 +104,24 @@
       </section>
 
       <div class="main-pages">
-        <input type="button" class="main-pages__page" value="<" />
-
-        <input type="button" class="main-pages__page" value="1" />
-        <input type="button" class="main-pages__page" value="2" />
-        <input type="button" class="main-pages__page" value="3" />
-        <input type="button" class="main-pages__page" value="4" />
-        <input type="button" class="main-pages__page" value="5" />
-
-        <input type="button" class="main-pages__page" value=">" />
+        <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
+        paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
+          href="/forum/view/<%- forumInfo._id %>?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>"
+          ><input type="button" class="main-pages__page" value="<" /></a
+        ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
+        i==paging.totalPage || (i>=paging.currentPage-2 &&
+        i<=paging.currentPage+2)){%>
+        <a href="/forum/view/<%- forumInfo._id %>?page=<%= i %>&limit=<%=paging.limit%>"
+          ><input type="button" class="main-pages__page" value="<%= i %>"
+        /></a>
+        <%} else if(i==2||i==paging.totalPage-1){%>
+        <button class="section-comment__paging-button" type="button">
+          ...
+        </button>
+        <%}%> <%}%> <%if(nextEnabled){%><a
+          href="/forum/view/<%- forumInfo._id %>?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>"
+          ><input type="button" class="main-pages__page" value=">" /></a
+        ><%}%>
       </div>
 
       <div class="main-usertools">

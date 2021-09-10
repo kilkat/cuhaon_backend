@@ -92,7 +92,6 @@ const viewWargamePage = async (req, res) => {
 
     //댓글 출력
     const comment = await Comment.find({ wargameId: id })
-      .sort({ createAt: -1 })
       .skip(hide_post)
       .limit(limit)
       .populate('userId', 'email nickname point')

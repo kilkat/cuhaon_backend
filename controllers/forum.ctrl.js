@@ -187,14 +187,52 @@ const forumQnABoardWrite = async (req, res) => {
 
 const forumViewPage = async (req, res) => {
   const forumId = req.params.forumId;
-  const forumInfo = await Forum.findOne({ _id: forumId });
+  try {
+    const forumInfo = await Forum.findOne({ _id: forumId }).populate(
+      'userId',
+      'nickname',
+    );
 
-  await Forum.updateOne(
-    { _id: forumId },
-    { $set: { views: forumInfo.views + 1 } },
-  );
+    await Forum.updateOne(
+      { _id: forumId },
+      { $set: { views: forumInfo.views + 1 } },
+    );
+    //페이징 구문
+    const totalComment = await ForumComment.countDocuments({
+      forumId,
+    });
 
-  res.render('forum/view', { forumInfo });
+    if (!totalComment) {
+      emptySearch = true;
+    }
+    let { hide_post, limit, total_page, current_page } = action.paging(
+      req.query.page,
+      (_limit = 5),
+      totalComment,
+    );
+
+    //게시물 출력
+    const forumComment = await ForumComment.find({
+      forumId,
+    })
+      .populate('userId', 'nickname')
+      .sort({ createdAt: -1 })
+      .skip(hide_post)
+      .limit(limit);
+
+    res.render('forum/view', {
+      totalComment,
+      forumInfo,
+      posts: forumComment,
+      paging: {
+        currentPage: current_page,
+        totalPage: total_page,
+        limit,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const forumCommentCreate = async (req, res) => {

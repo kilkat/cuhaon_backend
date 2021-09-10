@@ -29,7 +29,7 @@ const forumCommentSchema = new Schema({
   forumId: {
     type: ObjectId,
     require: true,
-    ref: 'Wargame',
+    ref: 'forum',
   },
 });
 
