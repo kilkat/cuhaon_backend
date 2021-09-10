@@ -20,6 +20,11 @@
 
 ### :pencil2:수정일지  
 
+- **21/09/10**  
+  /controllers/forum.ctrl.js, /views/forum/view.ejs  
+  >코멘트 페이징 추가  
+  > 작성자: 문영민  
+
 - **21/09/09**  
   >forumComment.js db추가, [eidt, delete, comment] 기능 라우팅 구현, edit.ejs 프론트 추가  
   > 작성자: 김광운  
