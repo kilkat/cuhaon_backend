@@ -20,6 +20,11 @@
 
 ### :pencil2:수정일지  
 
+- **21/09/11**  
+  >/admin.ctrl.js, /routes/admin.js, /views/admin/forum/freeBoard, /views/admin/forum/QnABoard, /views/admin/members/create.ejs, /views/admin/members/update.ejs, /views/admin/wargame/create.ejs, /views/admin/wargame/update.ejs  
+  >admin.ctrl [freeBoard, QnABoard] [추가, 수정, 삭제] 기능 구현, routes연결, 프론트 [추가, 수정]  
+  > 작성자: 김광운  
+
 - **21/09/10**  
   /controllers/forum.ctrl.js, /views/forum/view.ejs  
   >코멘트 페이징 추가  
