@@ -52,8 +52,10 @@
         <div class="admin-dashboard__right">
           <div class="admin-dashboard__right-components">
             <h1 class="admin-dashboard__right-components__title">FreeBoard</h1>
-            <a href="#" class="admin-dashboard__right-button"
-              >게시물 작성 (필요합니까?)</a
+            <a
+              href="/admin/forum/freeBoard/create"
+              class="admin-dashboard__right-button"
+              >게시물 작성</a
             >
             <div class="admin-dashboard__right-list" style="margin-top: 2rem">
               <div class="admin-dashboard__right-list__classes">
@@ -124,7 +126,7 @@
                   >
                     <%= post.createdAt %>
                   </p>
-                  
+
                   <p
                     class="admin-dashboard__right-list__item__target-item"
                     style="width: 15rem"
@@ -142,14 +144,14 @@
                     style="width: 20rem"
                   >
                     <a
-                      href="#"
+                      href="/admin/forum/freeBoard/update/<%- post._id %>"
                       class="
                         admin-dashboard__right-list__item__target-item__button
                       "
                       >수정</a
                     >
                     <a
-                      href="#"
+                      href="/admin/forum/freeBoard/delete/<%- post._id %>"
                       class="
                         admin-dashboard__right-list__item__target-item__button
                       "

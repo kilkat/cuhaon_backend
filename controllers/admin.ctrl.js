@@ -6,8 +6,9 @@ const action = require('./common/action');
 const Forum = require('../schemas/forum');
 const { joinValidator, adminMembersValidator } = require('./common/validator');
 const { logger } = require('../config/winston');
-const { findOne } = require('../schemas/user');
+const { findOne, create } = require('../schemas/user');
 const user = require('../schemas/user');
+const ForumComment = require('../schemas/forumComment');
 
 const adminLogin = (req, res, next) => {
   passport.authenticate('local', (authError, user, info) => {
@@ -131,7 +132,7 @@ const wargameBoardPage = async (req, res) => {
   }
 };
 
-const forumFreeBoardPage = async (req, res) => {
+const FreeBoardPage = async (req, res) => {
   try {
     //검색
     let search_box = req.query.search_box;
@@ -174,7 +175,7 @@ const forumFreeBoardPage = async (req, res) => {
   }
 };
 
-const forumQnABoardPage = async (req, res) => {
+const QnABoardPage = async (req, res) => {
   try {
     //검색
     let search_box = req.query.search_box;
@@ -412,6 +413,127 @@ const wargameDelete = async (req, res) => {
   }
 };
 
+const freeBoardCreatePage = async (req, res) => {
+  res.render('admin/forum/freeBoard/create');
+};
+
+//nickname이 없을경우 에러메세지 나오게 설계
+const freeBoardCreate = async (req, res) => {
+  const { title, nickname, content } = req.body;
+  const userInfo = await User.findOne({ nickname });
+
+  try {
+    await Forum.create({
+      title,
+      nickname,
+      content,
+      category: 0,
+      userId: userInfo._id,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return res.redirect('/admin/forum/freeBoard');
+};
+
+const freeBoardUpdatePage = async (req, res) => {
+  const forumId = req.params.forumId;
+  const forumInfo = await Forum.findOne({ _id: forumId });
+  const userInfo = await User.findOne({ _id: forumInfo.userId });
+
+  res.render('admin/forum/freeBoard/update', { forumInfo, userInfo });
+};
+
+const freeBoardUpdate = async (req, res) => {
+  const { title, nickname, content } = req.body;
+  const forumId = req.params.forumId;
+  const userId = await User.findOne({ nickname });
+
+  try {
+    await Forum.updateOne(
+      { _id: forumId },
+      {
+        $set: {
+          title,
+          userId: userId._id,
+          content,
+        },
+      },
+    );
+  } catch (error) {
+    console.error(error);
+  }
+
+  res.redirect('/admin/forum/freeBoard');
+};
+
+const freeBoardDelete = async (req, res) => {
+  const forumId = req.params.forumId;
+
+  try {
+    await Forum.deleteOne({ _id: forumId });
+    await ForumComment.deleteMany({ forumId });
+  } catch (error) {
+    console.error(error);
+  }
+  return res.redirect('/admin/forum/freeBoard');
+};
+
+const QnABaordCreatePage = async (req, res) => {
+  res.render('admin/forum/QnABoard/create');
+};
+
+const QnABoardCreate = async (req, res) => {
+  const { title, nickname, content } = req.body;
+  const userInfo = await User.findOne({ nickname });
+
+  try {
+    await Forum.create({
+      title,
+      nickname,
+      content,
+      category: 1,
+      userId: userInfo._id,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return res.redirect('/admin/forum/QnABoard');
+};
+
+const QnABoardUpdatePage = async (req, res) => {
+  const forumId = req.params.forumId;
+  const forumInfo = await Forum.findOne({ _id: forumId });
+  const userInfo = await User.findOne({ _id: forumInfo.userId });
+
+  res.render('admin/forum/QnABoard/update', { forumInfo, userInfo });
+};
+
+const QnABoardUpdate = async (req, res) => {
+  const { title, nickname, content } = req.body;
+  const forumId = req.params.forumId;
+  const userId = await User.findOne({ nickname });
+
+  try {
+    await Forum.updateOne(
+      { _id: forumId },
+      {
+        $set: {
+          title,
+          userId: userId._id,
+          content,
+        },
+      },
+    );
+  } catch (error) {
+    console.error(error);
+  }
+
+  res.redirect('/admin/forum/QnABoard');
+};
+
 const adminLogout = async (req, res) => {
   req.logout();
   req.session.destroy();
@@ -423,8 +545,8 @@ module.exports = {
   AdminLoginPage,
   membersBoardPage,
   wargameBoardPage,
-  forumFreeBoardPage,
-  forumQnABoardPage,
+  FreeBoardPage,
+  QnABoardPage,
   membersCreatePage,
   membersCreate,
   membersUpdatePage,
@@ -435,5 +557,14 @@ module.exports = {
   wargameUpdatePage,
   wargameUpdate,
   wargameDelete,
+  freeBoardCreatePage,
+  freeBoardCreate,
+  freeBoardUpdatePage,
+  freeBoardUpdate,
+  freeBoardDelete,
+  QnABaordCreatePage,
+  QnABoardCreate,
+  QnABoardUpdatePage,
+  QnABoardUpdate,
   adminLogout,
 };

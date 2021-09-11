@@ -52,8 +52,10 @@
         <div class="admin-dashboard__right">
           <div class="admin-dashboard__right-components">
             <h1 class="admin-dashboard__right-components__title">QnABoard</h1>
-            <a href="#" class="admin-dashboard__right-button"
-              >게시물 작성 (필요합니까?)</a
+            <a
+              href="/admin/forum/QnABoard/create"
+              class="admin-dashboard__right-button"
+              >게시물 작성</a
             >
             <div class="admin-dashboard__right-list" style="margin-top: 2rem">
               <div class="admin-dashboard__right-list__classes">
@@ -104,62 +106,62 @@
               </div>
 
               <% posts.forEach(function(post){ %>
-                <!-- item -->
-                <div class="admin-dashboard__right-list__item">
-                  <div class="admin-dashboard__right-list__item__target">
-                    <p
-                      class="admin-dashboard__right-list__item__target-item"
-                      style="width: 40rem"
+              <!-- item -->
+              <div class="admin-dashboard__right-list__item">
+                <div class="admin-dashboard__right-list__item__target">
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 40rem"
+                  >
+                    <%= post.title %>
+                  </p>
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 10rem"
+                  >
+                    <%= post.userId.nickname%>
+                  </p>
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 20rem"
+                  >
+                    <%= post.createdAt %>
+                  </p>
+
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 15rem"
+                  >
+                    <a
+                      href="#"
+                      class="
+                        admin-dashboard__right-list__item__target-item__button-disabled
+                      "
+                      >다운로드</a
                     >
-                      <%= post.title %>
-                    </p>
-                    <p
-                      class="admin-dashboard__right-list__item__target-item"
-                      style="width: 10rem"
+                  </p>
+                  <p
+                    class="admin-dashboard__right-list__item__target-item"
+                    style="width: 20rem"
+                  >
+                    <a
+                      href="/admin/forum/QnABoard/update/<%- post._id %>"
+                      class="
+                        admin-dashboard__right-list__item__target-item__button
+                      "
+                      >수정</a
                     >
-                      <%= post.userId.nickname%>
-                    </p>
-                    <p
-                      class="admin-dashboard__right-list__item__target-item"
-                      style="width: 20rem"
+                    <a
+                      href="#"
+                      class="
+                        admin-dashboard__right-list__item__target-item__button
+                      "
+                      >삭제</a
                     >
-                      <%= post.createdAt %>
-                    </p>
-                    
-                    <p
-                      class="admin-dashboard__right-list__item__target-item"
-                      style="width: 15rem"
-                    >
-                      <a
-                        href="#"
-                        class="
-                          admin-dashboard__right-list__item__target-item__button-disabled
-                        "
-                        >다운로드</a
-                      >
-                    </p>
-                    <p
-                      class="admin-dashboard__right-list__item__target-item"
-                      style="width: 20rem"
-                    >
-                      <a
-                        href="#"
-                        class="
-                          admin-dashboard__right-list__item__target-item__button
-                        "
-                        >수정</a
-                      >
-                      <a
-                        href="#"
-                        class="
-                          admin-dashboard__right-list__item__target-item__button
-                        "
-                        >삭제</a
-                      >
-                    </p>
-                  </div>
+                  </p>
                 </div>
-                <%})%>
+              </div>
+              <%})%>
             </div>
 
             <!-- ---------------------- paging ---------------------- -->

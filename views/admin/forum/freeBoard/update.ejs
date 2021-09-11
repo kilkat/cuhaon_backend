@@ -57,12 +57,27 @@
     >
       <div class="admin-dashboard">
         <div class="admin-dashboard__left">
-          <%- include('../../../common/adminNavi') -%>
+          <a href="/admin/members" class="admin-dashboard__left-menu"
+            >Members</a
+          >
+          <a href="/admin/wargame" class="admin-dashboard__left-menu"
+            >Wargame</a
+          >
+          <a
+            href="/admin/forum/freeBoard"
+            class="
+              admin-dashboard__left-menu admin-dashboard__left-menu__selected
+            "
+            >ForumFreeBoard</a
+          >
+          <a href="/admin/forum/QnABoard" class="admin-dashboard__left-menu"
+            >ForumQnABoard</a
+          >
         </div>
         <div class="admin-dashboard__right">
           <div class="admin-dashboard__right-components">
             <h1 class="admin-dashboard__right-components__title">
-              Wargame - Add / Update
+              FreeBoard - Add / Update
             </h1>
             <!-- <a class="admin-dashboard__right-button">개시물 작성 (필요합니까?)</a> -->
             <div
@@ -70,12 +85,13 @@
               style="margin-top: 2rem; padding-bottom: 0rem"
             >
               <form
-                action="/admin/wargame/update/<%- wargameInfo._id %>"
+                action="/admin/forum/freeBoard/update/<%- forumInfo._id %>"
+                name="updateItem"
                 method="POST"
               >
                 <div class="admin-dashboard__right-list__classes">
                   <h3 class="admin-dashboard__right-list__classes-title">
-                    Wargame 개시물 수정
+                    FreeBoard 게시물 작성
                   </h3>
                   <div style="height: 5rem"></div>
                   <div class="admin-dashboard__right-list__classes-itemBlock">
@@ -83,8 +99,8 @@
                     <input
                       type="text"
                       placeholder="제목을 입력하세요"
-                      value="<%- wargameInfo.title %>"
                       name="title"
+                      value="<%- forumInfo.title %>"
                       required
                     />
                   </div>
@@ -93,86 +109,14 @@
                     <input
                       type="text"
                       placeholder="작성자"
-                      value="<%- wargameInfo.userId.nickname %>"
                       name="nickname"
-                      readonly
-                    />
-                  </div>
-                  <div class="admin-dashboard__right-list__classes-itemBlock">
-                    <p>카테고리 :</p>
-                    <div
-                      class="
-                        admin-dashboard__right-list__classes-itemBlock__div
-                      "
-                    >
-                      <input type="radio" name="type" value="all" />
-                      <label for="cb0">ALL</label>
-
-                      <input type="radio" name="type" value="system" />
-                      <label for="cb1">시스템해킹</label>
-
-                      <input type="radio" name="type" value="reversing" />
-                      <label for="cb2">리버싱</label>
-
-                      <input type="radio" name="type" value="web" />
-                      <label for="cb3">웹해킹</label>
-
-                      <input type="radio" name="type" value="cipher" />
-                      <label for="cb4">암호화</label>
-
-                      <input type="radio" name="type" value="forensic" />
-                      <label for="cb5">포렌식</label>
-
-                      <input type="radio" name="type" value="misc" />
-                      <label for="cb6">기타</label>
-                    </div>
-                  </div>
-                  <div class="admin-dashboard__right-list__classes-itemBlock">
-                    <p>레벨 :</p>
-                    <div
-                      class="
-                        admin-dashboard__right-list__classes-itemBlock__div
-                      "
-                    >
-                      <input type="radio" name="level" value="level1" />
-                      <label for="cb10">Level 1</label>
-
-                      <input type="radio" name="level" value="level2" />
-                      <label for="cb11">Level 2</label>
-
-                      <input type="radio" name="level" value="level3" />
-                      <label for="cb12">Level 3</label>
-
-                      <input type="radio" name="level" value="level4" />
-                      <label for="cb13">Level 4</label>
-
-                      <input type="radio" name="level" value="level5" />
-                      <label for="cb14">Level 5</label>
-                    </div>
-                  </div>
-                  <div class="admin-dashboard__right-list__classes-itemBlock">
-                    <p>포인트 :</p>
-                    <input
-                      type="text"
-                      placeholder="제공할 포인트를 입력하세요"
-                      value="<%- wargameInfo.point %>"
-                      name="point"
+                      value="<%- userInfo.nickname %>"
                       required
                     />
                   </div>
+
                   <div class="admin-dashboard__right-list__classes-itemBlock">
-                    <p>플래그 :</p>
-                    <input
-                      type="text"
-                      placeholder="플래그를 입력하세요"
-                      value="<%- flag %>"
-                      name="flag"
-                      required
-                    />
-                  </div>
-                  <div class="admin-dashboard__right-list__classes-itemBlock">
-                    <p style="vertical-align: top">문제 설명 :</p>
-                    <!-- 이 영역을 통째로 지우고 스마트에디터 등 사제 에디터 삽입 -->
+                    <p style="vertical-align: top">게시글 :</p>
                     <div
                       style="width: 70%; height: 30rem; display: inline-block"
                     >
@@ -227,7 +171,7 @@
         "<%- (typeof values === 'undefined') ? '' : `${values.content}` %>",
       );
       $('#summernote').summernote({
-        height: 350,
+        height: 280,
         lang: 'ko-KR',
       });
     });
