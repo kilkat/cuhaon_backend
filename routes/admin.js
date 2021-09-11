@@ -80,6 +80,12 @@ router.get(
   isLoggedIn,
   controllers.QnABoardUpdatePage,
 );
+router.get(
+  '/forum/QnABoard/delete/:forumId',
+  isAdmin,
+  isLoggedIn,
+  controllers.QnABoardDelete,
+);
 router.get('/logout', controllers.adminLogout);
 
 router.post('/login', controllers.adminLogin);

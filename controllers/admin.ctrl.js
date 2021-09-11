@@ -534,6 +534,18 @@ const QnABoardUpdate = async (req, res) => {
   res.redirect('/admin/forum/QnABoard');
 };
 
+const QnABoardDelete = async (req, res) => {
+  const forumId = req.params.forumId;
+
+  try {
+    await Forum.deleteOne({ _id: forumId });
+    await ForumComment.deleteMany({ forumId });
+  } catch (error) {
+    console.error(error);
+  }
+  return res.redirect('/admin/forum/QnABoard');
+};
+
 const adminLogout = async (req, res) => {
   req.logout();
   req.session.destroy();
@@ -566,5 +578,6 @@ module.exports = {
   QnABoardCreate,
   QnABoardUpdatePage,
   QnABoardUpdate,
+  QnABoardDelete,
   adminLogout,
 };
