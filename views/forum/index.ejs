@@ -63,9 +63,9 @@
 
       <section class="main-recent">
         <h1 class="title font-header">자유 게시판 <span>최신 글</span></h1>
-
+      
         <div class="posts">
-          <% posts.forEach(function(post){ %>
+          <% freeposts.forEach(function(post){ %>
           <a href="/forum/view/<%= post._id%>" class="posts-item">
             <%= post.title %><span>10</span>
           </a>
@@ -79,7 +79,7 @@
         <h1 class="title font-header">질문 게시판 <span>최신</span></h1>
 
         <div class="posts">
-          <% posts.forEach(function(post){ %>
+          <% QnAposts.forEach(function(post){ %>
           <a href="#" class="posts-item"> <%= post.title %><span>10</span> </a>
           <% }) %>
         </div>
