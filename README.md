@@ -14,7 +14,7 @@
   <h3>:white_check_mark:ERD모델:white_check_mark:</h3>
   <br>
   
-  ![cuha drawio](https://user-images.githubusercontent.com/75434755/132502967-42a30c36-f79c-44a8-92f3-6b831b74f48b.png)
+  ![cuha drawio (1)](https://user-images.githubusercontent.com/75434755/133018285-55627d3b-3fc4-41f2-827b-e7a050d14639.png)  
 
 </div>
 
