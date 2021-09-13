@@ -20,6 +20,12 @@
 
 ### :pencil2:수정일지  
 
+
+- **21/09/13**  
+  /controllers/forum.ctrl.js, /views/forum/index.ejs  
+  > forum 홈 질문 자유 게시판 출력 수정  
+  > 작성자: 문영민  
+
 - **21/09/11**  
   >/admin.ctrl.js, /routes/admin.js, /views/admin/forum/freeBoard, /views/admin/forum/QnABoard, /views/admin/members/create.ejs, /views/admin/members/update.ejs, /views/admin/wargame/create.ejs, /views/admin/wargame/update.ejs  
   >admin.ctrl [freeBoard, QnABoard] [추가, 수정, 삭제] 기능 구현, routes연결, 프론트 [추가, 수정]  
