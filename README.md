@@ -21,7 +21,7 @@
 
 ### :pencil2:수정일지  
 
-- **21/09/15**  
+- **21/09/16**  
   /controllers/wargame.ctrl.js , /routes/wargame.js, /schemas/solved  
   > Solved -> solved 함수명 다 변경  
   > solved -> solvedCount 변경  
