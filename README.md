@@ -21,6 +21,10 @@
 
 ### :pencil2:수정일지  
 
+- **21/09/15**  
+  /controllers/forum.ctrl.js, /views/forum/index.ejs  
+  > 프론트 링크 수정, 함수명 freeBoard, qnaBoard 수정  
+  > 작성자: 김광운  
 
 - **21/09/13**  
   /controllers/forum.ctrl.js, /views/forum/index.ejs  
