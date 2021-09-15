@@ -22,6 +22,13 @@
 ### :pencil2:수정일지  
 
 - **21/09/15**  
+  /controllers/wargame.ctrl.js , /routes/wargame.js, /schemas/solved  
+  > Solved -> solved 함수명 다 변경  
+  > solved -> solvedCount 변경  
+  > 스키마 whoSolved -> solved로 변경  
+  > 작성자: 김광운  
+
+- **21/09/15**  
   /controllers/index.ctrl.js, /controllers/wargame.ctrl.js , /routes/index.js, /routes/wargame.js, /schemas/Solved  
   > 인덱스 컨트롤러에 있던 워게임 관련 라우팅들 워게임컨트롤러로 이동.    
   > 인텍스 라우터에 있던 워게임 라우팅도 워게임 라우터로 이동.  
