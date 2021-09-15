@@ -55,7 +55,7 @@ const forumRankingPage = async (req, res) => {
   }
 };
 
-const forumFreeBoardPage = async (req, res) => {
+const forumfreeBoardPage = async (req, res) => {
   try {
     //검색
     let search_box = req.query.search_box;
@@ -98,7 +98,7 @@ const forumFreeBoardPage = async (req, res) => {
   }
 };
 
-const forumQnABoardPage = async (req, res) => {
+const forumqnaBoardPage = async (req, res) => {
   try {
     //검색
     let search_box = req.query.search_box;
@@ -127,7 +127,7 @@ const forumQnABoardPage = async (req, res) => {
       .skip(hide_post)
       .limit(limit);
 
-    res.render('forum/QnABoard', {
+    res.render('forum/qnaBoard', {
       search_box,
       posts: forumPost,
       paging: {
@@ -141,15 +141,15 @@ const forumQnABoardPage = async (req, res) => {
   }
 };
 
-const forumFreeBoardWritePage = async (req, res) => {
-  res.render('forum/FreeWrite');
+const forumfreeBoardWritePage = async (req, res) => {
+  res.render('forum/freeWrite');
 };
 
-const forumQnABoardWritePage = async (req, res) => {
-  res.render('forum/QnAWrite');
+const forumqnaBoardWritePage = async (req, res) => {
+  res.render('forum/qnaWrite');
 };
 
-const forumFreeBoardWrite = async (req, res) => {
+const forumfreeBoardWrite = async (req, res) => {
   const userInfo = req.params.userId;
   const { title, content } = req.body;
 
@@ -167,7 +167,7 @@ const forumFreeBoardWrite = async (req, res) => {
   return res.redirect('/forum/freeBoard');
 };
 
-const forumQnABoardWrite = async (req, res) => {
+const forumqnaBoardWrite = async (req, res) => {
   const userInfo = req.params.userId;
   const { title, content } = req.body;
 
@@ -182,7 +182,7 @@ const forumQnABoardWrite = async (req, res) => {
     console.error(error);
   }
 
-  return res.redirect('/forum/QnABoard');
+  return res.redirect('/forum/qnaBoard');
 };
 
 const forumViewPage = async (req, res) => {
@@ -284,12 +284,12 @@ const forumViewEdit = async (req, res) => {
 module.exports = {
   forumIndexPage,
   forumRankingPage,
-  forumFreeBoardPage,
-  forumQnABoardPage,
-  forumFreeBoardWritePage,
-  forumQnABoardWritePage,
-  forumFreeBoardWrite,
-  forumQnABoardWrite,
+  forumfreeBoardPage,
+  forumqnaBoardPage,
+  forumfreeBoardWritePage,
+  forumqnaBoardWritePage,
+  forumfreeBoardWrite,
+  forumqnaBoardWrite,
   forumViewPage,
   forumCommentCreate,
   forumViewEditPage,

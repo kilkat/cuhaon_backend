@@ -13,7 +13,7 @@ const indexPage = (req, res) => {
 };
 
 //wargame 페이지
-const indexWargamePage = async (req, res) => {
+const wargameIndexPage = async (req, res) => {
   try {
     let titleCount = req.query.title;
     let emptySearch = false;
@@ -67,7 +67,7 @@ const indexWargamePage = async (req, res) => {
 };
 
 //wargame 게시물 내용 페이지
-const viewWargamePage = async (req, res) => {
+const wargameViewPage = async (req, res) => {
   const id = req.params.wargame_id;
 
   try {
@@ -116,12 +116,12 @@ const viewWargamePage = async (req, res) => {
 };
 
 //wargame 등록 페이지
-const createWargamePage = (req, res) => {
+const wargameCreatePage = (req, res) => {
   res.render('wargame/create');
 };
 
 //wargame 등록
-const createWargame = async (req, res) => {
+const wargameCreate = async (req, res) => {
   const { title, content, type, level, point, flag } = req.body;
 
   //에러 검증
@@ -152,7 +152,7 @@ const createWargame = async (req, res) => {
 };
 
 //wargame 삭제 페이지
-const deleteWargame = async (req, res) => {
+const wargameDelete = async (req, res) => {
   const wargameId = req.params.wargame_id;
 
   try {
@@ -166,7 +166,7 @@ const deleteWargame = async (req, res) => {
 };
 
 //wargame 수정 페이지
-const updateWargame = async (req, res) => {
+const wargameUpdate = async (req, res) => {
   const wargameId = req.params.wargame_id;
   const wargame = await Wargame.findOne({ _id: wargameId });
   const flag = wargame.flag.replace(process.env.FLAG_FORMAT, '');
@@ -179,7 +179,7 @@ const updateWargame = async (req, res) => {
 };
 
 //wargame 수정
-const updateSubmitWargame = async (req, res) => {
+const wargameUpdateSubmit = async (req, res) => {
   const { title, content, type, level, point, flag, updateAt } = req.body;
   const wargameId = req.params.wargame_id;
   const wargame = await Wargame.findOne({ _id: wargameId });
@@ -242,7 +242,7 @@ const validateFlag = (req, res, wargameId, submitFlag, wargameInfo) => {
 };
 
 //wargame flag 검증
-const checkFlagWargame = async (req, res) => {
+const wargameCheckFlag = async (req, res) => {
   const wargameId = req.params.wargame_id;
   const nickname = req.user.nickname;
   const userInfo = await User.findOne({ nickname });
@@ -294,7 +294,7 @@ const checkFlagWargame = async (req, res) => {
 };
 
 //wargame 댓글 작성
-const createCommentWargame = async (req, res) => {
+const wargameCreateComment = async (req, res) => {
   const { content } = req.body;
   const wargameId = req.params.wargame_id;
   const backURL = `/wargame/${wargameId}`;
@@ -325,13 +325,13 @@ const createCommentWargame = async (req, res) => {
 
 module.exports = {
   indexPage,
-  indexWargamePage,
-  viewWargamePage,
-  createWargamePage,
-  createWargame,
-  deleteWargame,
-  updateWargame,
-  updateSubmitWargame,
-  checkFlagWargame,
-  createCommentWargame,
+  wargameIndexPage,
+  wargameViewPage,
+  wargameCreatePage,
+  wargameCreate,
+  wargameDelete,
+  wargameUpdate,
+  wargameUpdateSubmit,
+  wargameCheckFlag,
+  wargameCreateComment,
 };

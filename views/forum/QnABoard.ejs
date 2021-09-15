@@ -75,12 +75,12 @@
       <div class="main-pages">
         <% let prevEnabled = paging.currentPage > 1; let nextEnabled =
         paging.currentPage < paging.totalPage; %> <%if(prevEnabled){%><a
-          href="/forum/QnABoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          href="/forum/qnaBoard?page=<%= paging.currentPage-1 %>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
           ><input type="button" class="main-pages__page" value="<" /></a
         ><%}%> <% for(let i=1; i<= paging.totalPage; i++){%> <%if(i==1 ||
         i==paging.totalPage || (i>=paging.currentPage-2 &&
         i<=paging.currentPage+2)){%>
-        <a href="/forum/QnABoard?page=<%= i %>&limit=<%=paging.limit%>"
+        <a href="/forum/qnaBoard?page=<%= i %>&limit=<%=paging.limit%>"
           ><input type="button" class="main-pages__page" value="<%= i %>"
         /></a>
         <%} else if(i==2||i==paging.totalPage-1){%>
@@ -88,13 +88,13 @@
           ...
         </button>
         <%}%> <%}%> <%if(nextEnabled){%><a
-          href="/forum/QnABoard?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
+          href="/forum/qnaBoard?page=<%= paging.currentPage+1%>&limit=<%=paging.limit%>&search_box=<%= search_box %>"
           ><input type="button" class="main-pages__page" value=">" /></a
         ><%}%>
       </div>
 
       <div class="main-usertools">
-        <a class="write-post" href="/forum/QnABoard/write/<%- user._id %>"
+        <a class="write-post" href="/forum/qnaBoard/write/<%- user._id %>"
           >글쓰기</a
         >
       </div>

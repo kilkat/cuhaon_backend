@@ -8,19 +8,19 @@ const {
 } = require('../controllers/middlewares');
 const controllers = require('../controllers/forum.ctrl');
 
-router.get('/index', isLoggedIn, controllers.forumIndexPage);
+router.get('/', isLoggedIn, controllers.forumIndexPage);
 router.get('/ranking', isLoggedIn, controllers.forumRankingPage);
-router.get('/freeBoard', isLoggedIn, controllers.forumFreeBoardPage);
-router.get('/QnABoard', isLoggedIn, controllers.forumQnABoardPage);
+router.get('/freeBoard', isLoggedIn, controllers.forumfreeBoardPage);
+router.get('/qnaBoard', isLoggedIn, controllers.forumqnaBoardPage);
 router.get(
   '/freeBoard/write/:userId',
   isLoggedIn,
-  controllers.forumFreeBoardWritePage,
+  controllers.forumfreeBoardWritePage,
 );
 router.get(
-  '/QnABoard/write/:userId',
+  '/qnaBoard/write/:userId',
   isLoggedIn,
-  controllers.forumQnABoardWritePage,
+  controllers.forumqnaBoardWritePage,
 );
 router.get('/view/:forumId', isLoggedIn, controllers.forumViewPage);
 router.get('/view/edit/:forumId', isLoggedIn, controllers.forumViewEditPage);
@@ -29,12 +29,12 @@ router.get('/view/delete/:forumId', isLoggedIn, controllers.forumViewDelete);
 router.post(
   '/freeBoard/write/:userId',
   isLoggedIn,
-  controllers.forumFreeBoardWrite,
+  controllers.forumfreeBoardWrite,
 );
 router.post(
-  '/QnABoard/write/:userId',
+  '/qnaBoard/write/:userId',
   isLoggedIn,
-  controllers.forumQnABoardWrite,
+  controllers.forumqnaBoardWrite,
 );
 router.post(
   '/view/comment/create/:forumId',

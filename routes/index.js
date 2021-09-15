@@ -16,34 +16,34 @@ router.use((req, res, next) => {
 
 // routes 순서 바꾸기 x
 router.get('/', controllers.indexPage);
-router.get('/wargame', controllers.indexWargamePage);
-router.get('/wargame/create', isLoggedIn, controllers.createWargamePage);
-router.post('/wargame/create', isLoggedIn, controllers.createWargame);
+router.get('/wargame', controllers.wargameIndexPage);
+router.get('/wargame/create', isLoggedIn, controllers.wargameCreatePage);
+router.post('/wargame/create', isLoggedIn, controllers.wargameCreate);
 router.post(
   '/wargame/update/:wargame_id',
   isLoggedIn,
-  controllers.updateWargame,
+  controllers.wargameUpdate,
 );
 router.post(
   '/wargame/update/success/:wargame_id',
   isLoggedIn,
-  controllers.updateSubmitWargame,
+  controllers.wargameUpdateSubmit,
 );
-router.get('/wargame/:wargame_id', controllers.viewWargamePage);
+router.get('/wargame/:wargame_id', controllers.wargameViewPage);
 router.post(
   '/wargame/delete/:wargame_id',
   isLoggedIn,
-  controllers.deleteWargame,
+  controllers.wargameDelete,
 );
 router.post(
   '/wargame/checkflag/:wargame_id',
   isLoggedIn,
-  controllers.checkFlagWargame,
+  controllers.wargameCheckFlag,
 );
 router.post(
   '/wargame/:wargame_id/create/comment',
   isLoggedIn,
-  controllers.createCommentWargame,
+  controllers.wargameCreateComment,
 );
 router.use('/auth', authRouter);
 router.use('/admin', adminRouter);
