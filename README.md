@@ -14,11 +14,23 @@
   <h3>:white_check_mark:ERD모델:white_check_mark:</h3>
   <br>
   
-  ![cuha drawio](https://user-images.githubusercontent.com/75434755/132502967-42a30c36-f79c-44a8-92f3-6b831b74f48b.png)
+ ![cuha drawio (2)](https://user-images.githubusercontent.com/75434755/133264487-9d162115-7b93-4271-9bac-0170e91497f6.png)  
+
 
 </div>
 
 ### :pencil2:수정일지  
+
+
+- **21/09/13**  
+  /controllers/forum.ctrl.js, /views/forum/index.ejs  
+  > forum 홈 질문 자유 게시판 출력 수정  
+  > 작성자: 문영민  
+
+- **21/09/11**  
+  >/admin.ctrl.js, /routes/admin.js, /views/admin/forum/freeBoard, /views/admin/forum/QnABoard, /views/admin/members/create.ejs, /views/admin/members/update.ejs, /views/admin/wargame/create.ejs, /views/admin/wargame/update.ejs  
+  >admin.ctrl [freeBoard, QnABoard] [추가, 수정, 삭제] 기능 구현, routes연결, 프론트 [추가, 수정]  
+  > 작성자: 김광운  
 
 - **21/09/10**  
   /controllers/forum.ctrl.js, /views/forum/view.ejs  

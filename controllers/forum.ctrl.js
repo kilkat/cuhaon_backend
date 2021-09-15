@@ -6,6 +6,7 @@ const { findOne } = require('../schemas/user');
 const user = require('../schemas/user');
 const ForumComment = require('../schemas/forumComment');
 
+//홈
 const forumIndexPage = async (req, res) => {
   try {
     //검색
@@ -13,38 +14,34 @@ const forumIndexPage = async (req, res) => {
     //랭크
     const rank = await User.find().sort({ point: -1 }).limit(3);
 
-    //페이징 구문
-    const totalPost = await Forum.countDocuments({
+    //게시판 표시 구문
+    //자유 게시판 출력
+    const freeforumPost = await Forum.find({
       title: action.searchKeyword(req.query.search_box),
-    });
-
-    if (!totalPost) {
-      emptySearch = true;
-    }
-    let { hide_post, limit } = action.paging(
-      req.query.page,
-      (_limit = 5),
-      totalPost,
-    );
-
-    //게시물 출력
-    const forumPost = await Forum.find({
-      title: action.searchKeyword(req.query.search_box),
+      category: 0,
     })
       .sort({ createdAt: -1 })
-      .skip(hide_post)
-      .limit(limit);
+      .limit(5);
+
+    const QnAforumPost = await Forum.find({
+      title: action.searchKeyword(req.query.search_box),
+      category: 1,
+    })
+      .sort({ createdAt: -1 })
+      .limit(5);
 
     res.render('forum/index', {
       search_box,
       rank,
-      posts: forumPost,
+      freeposts: freeforumPost,
+      QnAposts: QnAforumPost,
     });
   } catch (error) {
     console.error(error);
   }
 };
 
+//랭킹 페이지
 const forumRankingPage = async (req, res) => {
   try {
     const rank = await User.find().sort({ point: -1 });
@@ -185,6 +182,7 @@ const forumqnaBoardWrite = async (req, res) => {
   return res.redirect('/forum/qnaBoard');
 };
 
+//게시물 페이지
 const forumViewPage = async (req, res) => {
   const forumId = req.params.forumId;
   try {
@@ -235,6 +233,7 @@ const forumViewPage = async (req, res) => {
   }
 };
 
+//포럼 댓글
 const forumCommentCreate = async (req, res) => {
   const forumId = req.params.forumId;
   const comment = req.body.comment;
@@ -252,6 +251,7 @@ const forumCommentCreate = async (req, res) => {
   return res.redirect(`/forum/view/${forumId}`);
 };
 
+//수정 페이지
 const forumViewEditPage = async (req, res) => {
   const forumId = req.params.forumId;
   const forumInfo = await Forum.findOne({ _id: forumId });
