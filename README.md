@@ -22,6 +22,13 @@
 ### :pencil2:수정일지  
 
 - **21/09/15**  
+  /controllers/index.ctrl.js, /controllers/wargame.ctrl.js , /routes/index.js, /routes/wargame.js, /schemas/Solved  
+  > 인덱스 컨트롤러에 있던 워게임 관련 라우팅들 워게임컨트롤러로 이동.    
+  > 인텍스 라우터에 있던 워게임 라우팅도 워게임 라우터로 이동.  
+  > 스키마 whoSolved -> Solved로 변경  
+  > 작성자: 문영민  
+
+- **21/09/15**  
   /controllers/forum.ctrl.js, /views/forum/index.ejs  
   > 프론트 링크 수정, 함수명 freeBoard, qnaBoard 수정  
   > 작성자: 김광운  
