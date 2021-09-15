@@ -27,7 +27,7 @@ const wargameSchema = new Schema({
     required: false,
     default: 0,
   },
-  solved: {
+  solvedCount: {
     type: Number,
     required: false,
     default: 0,

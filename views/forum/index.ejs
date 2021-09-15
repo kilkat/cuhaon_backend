@@ -15,6 +15,7 @@
 
         <div class="rank_box">
           <!-- item -->
+          <% if (rank[1] != null){ %>
           <div style="display: inline-block">
             <div
               class="rank_box-small"
@@ -28,7 +29,9 @@
             <br />
             <p class="rank_box-name"><%- rank[1].nickname %></p>
           </div>
+          <% } %>
           <!-- item -->
+          <% if (rank[0] != null){ %>
           <div style="display: inline-block">
             <div
               class="rank_box-big"
@@ -42,7 +45,9 @@
             <br />
             <p class="rank_box-name"><%- rank[0].nickname %></p>
           </div>
+          <% } %>
           <!-- item -->
+          <% if (rank[2] != null){ %>
           <div style="display: inline-block">
             <div
               class="rank_box-small"
@@ -56,6 +61,7 @@
             <br />
             <p class="rank_box-name"><%- rank[2].nickname %></p>
           </div>
+          <% } %>
         </div>
 
         <a href="/forum/ranking" class="forum-section-more">더 보기</a>
@@ -63,7 +69,7 @@
 
       <section class="main-recent">
         <h1 class="title font-header">자유 게시판 <span>최신 글</span></h1>
-      
+
         <div class="posts">
           <% freeposts.forEach(function(post){ %>
           <a href="/forum/view/<%= post._id%>" class="posts-item">

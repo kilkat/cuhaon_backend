@@ -234,10 +234,13 @@
 
         <!-- 관리자 도구 -->
         <!-- 백엔드에서 관리자가 보는게 아니면 이하 style="display"에 none삽입 -->
-        <%if(user && user.roleType === 'admin'){%>
+        <%if(user || user.roleType === 'normal' || user.roleType ===
+        'normal'){%>
         <section class="section-admintool" style="display: ''">
           <div class="section-admintool__area">
-            <p>관리자 도구</p>
+            <%if(user && user.roleType === 'admin'){%>
+            <p><a href="/admin/login">관리자 도구</a></p>
+            <%}%>
             <a href="/wargame/create" class="global-button__default"
               >새 문제 만들기</a
             >

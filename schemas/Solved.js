@@ -4,7 +4,7 @@ const {
   Types: { ObjectId },
 } = Schema;
 
-const whoSolved = new Schema({
+const solvedSchema = new Schema({
   wargameId: {
     type: ObjectId,
     required: true,
@@ -16,4 +16,4 @@ const whoSolved = new Schema({
   },
 });
 
-module.exports = mongoose.model('whoSolved', whoSolved);
+module.exports = mongoose.model('Solved', solvedSchema);

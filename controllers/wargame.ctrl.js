@@ -3,9 +3,11 @@ const Comment = require('../schemas/comment');
 const action = require('./common/action');
 const User = require('../schemas/user');
 const validator = require('validator');
-const Solved = require('../schemas/Solved');
-const { commentSaveValidator } = require('./common/validator');
-const { saveWargameValidator } = require('./common/validator');
+const Solved = require('../schemas/solved');
+const {
+  commentSaveValidator,
+  saveWargameValidator,
+} = require('./common/validator');
 const { logger } = require('../config/winston');
 
 //wargame 페이지
@@ -268,7 +270,7 @@ const wargameCheckFlag = async (req, res) => {
 
         await Wargame.updateOne(
           { _id: wargameId },
-          { $set: { solved: wargameInfo.solved + 1 } },
+          { $set: { solvedCount: wargameInfo.solvedCount + 1 } },
         );
 
         await User.updateOne(
