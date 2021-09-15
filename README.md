@@ -22,9 +22,10 @@
 ### :pencil2:수정일지  
 
 - **21/09/16**  
-  /controllers/wargame.ctrl.js , /routes/wargame.js, /schemas/solved  
+  /controllers/wargame.ctrl.js , /routes/wargame.js, /schemas/solved, /forum/index.ejs  
   > Solved -> solved 함수명 다 변경  
   > solved -> solvedCount 변경  
+  > 사람이 없어도 랭킹 구현되게 if문 박아놈  
   > 스키마 whoSolved -> solved로 변경  
   > 작성자: 김광운  
 
