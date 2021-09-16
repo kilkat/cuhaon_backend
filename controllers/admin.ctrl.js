@@ -175,7 +175,7 @@ const FreeBoardPage = async (req, res) => {
   }
 };
 
-const QnABoardPage = async (req, res) => {
+const qnaBoardPage = async (req, res) => {
   try {
     //검색
     let search_box = req.query.search_box;
@@ -204,7 +204,7 @@ const QnABoardPage = async (req, res) => {
       .skip(hide_post)
       .limit(limit);
 
-    res.render('admin/forum/QnABoard/index', {
+    res.render('admin/forum/qnaBoard/index', {
       search_box,
       posts: forumPost,
       paging: {
@@ -480,11 +480,11 @@ const freeBoardDelete = async (req, res) => {
   return res.redirect('/admin/forum/freeBoard');
 };
 
-const QnABaordCreatePage = async (req, res) => {
-  res.render('admin/forum/QnABoard/create');
+const qnaBaordCreatePage = async (req, res) => {
+  res.render('admin/forum/qnaBoard/create');
 };
 
-const QnABoardCreate = async (req, res) => {
+const qnaBoardCreate = async (req, res) => {
   const { title, nickname, content } = req.body;
   const userInfo = await User.findOne({ nickname });
 
@@ -500,18 +500,18 @@ const QnABoardCreate = async (req, res) => {
     console.error(error);
   }
 
-  return res.redirect('/admin/forum/QnABoard');
+  return res.redirect('/admin/forum/qnaBoard');
 };
 
-const QnABoardUpdatePage = async (req, res) => {
+const qnaBoardUpdatePage = async (req, res) => {
   const forumId = req.params.forumId;
   const forumInfo = await Forum.findOne({ _id: forumId });
   const userInfo = await User.findOne({ _id: forumInfo.userId });
 
-  res.render('admin/forum/QnABoard/update', { forumInfo, userInfo });
+  res.render('admin/forum/qnaBoard/update', { forumInfo, userInfo });
 };
 
-const QnABoardUpdate = async (req, res) => {
+const qnaBoardUpdate = async (req, res) => {
   const { title, nickname, content } = req.body;
   const forumId = req.params.forumId;
   const userId = await User.findOne({ nickname });
@@ -531,10 +531,10 @@ const QnABoardUpdate = async (req, res) => {
     console.error(error);
   }
 
-  res.redirect('/admin/forum/QnABoard');
+  res.redirect('/admin/forum/qnaBoard');
 };
 
-const QnABoardDelete = async (req, res) => {
+const qnaBoardDelete = async (req, res) => {
   const forumId = req.params.forumId;
 
   try {
@@ -543,7 +543,7 @@ const QnABoardDelete = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-  return res.redirect('/admin/forum/QnABoard');
+  return res.redirect('/admin/forum/qnaBoard');
 };
 
 const adminLogout = async (req, res) => {
@@ -558,7 +558,7 @@ module.exports = {
   membersBoardPage,
   wargameBoardPage,
   FreeBoardPage,
-  QnABoardPage,
+  qnaBoardPage,
   membersCreatePage,
   membersCreate,
   membersUpdatePage,
@@ -574,10 +574,10 @@ module.exports = {
   freeBoardUpdatePage,
   freeBoardUpdate,
   freeBoardDelete,
-  QnABaordCreatePage,
-  QnABoardCreate,
-  QnABoardUpdatePage,
-  QnABoardUpdate,
-  QnABoardDelete,
+  qnaBaordCreatePage,
+  qnaBoardCreate,
+  qnaBoardUpdatePage,
+  qnaBoardUpdate,
+  qnaBoardDelete,
   adminLogout,
 };

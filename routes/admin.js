@@ -13,7 +13,7 @@ router.get('/login', controllers.AdminLoginPage);
 router.get('/members', isAdmin, isLoggedIn, controllers.membersBoardPage);
 router.get('/wargame', isAdmin, isLoggedIn, controllers.wargameBoardPage);
 router.get('/forum/freeBoard', isAdmin, isLoggedIn, controllers.FreeBoardPage);
-router.get('/forum/QnABoard', isAdmin, isLoggedIn, controllers.QnABoardPage);
+router.get('/forum/qnaBoard', isAdmin, isLoggedIn, controllers.qnaBoardPage);
 router.get(
   '/members/create',
   isAdmin,
@@ -69,22 +69,22 @@ router.get(
   controllers.freeBoardDelete,
 );
 router.get(
-  '/forum/QnABoard/create',
+  '/forum/qnaBoard/create',
   isAdmin,
   isLoggedIn,
-  controllers.QnABaordCreatePage,
+  controllers.qnaBaordCreatePage,
 );
 router.get(
-  '/forum/QnABoard/update/:forumId',
+  '/forum/qnaBoard/update/:forumId',
   isAdmin,
   isLoggedIn,
-  controllers.QnABoardUpdatePage,
+  controllers.qnaBoardUpdatePage,
 );
 router.get(
-  '/forum/QnABoard/delete/:forumId',
+  '/forum/qnaBoard/delete/:forumId',
   isAdmin,
   isLoggedIn,
-  controllers.QnABoardDelete,
+  controllers.qnaBoardDelete,
 );
 router.get('/logout', controllers.adminLogout);
 
@@ -116,16 +116,16 @@ router.post(
   controllers.freeBoardUpdate,
 );
 router.post(
-  '/forum/QnABoard/create',
+  '/forum/qnaBoard/create',
   isAdmin,
   isLoggedIn,
-  controllers.QnABoardCreate,
+  controllers.qnaBoardCreate,
 );
 router.post(
-  '/forum/QnABoard/update/:forumId',
+  '/forum/qnaBoard/update/:forumId',
   isAdmin,
   isLoggedIn,
-  controllers.QnABoardUpdate,
+  controllers.qnaBoardUpdate,
 );
 
 module.exports = router;

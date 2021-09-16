@@ -12,10 +12,11 @@
       <div class="navi"><%- include('../common/forumNavi') -%></div>
 
       <section class="main-recent">
-        <h1 class="title font-header">TOP3 <span>명예의 전당</span></h1>
+        <h1 class="title font-header">포인트 랭킹 <span>주간</span></h1>
 
         <div class="rank_box">
           <!-- item -->
+          <% if (rank[1] != null){ %>
           <div style="display: inline-block">
             <div
               class="rank_box-small"
@@ -25,13 +26,13 @@
               <p style="background-color: silver">2</p>
             </div>
             <br />
-            <p class="rank_box-point" style="">
-              <%- rank[1].point %><span>pt</span>
-            </p>
+            <p class="rank_box-point"><%- rank[1].point %><span>pt</span></p>
             <br />
-            <p class="rank_box-name" style=""><%- rank[1].nickname %></p>
+            <p class="rank_box-name"><%- rank[1].nickname %></p>
           </div>
+          <% } %>
           <!-- item -->
+          <% if (rank[0] != null){ %>
           <div style="display: inline-block">
             <div
               class="rank_box-big"
@@ -41,13 +42,13 @@
               <p style="font-size: 2rem; background-color: gold">1</p>
             </div>
             <br />
-            <p class="rank_box-point" style="">
-              <%- rank[0].point %><span>pt</span>
-            </p>
+            <p class="rank_box-point"><%- rank[0].point %><span>pt</span></p>
             <br />
-            <p class="rank_box-name" style=""><%- rank[0].nickname %></p>
+            <p class="rank_box-name"><%- rank[0].nickname %></p>
           </div>
+          <% } %>
           <!-- item -->
+          <% if (rank[2] != null){ %>
           <div style="display: inline-block">
             <div
               class="rank_box-small"
@@ -57,12 +58,11 @@
               <p style="background-color: brown">3</p>
             </div>
             <br />
-            <p class="rank_box-point" style="">
-              <%- rank[2].point %><span>pt</span>
-            </p>
+            <p class="rank_box-point"><%- rank[2].point %><span>pt</span></p>
             <br />
-            <p class="rank_box-name" style=""><%- rank[2].nickname %></p>
+            <p class="rank_box-name"><%- rank[2].nickname %></p>
           </div>
+          <% } %>
         </div>
       </section>
 

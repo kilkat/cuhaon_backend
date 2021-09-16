@@ -13,6 +13,7 @@ const forumIndexPage = async (req, res) => {
     let search_box = req.query.search_box;
     //랭크
     const rank = await User.find().sort({ point: -1 }).limit(3);
+    console.log(rank);
 
     //게시판 표시 구문
     //자유 게시판 출력
