@@ -8,17 +8,17 @@ const { isLoggedIn, isNotLoggedIn } = require('../controllers/middlewares');
 router.get('/', controllers.wargameIndexPage);
 router.get('/create', isLoggedIn, controllers.wargameCreatePage);
 router.post('/create', isLoggedIn, controllers.wargameCreate);
-router.post('/update/:wargame_id', isLoggedIn, controllers.wargameUpdate);
+router.post('/update/:wargameId', isLoggedIn, controllers.wargameUpdate);
 router.post(
-  '/update/success/:wargame_id',
+  '/update/success/:wargameId',
   isLoggedIn,
   controllers.wargameUpdateSubmit,
 );
-router.get('/:wargame_id', controllers.wargameViewPage);
-router.post('/delete/:wargame_id', isLoggedIn, controllers.wargameDelete);
-router.post('/checkflag/:wargame_id', isLoggedIn, controllers.wargameCheckFlag);
+router.get('/:wargameId', controllers.wargameViewPage);
+router.post('/delete/:wargameId', isLoggedIn, controllers.wargameDelete);
+router.post('/checkflag/:wargameId', isLoggedIn, controllers.wargameCheckFlag);
 router.post(
-  '/:wargame_id/create/comment',
+  '/:wargameId/create/comment',
   isLoggedIn,
   controllers.wargameCreateComment,
 );

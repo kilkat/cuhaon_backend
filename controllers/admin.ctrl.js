@@ -262,7 +262,7 @@ const membersCreate = async (req, res) => {
 };
 
 const membersUpdatePage = async (req, res) => {
-  const user_id = req.params._id;
+  const user_id = req.params.userId;
   const userInfo = await User.findOne({ _id: user_id });
 
   res.render('admin/members/update', { userInfo });
@@ -270,7 +270,7 @@ const membersUpdatePage = async (req, res) => {
 
 const membersUpdate = async (req, res) => {
   const { email, nickname, point, roleType, password, cfm_password } = req.body;
-  const userId = req.params._id;
+  const userId = req.params.userId;
   const userInfo = User.findOne({ _id: userId });
   const exUser = await User.findOne({ _id: userId });
   const hash = await bcrypt.hash(password, 12);
@@ -324,7 +324,7 @@ const membersUpdate = async (req, res) => {
 };
 
 const membersDelete = async (req, res) => {
-  const user_id = req.params._id;
+  const user_id = req.params.userId;
   const wargameInfo = await Wargame.deleteMany({ userId: user_id });
 
   try {
@@ -363,7 +363,7 @@ const wargameCreate = async (req, res) => {
 };
 
 const wargameUpdatePage = async (req, res) => {
-  const wargame_id = req.params._id;
+  const wargame_id = req.params.wargameId;
   const wargameInfo = await Wargame.findOne({ _id: wargame_id }).populate(
     'userId',
     'nickname',
@@ -374,7 +374,7 @@ const wargameUpdatePage = async (req, res) => {
 };
 
 const wargameUpdate = async (req, res) => {
-  const wargame_id = req.params._id;
+  const wargame_id = req.params.wargameId;
   const { title, nickname, type, level, point, flag, content } = req.body;
 
   console.log(wargame_id);
@@ -402,7 +402,7 @@ const wargameUpdate = async (req, res) => {
 };
 
 const wargameDelete = async (req, res) => {
-  const wargameId = req.params._id;
+  const wargameId = req.params.wargameId;
 
   try {
     await Wargame.deleteOne({ _id: wargameId });

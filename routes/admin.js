@@ -21,13 +21,13 @@ router.get(
   controllers.membersCreatePage,
 );
 router.get(
-  '/members/update/:_id',
+  '/members/update/:userId',
   isAdmin,
   isLoggedIn,
   controllers.membersUpdatePage,
 );
 router.get(
-  '/members/delete/:_id',
+  '/members/delete/:userId',
   isAdmin,
   isLoggedIn,
   controllers.membersDelete,
@@ -39,13 +39,13 @@ router.get(
   controllers.wargameCreatePage,
 );
 router.get(
-  '/wargame/update/:_id',
+  '/wargame/update/wargameId',
   isAdmin,
   isLoggedIn,
   controllers.wargameUpdatePage,
 );
 router.get(
-  '/wargame/delete/:_id',
+  '/wargame/delete/wargameId',
   isAdmin,
   isLoggedIn,
   controllers.wargameDelete,
@@ -91,14 +91,14 @@ router.get('/logout', controllers.adminLogout);
 router.post('/login', controllers.adminLogin);
 router.post('/members/create', isAdmin, isLoggedIn, controllers.membersCreate);
 router.post(
-  '/members/update/:_id',
+  '/members/update/:userId',
   isAdmin,
   isLoggedIn,
   controllers.membersUpdate,
 );
 router.post('/wargame/create', isAdmin, isLoggedIn, controllers.wargameCreate);
 router.post(
-  '/wargame/update/:_id',
+  '/wargame/update/:wargameId',
   isAdmin,
   isLoggedIn,
   controllers.wargameUpdate,
