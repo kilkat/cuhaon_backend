@@ -22,12 +22,13 @@
 ### :pencil2:수정일지  
 
 - **21/09/16**  
-  /controllers/wargame.ctrl.js , /routes/wargame.js, /schemas/solved, /forum/ranking.ejs , /forum/index.ejs (저녁에 추가 커밋)  
+  /controllers/wargame.ctrl.js , /routes/wargame.js, /schemas/solved, /forum/ranking.ejs , /routes/forum.js, /routes/admin.js, /forum/index.ejs (저녁에 추가 커밋)  
   > Solved -> solved 함수명 다 변경  
   > solved -> solvedCount 변경  
   > 사람이 없어도 랭킹 구현되게 if문 박아놈  
   > 스키마 whoSolved -> solved로 변경  
   > top3 없을경우 forum/index, forum/ranking 렌더 안되는 버그 수정  
+  > 함수명 통일  
   > 작성자: 김광운  
 
 - **21/09/15**  
