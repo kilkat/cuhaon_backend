@@ -21,6 +21,11 @@
 
 ### :pencil2:수정일지  
 
+- **21/09/22**  
+  /wargame/index.ejs, /wargame/view.ejs  
+  > solvedCount로 db바꿔서 프론트도 바꿔줌(카운트 안되는 버그 수정)  
+  > 작성자: 김광운  
+
 - **21/09/16**  
   /controllers/wargame.ctrl.js , /routes/wargame.js, /schemas/solved, /forum/ranking.ejs , /routes/forum.js, /routes/admin.js, /forum/index.ejs (저녁에 추가 커밋)  
   > Solved -> solved 함수명 다 변경  
