@@ -50,7 +50,7 @@
                     조회수 : <span><%= wargame.views %></span>
                   </div>
                   <div class="section__outer-head__title-left__status-expl">
-                    풀이수 : <span><%= wargame.solved %></span>
+                    풀이수 : <span><%= wargame.solvedCount %></span>
                   </div>
                 </div>
               </div>
@@ -98,7 +98,6 @@
           class="section-answer global-bg__white"
           style="padding-bottom: 2rem"
         >
-
           <form action="/wargame/checkflag/<%- wargame._id %>" method="POST">
             <%if(user){%>
             <textarea
@@ -108,8 +107,9 @@
               rows="4"
               placeholder="정답을 자유롭게 기입하세요."
             ></textarea>
-            <%}else{%><p>로그인이 필요합니다.</p><%}%>
-            <%if(user){%>
+            <%}else{%>
+            <p>로그인이 필요합니다.</p>
+            <%}%> <%if(user){%>
             <input
               type="submit"
               value="제출하기"
@@ -232,10 +232,7 @@
             <p>관리자 도구</p>
 
             <% if (user && user.roleType === 'admin') {%>
-            <form
-              action="/wargame/delete/<%= wargame._id %>"
-              method="POST"
-            >
+            <form action="/wargame/delete/<%= wargame._id %>" method="POST">
               <input
                 type="submit"
                 value="글 삭제"
